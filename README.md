@@ -14,17 +14,17 @@ FrameWork que permite una mayor calidad, agilidad & productividad a la hora maqu
 
 > herramientas desarrolladas
 
-- *Etiquetas HTML de (LAYOUT) horizontal* : HboxN, HboxS, HboxC
+- **Etiquetas HTML de (LAYOUT) horizontal** : HboxN, HboxS, HboxC
 
-- *Etiquetas HTML de (LAYOUT) vertical* : VboxN, VboxS, VboxC
+- **Etiquetas HTML de (LAYOUT) vertical** : VboxN, VboxS, VboxC
 
-- *Etiquetas HTML para bloquear & ocultar celdas* : ObjEnable, ObjDisable, ObjHide, ObjShow
+- **Etiquetas HTML para bloquear & ocultar celdas** : ObjEnable, ObjDisable, ObjHide, ObjShow
 
-- *Etiqueta HTML (ToCache)* : compatible solo con celdas tipo imagen, sirve para pintar una misma imagen en `N` celdas, pero con la diferencia que la imagen solo se tendrá que descargar una sola vez del servidor, lo cual abre un nuevo universo, desbancando del Trono a los `Sprites-css`.
+- **Etiqueta HTML (ToCache)** : compatible solo con celdas tipo imagen, sirve para pintar una misma imagen en `N` celdas, pero con la diferencia que la imagen solo se tendrá que descargar una sola vez del servidor, lo cual abre un nuevo universo, desbancando del Trono a los `Sprites-css`.
 
-- *Etiqueta HTML (ShowProgress)* : compatible solo con celdas tipo imagen, esta herramienta permite mostrar una barra de progreso durante la carga del archivo de imagen, es ideal para imágenes que superan los 100Kbs o más, es decir en conexiones lentas, la mayorías de las veces las imágenes solo se logran cargar por la mitad o totalmente pixeladas, en el peor de los casos nunca llega a cargarse, esta herramienta da por solucionado el problema.
+- **Etiqueta HTML (ShowProgress)** : compatible solo con celdas tipo imagen, esta herramienta permite mostrar una barra de progreso durante la carga del archivo de imagen, es ideal para imágenes que superan los 100Kbs o más, es decir en conexiones lentas, la mayorías de las veces las imágenes solo se logran cargar por la mitad o totalmente pixeladas, en el peor de los casos nunca llega a cargarse, esta herramienta da por solucionado el problema.
 
-- *Etiqueta (CopyAttributes="$name")* : sirve para copiar las etiquetas de una celda & pegarlas en otra, permitiendo agilizar muchos aspectos tediosos e in-practicos en el maquetado
+- **Etiqueta (CopyAttributes="$name")** : sirve para copiar las etiquetas de una celda & pegarlas en otra, permitiendo agilizar muchos aspectos tediosos e in-practicos en el maquetado
 
 ---
 
@@ -47,20 +47,6 @@ Para hacer que la primera & tercer columna no se estiren & la segunda si, en la 
 
 
 **RESUMEN** como se puede apreciar la implementación & uso en un proyecto web es muy fácil, ademas no requiere conocimientos en JS & mucho menos conocimientos en maquetado profesional, !más fácil de usar, imposible!, ¿que tanto te gusto esta nueva era? :)
-
----
-
-> visualizar DEMOS
-
-[Reproducción no cíclica](https://sunfurthanos.github.io/DobleFlash-JS/samples/1.basico.html)
-
-[Auto reproducción](https://sunfurthanos.github.io/DobleFlash-JS/samples/2.auto-play.html)
-
-[Personalizar FPS](https://sunfurthanos.github.io/DobleFlash-JS/samples/3.custom_FPS.html)
-
-[Evento clic](https://sunfurthanos.github.io/DobleFlash-JS/samples/4.event_click.html)
-
-[Efecto de retrocezo](https://sunfurthanos.github.io/DobleFlash-JS/samples/5.%20efecto%20de%20retrocezo.html)
 
 ---
 
