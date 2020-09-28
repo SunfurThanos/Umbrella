@@ -52,19 +52,19 @@ Para hacer que la primera & tercer columna no se estiren & la segunda si, en la 
 
 # herramientas en desarrollo -> (UMBRELLA v-Clarine)
 
-- *ShowProgress* : compatible con la propiedad `background` de css
+- **ShowProgress** : compatible con la propiedad `background` de css
 
-- *ToCache* : compatible con la propiedad `background` de css
+- **ToCache** : compatible con la propiedad `background` de css
 
-- *Utilidades de diseño* : botones, barra de cargas, sliders, windows-popup, iconos, tooltips
+- **Utilidades de diseño** : botones, barra de cargas, sliders, windows-popup, iconos, tooltips
 
-- *EventAll* : evento genérico que permite de forma productiva escuchar todos los eventos al mismo tiempo & con alto performance, desde una única función
+- **EventAll** : evento genérico que permite de forma productiva escuchar todos los eventos al mismo tiempo & con alto performance, desde una única función
 
-- *Responsive* : sistema futurista & productivo de `resposive-design`, el cual es adaptativo & escalable, permite de manera productiva, mostrar, ocultar & conectar celdas y clases css.
+- **Responsive** : sistema futurista & productivo de `resposive-design`, el cual es adaptativo & escalable, permite de manera productiva, mostrar, ocultar & conectar celdas y clases css.
 
-- *Copy-struct* : permite copiar & fusionar estructuras de celda de manera futurista & productiva, muy útil para crear columnas & cualquier elemento repetitivo con pequeñas variaciones
+- **Copy-struct** : permite copiar & fusionar estructuras de celda de manera futurista & productiva, muy útil para crear columnas & cualquier elemento repetitivo con pequeñas variaciones
 
-- *Herencia espectral* : de forma simple permite crear una conexión lógica a la hora ocultar o mostrar objetos, con simple etiquetas puedes crear lógica tales como: si este determinado objeto esta oculto muestra este, pudiendo crear capas visuales muy interesantes & productivas
+- **Herencia espectral** : de forma simple permite crear una conexión lógica a la hora ocultar o mostrar objetos, con simple etiquetas puedes crear lógica tales como: si este determinado objeto esta oculto muestra este, pudiendo crear capas visuales muy interesantes & productivas
 
 ---
 
@@ -83,4 +83,4 @@ Eres una empresa grande, pequeña, Freelance, ¿usas este proyecto en tu día a 
 
 ---
 
-*Sunfur Thanos* Si aprendes a estar abierto para adaptarte ¡seras invencible!
+**Sunfur Thanos** Si aprendes a estar abierto para adaptarte ¡seras invencible!
