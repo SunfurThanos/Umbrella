@@ -50,7 +50,7 @@ Para hacer que la primera & tercer columna no se estiren & la segunda si, en la 
 
 ---
 
-# herramientas en desarrollo para la segunda versión -> (UMBRELLA v-Clarine)
+# herramientas en desarrollo -> (UMBRELLA v-Clarine)
 
 - *ShowProgress* : compatible con la propiedad `background` de css
 
