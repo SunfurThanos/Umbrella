@@ -2,7 +2,7 @@
 UMBRELLA v-Alice
 ================
 
-<img src="https://www.diariodevenusville.com/wp-content/uploads/2017/02/RESIDENT-EVIL-1.jpg" width="250">
+<img src="https://www.diariodevenusville.com/wp-content/uploads/2017/02/RESIDENT-EVIL-1.jpg" width="450">
 
 FrameWork que permite una mayor calidad, agilidad & productividad a la hora maquetar paginas web, brindándote ventajas futuristas, nunca antes planteadas en esta era.
 
