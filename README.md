@@ -6,7 +6,7 @@ UMBRELLA v-Alice
 
 FrameWork que permite una mayor calidad, agilidad & productividad a la hora maquetar paginas web, brindándote ventajas futuristas, nunca antes planteadas en esta era.
 
-[donar por Paypal](https://www.paypal.me/picturepan2)
+[donar por Paypal](https://www.paypal.me/?)
 
 ---
 
