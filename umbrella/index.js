@@ -57,12 +57,13 @@ if (document.addEventListener) {
 
 // ejecutando servicios dedicados
 function UmbrellaKernelStart() {
+	console.log("YES")
   // servicio: celdas sincronizada
   UmbrellaService_PasteAttrib.start()
   // servicio: ver imagen en otra pestaña si el evento "click" no existe
   UmbrellaService_ViewImgTab.start()
   // servicio: computar espacio
-  UmbrellaService_ComputeSpace.start()
+  UmbrellaService_ComputeSpace.start(comienzo=true)
 }
 
 //-------------------------------------------------------------------------------
@@ -164,14 +165,24 @@ _ComputeSpace.prototype.replace = function(object) {
 }
 
 // filtrando elementos en el arbol web
-_ComputeSpace.prototype.start = function() {
+_ComputeSpace.prototype.start = function(comienzo=false) {
 	function StateTrump(tipo) {
 		var arbol_web = document.querySelectorAll(tipo)
 
 		for (var object of arbol_web) {
 		  if (typeof object == "object") {
 		    if (!find_object(object)) {
+
 		    	UmbrellaService_ComputeSpace.replace(object)
+
+		    	if (comienzo) {
+			    	object.addEventListener("DOMCharacterDataModified",  function(event) {
+			    		obj = event.path[0x1]
+
+			    		UmbrellaService_ComputeSpace.replace(obj)
+
+			    	},  false);
+			    }
 		    }
 		  }
 		}
