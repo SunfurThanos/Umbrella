@@ -1,0 +1,28 @@
+
+body {
+  background: #3D464F;
+  color: #bbb;
+  border-left: 200px white solid;
+  line-height: 1.3;
+  letter-spacing: 1.2px;
+  margin: 0;
+  /*margin-top: 2em;*/
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI Symbol", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.class_centrar {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: transparent;
+}
+
+body:hover ::-moz-selection { background-color: #2A323D; color: inherit;text-shadow: none; }
+
+b {font-family: Tahoma;color: #46D6BF;}

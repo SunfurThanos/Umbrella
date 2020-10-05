@@ -1,0 +1,55 @@
+<meta charset="utf-8">
+<link href="src/consola.png" rel="icon" type="image/x-icon">
+<link type="text/css" href="src/estilo.css" rel="stylesheet">
+<title>Umbrella - Celdas sincronicas</title>
+
+<style type="text/css">
+
+	.brillo {
+		border: 1px salmon solid;
+	}
+
+	a[href] {
+		color: #8ab7ce;
+	}
+
+	a[href]:hover {
+		color: salmon;
+	}
+
+</style>
+
+
+<!-- importando API -->
+<script type="text/javascript" src="../umbrella/index.js"></script>
+
+<br><br>
+
+<!-- ejemplo 1 -->
+<div align="center">
+
+	<!-- celda donde se harán las copias de etiquetas sincronizadas -->
+	<img
+		src="src/milla3.gif"
+		height="250"
+		id="imagen1"
+		hspace="10"
+		style="-webkit-box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.8);"
+		class="brillo"
+	>
+
+	<br><br>
+
+	<!-- celda 1 donde se pegaran las etiquetas sincronizadas -->
+	<img src="src/Milla2.jpg"  PasteAttributes="imagen1">
+
+</div>
+
+</p></p>
+
+<!-- ejemplo 2 -->
+<div align="center">
+	<a href="https://sunfur.herokuapp.com" target="_black" id="texto_main" style="cursor: pointer;">haz clic</a>
+	<a PasteAttributes="texto_main"><button PasteAttributes="texto_main">haz clic</button></a>
+	<a PasteAttributes="texto_main"><div PasteAttributes="texto_main" style="display: inline-block;color: salmon;">haz clic</div></a>
+</div>

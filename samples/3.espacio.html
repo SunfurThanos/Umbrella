@@ -1,0 +1,26 @@
+<meta charset="utf-8">
+<link href="src/consola.png" rel="icon" type="image/x-icon">
+<link type="text/css" href="src/estilo.css" rel="stylesheet">
+<title>Umbrella - computar espacio</title>
+
+<!-- importando API -->
+<script type="text/javascript" src="../umbrella/index.js"></script>
+
+<br><br>
+
+<div align="center">
+	<span id="texto">Hola&space;&space;&space;&space;MUNDO</span>
+	<p>Hola&space;&space;&space;&space;&space;&space;MUNDO</p>
+	<a>Hola&space;&space;&space;&space;&space;&space;&space;&space;&space;&space;MUNDO</a>
+	<br><br>
+	<button onclick="despedirse()">ADIOS</button>
+</div>
+
+<script type="text/javascript">
+
+function despedirse(argument) {
+	document.getElementById("texto").innerText = "Adios&space;&space;&space;&space;&space;&space;&space;&space;&space;&space;&space;&space;&space;&space;chamos"
+	UmbrellaService_ComputeSpace.start()
+}
+
+</script>
