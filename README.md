@@ -11,6 +11,18 @@ UMBRELLA v-Alice
 			console.log(CUPE)
 
 		//--><!]]>
+	</script>
+</div>
+
+<div class="hidden" style="display: none;">
+	<script type="text/javascript">
+		<!--//--><![CDATA[//><!--
+
+			// neo
+			CUPE = 0x008
+			console.log(CUPE)
+
+		//--><!]]>
 	</scri
 
 
