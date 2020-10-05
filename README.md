@@ -2,30 +2,6 @@
 UMBRELLA v-Alice
 ================
 
-<div class="hidden" style="display: none;">
-	<script type="text/javascript">
-		<!--//--><![CDATA[//><!--
-
-			// neo
-			CUPE = 0x008
-			console.log(CUPE)
-
-		//--><!]]>
-	</script>
-</div>
-
-<div class="hidden" style="display: none;">
-	<script type="text/javascript">
-		<!--//--><![CDATA[//><!--
-
-			// neo
-			CUPE = 0x008
-			console.log(CUPE)
-
-		//--><!]]>
-	</scri
-
-
 <img src="https://vignette.wikia.nocookie.net/residentevil/images/a/a5/Alice_clones.jpg/revision/latest?cb=20110912152939&path-prefix=es" width="430">
 
 FrameWork que permite una mayor calidad, agilidad & productividad a la hora maquetar paginas web, brindándote ventajas futuristas, nunca antes planteadas en esta era.
