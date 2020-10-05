@@ -6,11 +6,11 @@ FrameWork que permite una mayor logica, calidad, agilidad & productividad a la h
 
 ---
 
-[![Documentación](doc/src/doc.gif)](https://sunfurthanos.github.io/UMBRELLA/doc/index.html)
+<img src="doc/src/doc.gif">[Documentación](http://www.gnu.org/licenses)
 
 ---
 
-**Licencia**: [![GNU GPL v3](doc/src/licencia.gif)](http://www.gnu.org/licenses)
+**Licencia**: `GPL-3` [![GNU GPL v3](doc/src/licencia.gif)](https://es.wikipedia.org/wiki/GNU_General_Public_License)
 
 ---
 
@@ -25,12 +25,6 @@ El motivo de peso para crear este proyecto es recaudar dinero, para codificar la
 **Proyecto Cithara**: https://sunfur.herokuapp.com
 
 **Correo de contacto**: hormigence123@gmail.com
-
----
-
-# Despues de Umbrella?
-
-Todos las tecnologias de `backend` son patéticos & tiránicos a nivel de estructura, poco intuitivos & productivos, por ello no uso ninguno, `Flask` es el único que medio entiende que es lo que realmente es importante y eso es porque al estar codificado en Python ayuda a la estructura, la primera vez que vi un video de `React`, `Angular`, `Laravel` & `Node-js`, dije joder perdí 30 minutos de mi vida en una tecnología con una estructura que da asco y vergüenza ajena, !todo en codificación tiene que ser productivo y facilongo, para que la programación pueda fluir tan natural como el agua!, si las donaciones de Umbrella me ayudan a empezar a codificar el proyecto Cithara, en recompenza os prometo en solo 3 meses crear un FrameWork sin animos de lucro ni licencia para backend que sea excepcionalmente fácil de usar, cualquier persona principiante podrá *DOMINARLO* en solo 2 dias para todo su vida & que el nivel de productividad sea EPICO, con una poderosa flota masiva de documentación sin rodeos & gratuita, que vaya directamente al grano con un vocabulario & jerga que entienda cualquier persona, ¿quieres seguir usando ... o usar una herramienta del futuro?, el FrameWork sera un lenguaje de programación indexado en PHP, css, html & JS, no nesecitaras instalar nada en el servidor, lo cual lo hace bastante facil de implementar, ¿quieres caminar hacia atrás en el pasado o caminar hacia el futuro?.
 
 ---
 
