@@ -6,7 +6,7 @@ FrameWork que permite una mayor logica, calidad, agilidad & productividad a la h
 
 ---
 
-<img src="doc/src/doc.gif">[Documentación](http://www.gnu.org/licenses)
+<img src="doc/src/doc.gif">[Ver documentación](http://www.gnu.org/licenses)
 
 ---
 
