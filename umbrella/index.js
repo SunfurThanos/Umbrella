@@ -101,7 +101,7 @@ if (document.addEventListener) {
 // ejecutando servicios dedicados
 function UmbrellaKernelStart() {
 	// servicio: agregar canvas de progreso para imagenes
-	UmbrellaService_ImageProgress.start()
+	// UmbrellaService_ImageProgress.start()
 	// servicio: celdas sincronizada
 	UmbrellaService_PasteAttrib.start()
 	// servicio: computar espacio
