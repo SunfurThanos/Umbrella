@@ -1,0 +1,50 @@
+
+/*
+
+CHILD : canvas de progreso para imagenes
+
+*/
+
+.ChildProgress_modal_overlay_container {
+  position: relative;
+	width: 400px;height: 205px;
+	background: repeating-linear-gradient(
+		45deg,
+		rgba(14, 72, 42, 1),
+		rgba(14, 72, 42, 1) 25px,
+		rgba(39, 146, 88, 1) 25px,
+		rgba(39, 146, 88, 1) 50px
+	);
+	background-color: #121113;
+	border-radius: 8px;
+	-webkit-box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.8);
+}
+
+@-webkit-keyframes ChildProgress_animation-Minetype {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(50px);
+    transform: translateX(50px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+}
+
+.ChildProgress_columns2 {
+  display: flex;
+  flex-wrap: wrap;
+  background: transparent;
+  height: calc(100%);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+}
+
+canvas[name="SunfurPropiedad-canvas"] {
+    background: transparent;
+    box-sizing: border-box;
+    border: none;
+}

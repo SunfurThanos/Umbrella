@@ -1,8 +1,8 @@
 ## UMBRELLA v-Alice
 
-<img src="doc/src/milla1.jpg" width="470">
+<img src="doc/src/milla1.jpg">
 
-FrameWork que permite una mayor logica, calidad, agilidad & productividad a la hora maquetar páginas web, brindándote ventajas futuristas, nunca antes planteadas en esta era.
+FrameWork que permite una mayor lógica, calidad, agilidad & productividad a la hora maquetar e interactuar con páginas web, brindándote ventajas futuristas.
 
 ---
 
@@ -10,21 +10,19 @@ FrameWork que permite una mayor logica, calidad, agilidad & productividad a la h
 
 ---
 
-**Licencia**: `GPL-3` [![GNU GPL v3](doc/src/licencia.gif)](https://es.wikipedia.org/wiki/GNU_General_Public_License)
-
----
-
-[![Donar por Paypal](doc/src/donar.png)](https://www.paypal.me/SunfurThanos)
+[![`GPL-3`](doc\src\gpl3.png)](https://es.wikipedia.org/wiki/GNU_General_Public_License)
 
 ---
 
 ## Porque se creo este proyecto?
 
-El motivo de peso para crear este proyecto es recaudar dinero, para codificar las primeras 2 versiones de mi proyecto de inteligencia artificial llamado `Cithara`, el cual la etapa de investigación sobre cómo crear inteligencia adaptativa está más que terminada, el proyecto solo necesita 14 meses de desarrollo, ¿te gusta el proyecto Umbrella?, estaré más que agradecido con vuestras ayuda en sugerencias, donativos & publicidad, a cambio recibirán nuevas versiones EPICAS y con licencia `MIT` del proyecto UMBRELLA.
-
-**Proyecto Cithara**: https://sunfur.herokuapp.com
+El motivo de peso para crear este proyecto es recaudar dinero, para codificar las primeras 2 versiones de mi proyecto de IAG llamado `Cithara`, el cual la etapa de investigación sobre cómo crear inteligencia adaptativa está más que terminada, si recibo donaciones este año el proyecto Cithara estará listo a finales del 2021, ¿te gusta el proyecto Umbrella?, estaré más que agradecido con vuestras ayudas en sugerencias, donativos & publicidad, a cambio recibirán nuevas versiones `EPICAS` y con licencia `MIT` del proyecto Umbrella :)
 
 **Correo de contacto**: hormigence123@gmail.com
+
+---
+
+[![`Donar por Paypal`](doc\src\donar.jpg)](https://www.paypal.me/SunfurThanos)
 
 ---
 
