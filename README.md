@@ -6,11 +6,11 @@ Increible frameWork que brinda una gran experiencia & productividad a la hora de
 
 ---
 
-<img src="doc/src/doc.gif">[Ver documentación](doc/index.html)
+<img src="doc/src/doc.gif">[Ver documentación](https://sunfurthanos.github.io/Umbrella/doc/index.html)
 
 ---
 
-[<img src="doc/src/gpl3.png">](http://www.gnu.org/licenses)
+[<img src="doc/src/gpl3.png">](http://www.gnu.org/licenses/gpl-3.0.html)
 
 ---
 
