@@ -5,9 +5,34 @@ CHILD : canvas de progreso para imagenes
 
 */
 
-.ChildProgress_modal_overlay_container {
+.ProgressImage-SizeRead {
+  position: absolute;bottom: 0em;right: 0em;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(50, 58, 95, 0.5);
+  padding: 0.4em;letter-spacing: 1px;
+  font-size: 14px;border-radius: 8px;
+  padding-bottom: 0.3em;
+}
+
+.ProgressImage-logo-size {
+  width: 106px;height: 96px;
+}
+
+.ProgressImage-logo {
+  background-image: url(imagen.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  -webkit-animation: ProgressImage-logo 0.8s both ease 0.1s;
+  -moz-animation: ProgressImage-logo 0.8s both ease 0.1s;
+}
+
+.ProgressImage-size {
+  width: 400px;height: 205px;
+}
+
+.ProgressImage-container {
+  pointer-events: none;
   position: relative;
-	width: 400px;height: 205px;
 	background: repeating-linear-gradient(
 		45deg,
 		rgba(14, 72, 42, 1),
@@ -18,23 +43,34 @@ CHILD : canvas de progreso para imagenes
 	background-color: #121113;
 	border-radius: 8px;
 	-webkit-box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.8);
 }
 
-@-webkit-keyframes ChildProgress_animation-Minetype {
+@-webkit-keyframes ProgressImage-logo {
   0% {
     opacity: 0;
     -webkit-transform: translateX(50px);
-    transform: translateX(50px);
   }
 
   100% {
     opacity: 1;
     -webkit-transform: translateY(0px);
+  }
+}
+
+@-moz-keyframes ProgressImage-logo {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  100% {
+    opacity: 1;
     transform: translateY(0px);
   }
 }
 
-.ChildProgress_columns2 {
+.ProgressImage-column {
   display: flex;
   flex-wrap: wrap;
   background: transparent;
@@ -43,7 +79,7 @@ CHILD : canvas de progreso para imagenes
   -webkit-box-direction: normal;
 }
 
-canvas[name="SunfurPropiedad-canvas"] {
+canvas[name="SunfurThanos"] {
     background: transparent;
     box-sizing: border-box;
     border: none;

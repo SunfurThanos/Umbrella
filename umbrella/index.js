@@ -1,8 +1,8 @@
 //-----------------------------------------------------------------------------//
 //     Author      : Sunfur Thanos                                             //
-//       Mail      : hormigence123@gmail.com                                   //
-//        Country  : Venezuela                                                 //
-//         License : GPL-3                                           	       //
+//      Mail       : hormigence123@gmail.com                                   //
+//       Country   : Venezuela                                                 //
+//        License  : GPL-3                                           	       //
 //                                                                             //
 //                   Copyright 2020 Sunfur Thanos. All rights reserved.        //
 //-----------------------------------------------------------------------------//
@@ -15,17 +15,37 @@
 //-------------------------------------------------------------------------------
 
 // Umbrella versión
-umbrella_version = new Array(0x0, 0x0, 0x3)
+umbrella_version = new Array(0, 0, 4)
 
 // creando clase de Entities
-function _Dexter() {};
-var Entities = new _Dexter();
+var Entities = function(kernell=0x2857674D) {}
 
 // Entities: crear tipo espacio
-Entities.space = /&amp;space;/g // -> "$space;" = "\xA0"
+Entities.space = new RegExp(/&amp;space;/g) // => "$space;" = "\xA0"
 
-// tiempo de espera en eventos personalizados
-var TIME_CUSTOM = 0x77
+// tiempo "FLASH" de espera en eventos personalizados => int*
+var TIME_CUSTOM = new Number(0x17)
+
+// activar o desactivar barra de progreso para imagenes => Bool*
+var ShowImage_progress = new Boolean(true)
+
+// despues de precargar imagen mostrarla => Bool*
+var isLoad_showImage = new Boolean(true)
+
+// estilo para (barra de carga circular) para imagenes => method*
+var circleImageProgress = function(kernell=0x2857674D) {}
+
+circleImageProgress.textColor  = "rgba(255, 255, 2, 0.9)";
+circleImageProgress.textShadow = "black";
+circleImageProgress.textFonts  = "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Oxygen,Ubuntu,Cantarell,Open Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji,Arial";
+
+circleImageProgress.sizeCircle1   = 70;
+circleImageProgress.colorCircle1  = 'rgba(2, 1, 1, 0.5)';
+circleImageProgress.shadowCircle1 = "salmon";
+
+circleImageProgress.widthCircle2  = 8;
+circleImageProgress.colorCircle2  = 'rgba(55, 207, 130, 0.9)';
+circleImageProgress.shadowCircle2 = "rgba(255, 0, 0, 0.9)";
 
 //-------------------------------------------------------------------------------
 //
@@ -36,14 +56,39 @@ var TIME_CUSTOM = 0x77
 // ver si un (list=>item*) existe
 var find_object = function(object) {
 	var list = new Array()
-	for (var pointer in list) {
-		var compared = list[pointer];
+	for (var compared of list) {
 		if (compared==object) {
 			return true;
 		}
 	}
 	return false
 }
+
+//-------------------------------------------------------------------------------
+//
+// hack blanco: calculando ruta del archivo de ***
+//
+//-------------------------------------------------------------------------------
+
+var PATH_UMBRELLA = new String()
+var $lista = document.querySelectorAll('\x73\x63\x72\x69\x70\x74')
+
+for (var $object of $lista) {
+	if (typeof $object == "object") {
+	  if ($object.src!="") {
+	    PATH_UMBRELLA = $object.src.split(
+	    	"\x69\x6e\x64\x65\x78\x2e\x6a\x73"
+	    )[0x000000]
+	  }
+	}
+}
+
+// cargando archivo de estilo
+var styleTmp      = document.createElement("link");
+styleTmp.href     = PATH_UMBRELLA + "estilo.css";
+styleTmp.rel      = "stylesheet"
+styleTmp.type     = "text/css";
+document.head.appendChild(styleTmp);
 
 //-------------------------------------------------------------------------------
 //
@@ -55,33 +100,6 @@ function show_Umbrella_banner() {
     (null, window.setTimeout)(window.console.log.bind(window.console,
     "%c Umbrella ","margin-top: 7px;color: #50E68A; background: #1A1A1A; font-size: 24px;margin-right: 0.1em;"))
 }; setTimeout(show_Umbrella_banner, TIME_CUSTOM)
-
-//-------------------------------------------------------------------------------
-//
-// hack blanco: calculando ruta del archivo de ***
-//
-//-------------------------------------------------------------------------------
-
-var PATH_UMBRELLA = new String()
-var $lista = document.querySelectorAll('script')
-
-for (var $object of $lista) {
-	if (typeof $object == "object") {
-	  if ($object.src!="") {
-	    PATH_UMBRELLA = $object.src.split("index.js")[0]
-	  }
-	}
-}
-
-// cargando archivo de estilo
-styleTmp      = document.createElement("link");
-styleTmp.href = PATH_UMBRELLA + "estilo.css";
-styleTmp.rel  = "stylesheet"
-styleTmp.type = "text/css";
-document.head.appendChild(styleTmp);
-
-// archivo de imagen1
-imagen_logo = PATH_UMBRELLA + "imagen.png"
 
 //-------------------------------------------------------------------------------
 //
@@ -100,18 +118,29 @@ if (document.addEventListener) {
 
 // ejecutando servicios dedicados
 function UmbrellaKernelStart() {
-	// servicio: agregar canvas de progreso para imagenes
-	UmbrellaService_ImageProgress.start()
+
 	// servicio: celdas sincronizada
 	UmbrellaService_PasteAttrib.start()
+
+	// servicio: LAYOUT => BoxComposite
+	UmbrellaService_BoxComposite.start()
+
 	// servicio: computar espacio
 	UmbrellaService_ComputeSpace.start(comienzo=true)
+
 	// servicio: convertir la etiqueta "align" en relativa
 	UmbrellaService_ComputeAlign.start()
+
 	// servicio: mejora de -> "href"
 	UmbrellaService_ComputeHref.start()
+
 	// servicio: ver imagen en otra pestaña si el evento "click" no existe
 	UmbrellaService_ViewImgTab.start()
+
+	// servicio: agregar canvas de progreso para imagenes
+	if (ShowImage_progress==true) {
+		UmbrellaService_ImageProgress.start()
+	}
 }
 
 //-------------------------------------------------------------------------------
@@ -128,10 +157,18 @@ var UmbrellaService_PasteAttrib = new _PasteAttrib();
 _PasteAttrib.prototype.start = function() {
 	var arbol_web = document.querySelectorAll('*[PasteAttributes]')
 
+	var GetTags = function (object_map) {
+		var lista = new Array()
+		for (var item of object_map) {
+			lista = lista.concat(item.name)
+		}
+		return lista
+	}
+
 	for (var object of arbol_web) {
 	  if (typeof object == "object") {
 	    if (!find_object(object)) {
-	      var value = object.getAttributeNode("PasteAttributes").value
+	      var value = object.getAttribute("PasteAttributes")
 	      if (value!="") {
 	        var objeto = document.getElementById(value)
 
@@ -143,26 +180,27 @@ _PasteAttrib.prototype.start = function() {
 		        	object.IsMaduro = true
 
 		        	var libertad = function(self) {
-		        		clearTimeout(this.batman_justicia)
-		        		var valor = this.getAttributeNames()
+		        		var valor = GetTags(this.attributes)
 		        		if (this.arbolito_style!=valor) {
 		        			this.arbolito_style = valor
 		        			self.start()
 		        		}
-		        		this.batman_justicia = setTimeout(
-		        			libertad.bind(this, self), TIME_CUSTOM)
 		        	}
 
 					objeto.platzi = this
-					objeto.conteo_loco  = 0x0
-					objeto.arbolito_style = objeto.getAttributeNames()
-					objeto.batman_justicia = false
-					objeto.addEventListener("DOMNodeInserted", function(event) {
-						if (objeto.conteo_loco==0x0) {
-							objeto.conteo_loco++
-							setTimeout(libertad.bind(objeto, objeto.platzi), 0x0)
-						}
-					}, true);
+					objeto.arbolito_style = GetTags(objeto.attributes)
+
+					var observer = new MutationObserver(function(mutations) {
+					  mutations.forEach(function(mutation) {
+							if (mutation.type=="attributes") {
+								setTimeout(libertad.bind(objeto, objeto.platzi), 0x0)
+							}
+					  });
+					});
+
+					var config = {attributes: true, childList: true, characterData: true};
+					observer.observe(objeto, config);
+
 		        }
 
 		    }
@@ -176,9 +214,9 @@ _PasteAttrib.prototype.start = function() {
 // pegando etiquetas + valores
 _PasteAttrib.prototype.paste_attrib = function(obj_copiar, obj_pegar) {
 	if (obj_copiar!=null) {
-		  for (var item of obj_copiar.getAttributeNames()) {
-		    var tag = obj_copiar.getAttributeNode(item).name
-		    var value = obj_copiar.getAttributeNode(item).value
+		  for (var item of obj_copiar.attributes) {
+		    var tag = item.name
+		    var value = obj_copiar.getAttribute(tag)
 
 		    if (["id","src"].indexOf(tag)<0) {
 		      var scope = obj_pegar.getAttribute(tag)
@@ -197,7 +235,7 @@ _PasteAttrib.prototype.paste_attrib = function(obj_copiar, obj_pegar) {
 
 //-------------------------------------------------------------------------------
 //
-// SERVICIO : ver imagen en otra pestaña (Chrome adaptación hack)
+// SERVICIO : ver imagen en otra pestaña al hacer doble-clic xD
 //
 //-------------------------------------------------------------------------------
 
@@ -220,14 +258,13 @@ _ViewImgTab.prototype.start = function() {
 	for (var object of arbol_web) {
 	  if (typeof object == "object") {
 	    if (!find_object(object)) {
-	      var value = object.getAttributeNode("onclick")
+	      var value = object.getAttribute("onclick")
 	      if (value==null) {
 	      	if (object.virtual_onclick!=0xAA17B0A5) {
 				object.setAttribute(
-					"onclick",
+					"ondblclick",
 					"UmbrellaService_ViewImgTab_VerImagen(this)"
 				)
-				// object.style = object.style.cssText + ";cursor: pointer"
 			}
 	      }
 	    }
@@ -305,7 +342,7 @@ _ComputeAlign.prototype.start = function() {
 	    if (!find_object(object)) {
 			var cajon = document.createElement("div")
 			if (object.align!="") {
-				cajon.align = object.getAttributeNode("align").value
+				cajon.align = object.getAttribute("align")
 				object.parentNode.insertBefore(cajon, object);
 				object.parentNode.removeChild(object);
 				object.align = ""
@@ -339,9 +376,9 @@ _ComputeHref.prototype.start = function() {
 				cajon.style = "color: transparent;text-decoration: none;width: 0px;padding: 0em;font-size: 0em;background-color: transparent;border: none;text-shadow: none;"
 				object.virtual_onclick = 0xAA17B0A5
 
-		    	var link = object.getAttributeNode("link-tab")
+		    	var link = object.getAttribute("link-tab")
 				if (link) {
-					cajon.href = link.value
+					cajon.href = link
 					object.parentNode.insertBefore(cajon, object);
 					object.parentNode.removeChild(object);
 					cajon.target="_black"
@@ -349,9 +386,9 @@ _ComputeHref.prototype.start = function() {
 					cajon.appendChild(object)
 				}
 
-		    	var link = object.getAttributeNode("link-main")
+		    	var link = object.getAttribute("link-main")
 				if (link) {
-					cajon.href = link.value
+					cajon.href = link
 					object.parentNode.insertBefore(cajon, object);
 					object.parentNode.removeChild(object);
 					object.style.cursor = "pointer"
@@ -363,7 +400,12 @@ _ComputeHref.prototype.start = function() {
 		}
 	}
 
-	for (var value of ['img[link-tab]', 'img[link-main]', 'button[link-tab]']) {
+	for (var value of [
+		'img[link-tab]',
+		'img[link-main]',
+		'button[link-tab]',
+		'button[link-main]'
+		]) {
 		CRIPTON7(value)
 	}
 
@@ -387,47 +429,77 @@ _ImageProgress.prototype.start = function() {
 	for (var object of arbol_web) {
 	  if (typeof object == "object") {
 	    if (!find_object(object)) {
+
+	    	if (object.src==document.location) {
+	    		continue
+	    	}
+
+	    	var isProgress = false
+			for (var item of object.attributes) {
+				if (item.name=="notprogress") {
+					isProgress = true
+				}
+			}
+
+	    	if (isProgress) {
+	    		continue
+	    	}
+
 	    	var cajon = document.createElement("div")
 	    	cajon.align = object.align
 	    	cajon.style = object.style
-	    	cajon.className = "ChildProgress_modal_overlay_container " + cajon.className
-	    	cajon.file = object.getAttributeNode("src").value
+
+	    	if (object.name) {
+	    		cajon.setAttribute("name", object.name)
+	    	}
+
+	    	cajon.className = "ProgressImage-container ProgressImage-size " + cajon.className
+	    	cajon.style.display = "none"
+	    	cajon.file = object.getAttribute("src")
 			object.src = ""
 			cajon.display = object.style.display
 			object.style.display = "none"
 			object.parentNode.insertBefore(cajon, object);
+			object.alt = ""
+
+			var size_progress = document.createElement("div")
+			size_progress.className = "ProgressImage-SizeRead"
+			size_progress.innerHTML = "..."
+			cajon.appendChild(size_progress)
+
+	    	if (object.name) {
+	    		size_progress.setAttribute("name", object.name)
+	    	}
 
 			var columnas = document.createElement("div")
-			columnas.className = "ChildProgress_columns2"
+			columnas.className = "ProgressImage-column"
 			cajon.appendChild(columnas)
 
-			logo_id = document.createElement("img")
-			logo_id.alt = ""
-			logo_id.src = imagen_logo
-			logo_id.style="position: absolute;left: 0.2em;top: 0.2em;display: none;image-rendering: optimizeQuality;pointer-events: none;-webkit-animation: ChildProgress_animation-Minetype 0.8s both ease 0.1s;"
+			var logo_id = document.createElement("div")
+
+	    	if (object.name) {
+	    		logo_id.setAttribute("name", object.name)
+	    	}
+
+			logo_id.className = "ProgressImage-logo ProgressImage-logo-size"
+			logo_id.style="position: absolute;left: 0.2em;top: 0.2em;display: block;image-rendering: optimizeQuality;pointer-events: none;"
 			cajon.appendChild(logo_id)
 
-			logo_id.addEventListener("load",  function(event) {
-				event.target.style.display = "block"
-			},  false );
 
 			var divCanvas = document.createElement("div")
 			divCanvas.style = "pointer-events: none;margin-left: auto;margin-right: auto;margin-top: auto;margin-bottom: auto;"
 			columnas.appendChild(divCanvas)
 
-			setTimeout(
-				Image_renderProgress.bind(
-					0xDBBC4FD1, divCanvas, cajon, object),
-				0x17
-			)
-
+			Image_renderProgress(divCanvas, cajon, object, size_progress)
 
 	    }
 	  }
 	}
 }
 
-var Image_renderProgress = function (divCanvas, cajon, object) {
+var Image_renderProgress = function (divCanvas, cajon, object, size_progress) {
+
+	cajon.style.display = "block"
 
 	var smoothCanvas = (function () {
 	    var canvas = document.createElement("canvas"),
@@ -439,8 +511,8 @@ var Image_renderProgress = function (divCanvas, cajon, object) {
 	        ctx.oBackingStorePixelRatio ||
 	        ctx.backingStorePixelRatio || 1,
 
-	        ratio = dpr / bsr; //PIXEL RATIO
-	        canvas.name = "SunfurPropiedad-canvas"
+	        ratio = dpr / bsr;
+	        canvas.name = "SunfurThanos"
 
 	    return function (w, h, canvasElm) {
 	        var can = canvasElm || document.createElement("canvas");
@@ -462,21 +534,22 @@ var Image_renderProgress = function (divCanvas, cajon, object) {
 	var valPROGRESS = 0
 	var maxValPROGRESS = 100;
 
-	var ANIMATION = function() {
+	var PainterProgressImage = function() {
 
 		// circulo central
 		ctx.clearRect(0, 0, dim, dim)
 		var center = dim / 2;
 		ctx.lineWidth = 10;
 
-		ctx.strokeStyle = 'rgba(2, 1, 1, 0.5)';
-		ctx.lineWidth = 74;
+		ctx.strokeStyle = circleImageProgress.colorCircle1;
+		ctx.lineWidth = circleImageProgress.sizeCircle1;
 		ctx.beginPath();
 		ctx.arc(center, center, 0, 0, 2 * Math.PI);
-		ctx.shadowColor = "salmon"
+		ctx.shadowColor = circleImageProgress.shadowCircle1
 		ctx.shadowOffsetX = "1"
 		ctx.shadowOffsetY = "2"
 		ctx.stroke();
+
 
 		// arete de progreso
 		var circPROGRESS = Math.PI * 2
@@ -485,38 +558,55 @@ var Image_renderProgress = function (divCanvas, cajon, object) {
 		dim = (sizeBAR + 10) * 2;
 		var center = dim / 2;
 
-		ctx.strokeStyle = 'rgba(55, 207, 130, 0.9)';
+		ctx.strokeStyle = circleImageProgress.colorCircle2;
 
-		ctx.lineWidth = 8;
+		ctx.lineWidth = circleImageProgress.widthCircle2;
 		canvasPROGRESS = ctx;
 		ctx.lineCap = "round"
 		ctx.beginPath();
 		perValPROGRESS = Math.round(((valPROGRESS + minValPROGRESS) * 100 / (maxValPROGRESS - minValPROGRESS)) * 100) / 100;
 		canvasPROGRESS.arc(center, center, sizeBAR - 1 + 10 / 2, -(quartPROGRESS), ((circPROGRESS) * perValPROGRESS / 100) - quartPROGRESS, false);
-		ctx.shadowColor = "rgba(255, 0, 0, 0.9)"
+		ctx.shadowColor = circleImageProgress.shadowCircle2
 		ctx.shadowOffsetX = "2"
 		ctx.shadowOffsetY = "2"
-		ctx.stroke();
+		ctx.stroke()
 
 		// texto de progreso
-		ctx.fillStyle = "rgba(255, 255, 2, 0.9)";
+		ctx.fillStyle = circleImageProgress.textColor;
 		ctx.textAlign = "center";
-		cFont = "Segoe UI";
-		ctx.font = "Bold" + " " + "19.4" + "px " + cFont;
+		cFont = circleImageProgress.textFonts
+		ctx.font = "Bold" + " " + "20" + "px " + cFont;
 		ctx.textBaseline = 'middle';
-		ctx.shadowColor = "black"
+		ctx.shadowColor = circleImageProgress.textShadow;
 		ctx.shadowOffsetX = "2"
 		ctx.shadowOffsetY = "2"
 		ctx.fillText(valPROGRESS + "%", center, center);
 	}
 
-	ANIMATION()
+	PainterProgressImage()
 
 	var http = new XMLHttpRequest();
 	http.open("GET", cajon.file, true);
 	http.divCanvas = divCanvas
+	http.timeout   = 5000
 	http.cajon     = cajon
 	http.object    = object
+	http.progress_back = false
+	http.size_progress = size_progress
+
+	var medir_peso = function($bytes) {
+		if ($bytes > 999*999) {
+				$peso = ($bytes/(1024*1024)).toFixed(3)
+			return $peso.toString().substring(0,($peso.length)-1) + ' MB'
+		} else {
+				$peso = ($bytes/1024).toFixed(0)
+			return $peso.toString() + ' KB'
+		}
+	}
+
+	http.ontimeout = () => console.log(
+		'Umbrella: Request timeout.', http.responseURL
+	);
 
 	if (http.overrideMimeType)
 		http.overrideMimeType('text/plain; charset=x-user-defined');
@@ -524,10 +614,20 @@ var Image_renderProgress = function (divCanvas, cajon, object) {
 		http.setRequestHeader('Accept-Charset', 'x-user-defined');
 
 	http.onprogress = function($pe) {
-		var $progreso = Math.round($pe.loaded * 100 / $pe.total)
-		if ($progreso) {
-			valPROGRESS = Math.min( $progreso, 99 )
-			ANIMATION()
+		var progreso = Math.round($pe.loaded * 100 / $pe.total)
+		if (progreso) {
+
+			http.size_progress.innerHTML = medir_peso(
+				$pe.loaded
+			) + " / " + medir_peso(
+				$pe.total
+			)
+
+			if (http.progress_back!=progreso) {
+				valPROGRESS = Math.min( progreso, 98 )
+				PainterProgressImage()
+				http.progress_back=progreso
+			}
 		}
 	}
 
@@ -536,37 +636,69 @@ var Image_renderProgress = function (divCanvas, cajon, object) {
 		http.object.style.display = http.cajon.display
 	}
 
-	http.onload = function (info) {
+    http.onloadend = (event) => {
+        if (event.loaded && http.response) {
+            RasteringImage()
+        } else {
+            console.log("Umbrella: no se puedo cargar la imagen", http.status);
+        }
+    }
 
-		valPROGRESS = 99
+	var RasteringImage = function() {
 
-		ANIMATION()
-
-		var bytes = http.responseText
-
-		http.object.image_load = false
-		http.object.file = cajon.file
-		http.object.addEventListener("load",  function(e) {
-			if (!http.object.image_load) {
-				http.object.image_load = false
-				fin_de_carga()
-			}
-		},  false );
-
-
-		if (Uint8Array.from) {
-			var data = Uint8Array.from(bytes, char => char.charCodeAt(0));
-			var blob = new Blob([data], {type: "image/jpeg"});
-			var url_final = window.URL.createObjectURL( blob );
-		} else {
-			var url_final = 'data:image/jpeg;base64,' + ToBase64(bytes)
+		var URL_absolute = http.responseURL
+		if (!URL_absolute) {
+			URL_absolute = http.cajon.file
 		}
 
+		valPROGRESS = 99; PainterProgressImage()
 
-		http.object.src = url_final
+
+
+
+		// var bytes = http.responseText
+		// http.object.file = cajon.file
+
+		// http.object.image_load = false
+		// http.object.addEventListener("load",  function(event) {
+		// 	if (!http.object.image_load) {
+		// 		http.object.image_load = true
+		// 		fin_de_carga()
+		// 	}
+		// },  true);
+
+		// if (Uint8Array.from) {
+		// 	var data = Uint8Array.from(bytes, char => char.charCodeAt(0));
+		// 	var blob = new Blob([data], {type: "image/jpeg"});
+		// 	var url_final = window.URL.createObjectURL( blob );
+		// } else {
+		// 	var url_final = 'data:image/jpeg;base64,' + ToBase64(bytes);
+		// }
+
+
+		// convierto la extructura binaria => base64 ascii.
+		// var url_final = 'data:image/jpeg;base64,' + ToBase64(bytes);
+
+		// generando precarga de la imagen :)
+		// localStorage.setItem(URL_absolute, url_final)
+		// hack_cache = document.createElementNS("http://www.w3.org/1999/xhtml", "a");
+		// hack_cache.href = URL_absolute;
+
+
+
+
+		if (isLoad_showImage==true) {
+			// oculto celda de progreso
+			setTimeout(fin_de_carga, TIME_CUSTOM)
+
+			// renderizo la imagen, cuya dirección ya esta precargada
+			http.object.src = URL_absolute;
+			http.object.isload = true
+			http.object.backup_url = http.object.src
+		}
 	}
 
-	setTimeout(http.send.bind(http), 0x17)
+	http.send("")
 
 }
 
@@ -574,7 +706,7 @@ var Image_renderProgress = function (divCanvas, cajon, object) {
 function ToBase64(filestream, beg, fin) {
   var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
-  if (!beg  &&  !fin){
+  if (!beg  &&  !fin) {
     beg = 0;
     fin = filestream.length;
   }
@@ -610,4 +742,92 @@ function ToBase64(filestream, beg, fin) {
   } while (i < fin);
 
   return output;
+}
+
+//-------------------------------------------------------------------------------
+//
+// SERVICIO : BoxComposite
+//
+//-------------------------------------------------------------------------------
+
+
+function _BoxComposite() {};
+var UmbrellaService_BoxComposite = new _BoxComposite();
+
+_BoxComposite.prototype.start = function() {
+	var arbol_web = document.querySelectorAll('*[BoxComposite]')
+
+	for (var object of arbol_web) {
+	  if (typeof object == "object") {
+	    if (!find_object(object)) {
+
+	    	var MAIN = object.parentNode
+	    	var resagados = new Array()
+
+
+	    	var TIPO = object.getAttribute("BoxComposite")
+	    	if (!TIPO) {
+	    		continue
+	    	}
+
+
+	    	if (TIPO=="center") {
+	    		var TIPO_COMPOSITE = "position: absolute;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);-moz-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);-o-transform: translate(-50%, -50%);transform: translate(-50%, -50%);background: transparent;width: calc(100%);"
+	    	}
+
+	    	if (TIPO=="top:right") {
+	    		var TIPO_COMPOSITE = "position: absolute;top: 0em;right: 0em;background: transparent;"
+	    	}
+
+	    	if (TIPO=="top:left") {
+	    		var TIPO_COMPOSITE = "position: absolute;top: 0em;left: 0em;background: transparent;"
+	    	}
+
+	    	if (TIPO=="bottom:right") {
+	    		var TIPO_COMPOSITE = "position: absolute;bottom: 0em;right: 0em;background: transparent;"
+	    	}
+
+	    	if (TIPO=="bottom:left") {
+	    		var TIPO_COMPOSITE = "position: absolute;bottom: 0em;left: 0em;background: transparent;"
+	    	}
+
+	    	if (!TIPO_COMPOSITE) {
+	    		continue
+	    	}
+
+	    	for (var obj of MAIN.querySelectorAll("*")) {
+	    		if (obj.parentNode!=object) {
+	    			if (obj!=object) {
+	    				resagados = resagados.concat(obj)
+	    			}
+	    		}
+	    	}
+
+			var capa1 = document.createElement("div")
+			capa1.className = MAIN.className
+			capa1.style = MAIN.style.cssText + ";background: transparent;border: none;box-shadow: none;position: relative;"
+			MAIN.insertBefore(capa1, object);
+			MAIN.removeChild(object);
+
+
+			if (resagados.length>0) {
+				for (var obj of resagados) {
+					if (obj.parentNode==MAIN) {
+						MAIN.removeChild(obj)
+						capa1.appendChild(obj);
+					}
+				}
+			}
+
+
+			var capa2 = document.createElement("div")
+			capa2.style=TIPO_COMPOSITE
+			capa1.appendChild(capa2)
+			capa2.appendChild(object)
+
+
+
+	    }
+	  }
+	}
 }

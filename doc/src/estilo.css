@@ -7,6 +7,22 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.SELECT {
+  color: #1a28d0;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 17px;
+  margin-left: 0.4em;
+  pointer-events: none;
+}
+
+code {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+  border: 1px #B7B3CC solid;
+}
+
 strong {
   color: #4F4E5C;
   font-weight: 600;
@@ -35,10 +51,9 @@ h2 {
   padding-top: 0.1em;
   padding-bottom: 0.35em;
   padding-left: 0.5em;
-  max-width: calc(65%);
+  width: calc(80%);
   font-size: 1.4rem;
 }
-
 
 mark {
   background: transparent;
@@ -62,6 +77,24 @@ mark {
   z-index: 999;
 }
 
+a[href] {
+  color: rgba(0, 0, 0, 0.9);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.2em;
+  font-size: 15px;
+  border: 1px #2E323D solid;
+  letter-spacing: 1px;
+  border-radius: 8px;
+}
+
+a[href]:hover, a[href]:active {
+  color: #0E69DA;
+  border-color: #0E69DA;
+}
+
+
+
 
 button {
   text-decoration: none;
@@ -72,7 +105,7 @@ button {
   border-radius: 18px;
   text-decoration: none;
   padding: 5px 12px 6px;
-  font-size: 0.9375em;
+  font-size: 16px;
   letter-spacing: 1.64px;
   font-weight: 600;
   outline: 0;
@@ -87,20 +120,12 @@ button:hover, button:active {
   -webkit-transition: background 0.3s ease-out;
 }
 
-a[href] {
-  color: rgba(0, 0, 0, 0.8);
-  text-decoration: none;
-  font-weight: bold;
-  padding-bottom: 0.05em;
-  font-size: 15px;
-  border-bottom: 2px black solid;
-  letter-spacing: 1px;
-}
 
-a[href]:hover, a[href]:active {
-  color: #0E69DA;
-  border-color: #0E69DA;
-}
+
+
+
+
+
 
 
 

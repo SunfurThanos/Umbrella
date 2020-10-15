@@ -1,0 +1,62 @@
+<meta charset="utf-8">
+<link href="src/consola.png" rel="icon" type="image/x-icon">
+<link type="text/css" href="src/estilo.css" rel="stylesheet">
+<script type="text/javascript" src="../umbrella/index.js"></script>
+<title>Umbrella - simbolos</title>
+
+<link rel="stylesheet" href="src/github.css">
+<script src="src/highlight.pack.js"></script>
+
+<div class="header">
+	<div class="columns2">
+		<div style="margin-left: auto;margin-right: auto;margin-top: auto;margin-bottom: auto;">
+			<a href="index.html" style="margin-left: 0.4em;">INICIO</a>
+			<a href="instalar.html" style="margin-left: 0.4em;">INSTALACIÓN</a>
+			<a href="objeto.html" style="margin-left: 0.4em;">OBJETO</a>
+			<a href="imagen.html" style="margin-left: 0.4em;">IMAGEN</a>
+			<b class="SELECT">SIMBOLOS</b>
+			<a href="layout.html" style="margin-left: 0.4em;">LAYOUT</a>
+		</div>
+	</div>
+</div>
+
+<br><br><br>
+
+<div style="width: 90%" align="center">
+
+	<h2 align="left">Como renderizar múltiples espacios?</h2>
+
+	<p> Para representar un espacio de forma efectiva en una celda con soporte para texto hay que insertar el siguiente código <span id="Coco"></span>, lo cual no es nada intuitivo o fácil de recordar, por ello con <b>Umbrella</b>, puedes usar el siguiente código <span id="coqui"></span></p>
+
+    <pre><code class="html" id="code1"></code></pre>
+
+    <span>Hola&space;&space;&space;&space;&space;&space;&space;&space;MUNDO</span>
+
+    <p>Desde JS también se puede renderizar dichos espacios de una manera muy sencilla, gracias al potencial productivo de <b>Umbrella</b>, ¿quieres más símbolos intuitivos de este estilo o algo que mezcle esto con iconos css, me encantaría vuestra opinión?</p>
+
+    <pre><code class="html" id="code2"></code></pre>
+
+</div>
+
+<br><br>
+
+<script type="text/javascript">
+
+    addEventListener('load', () => {
+        var block = document.getElementById("code1")
+        block.innerText = '<span>Hola&space;&space;&space;&space;&space;&space;&space;&space;MUNDO</span>'
+        hljs.highlightBlock(block);
+
+        var block = document.getElementById("code2")
+        block.innerText = '<span id="texto"></span>\n\n<script type="text/javascript">\n\ndocument.getElementById("texto").set_text("Hello    World     :)")\n\n<$NEO$script>'.replace(/\$NEO\$/g, "/")
+        hljs.highlightBlock(block);
+
+        var block = document.getElementById("Coco")
+        block.innerText = '&nbsp;'
+
+        var block = document.getElementById("coqui")
+        block.innerText = '&space;'
+
+    });
+
+</script>

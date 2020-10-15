@@ -1,0 +1,58 @@
+<meta charset="utf-8">
+<link href="src/consola.png" rel="icon" type="image/x-icon">
+<link type="text/css" href="src/estilo.css" rel="stylesheet">
+<script type="text/javascript" src="../umbrella/index.js"></script>
+<title>Umbrella - instalar</title>
+
+<link rel="stylesheet" href="src/github.css">
+<script src="src/highlight.pack.js"></script>
+
+<div class="header">
+	<div class="columns2">
+		<div style="margin-left: auto;margin-right: auto;margin-top: auto;margin-bottom: auto;">
+			<a href="index.html" style="margin-left: 0.4em;">INICIO</a>
+			<b class="SELECT">INSTALACIÓN</b>
+			<a href="objeto.html" style="margin-left: 0.4em;">OBJETO</a>
+			<a href="imagen.html" style="margin-left: 0.4em;">IMAGEN</a>
+			<a href="simbolos.html" style="margin-left: 0.4em;">SIMBOLOS</a>
+			<a href="layout.html" style="margin-left: 0.4em;">LAYOUT</a>
+		</div>
+	</div>
+</div>
+
+<br><br><br>
+
+<div style="width: 90%" align="center">
+
+	<h2 align="left">Como implemento este FrameWork?</h2>
+
+	<p>Primero descarga el FrameWork de <b>Umbrella</b>, dentro del directorio del FrameWork, copia la carpeta <span>umbrella</span> al directorio de tu proyecto, en cualquier archivo HTML donde desees utilizar dicha tecnologia, pega la siguiente linea de código en la cabecera de dicho archivo, dicho proyecto tiene que ejecutarse desde un protocolo http como puede ser un localhost.</p>
+
+    <pre><code class="html" id="code1"></code></pre>
+
+	<h2 align="left">Hay forma de que funcione sin usar un http?</h2>
+
+	<p>Por fortuna en cualquier navegador basado en Chrome puedes hacer un truco que te <mark>LIBERA</mark> como Alicia en el país de las maravillas xD, primero crea un nuevo lanzador de escritorio y ponle el nombre que quieras, en la ruta del programa a usar debes poner la siguiente linea de código...</p>
+
+	<div align="left">
+		<pre><code class="makefile" id="code2">"$Chrome" --profile-directory=Default --allow-file-access-from-files</code></pre>
+	</div>
+
+	<p>Donde dice <mark>$Chrome</mark> es la ruta del navegador basado en Chrome, una vez creado este lanzador dicho navegador aceptara todas las funciones de <b>Umbrella</b> sin problemas, en resumen tu proyecto funcionara como relojito suizo xD.</p>
+
+</div>
+
+<br><br>
+
+<script type="text/javascript">
+
+    addEventListener('load', () => {
+        var block = document.getElementById("code1")
+        block.innerText = '<script type="text/javascript" src="umbrella/index.js"><$NEO$script>'.replace(/\$NEO\$/g, "/")
+        hljs.highlightBlock(block);
+
+        var block = document.getElementById("code2")
+        hljs.highlightBlock(block);
+    });
+
+</script>
