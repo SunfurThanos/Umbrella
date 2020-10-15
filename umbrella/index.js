@@ -689,7 +689,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress) {
 			// renderizo la imagen, cuya dirección ya esta precargada
 			http.object.src = URL_absolute;
 			http.object.isload = true
-			http.object.backup_url = http.object.src
+			http.object.backup_url = http.cajon.file
 		}
 	}
 
