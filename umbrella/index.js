@@ -588,7 +588,6 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress) {
 	var http = new XMLHttpRequest();
 	http.open("GET", cajon.file, true);
 	http.divCanvas = divCanvas
-	http.timeout   = 5000
 	http.cajon     = cajon
 	http.object    = object
 	http.progress_back = false
