@@ -6,15 +6,15 @@ Increible frameWork que brinda una gran experiencia & productividad a la hora de
 
 ---
 
-<img src="doc/src/doc.gif">[Ver documentación](http://www.gnu.org/licenses)
+<img src="doc/src/doc.gif">[Ver documentación](doc/index.html)
 
 ---
 
-[![`GPL-3`](doc\src\gpl3.png)](https://es.wikipedia.org/wiki/GNU_General_Public_License)
+[<img src="doc/src/gpl3.png">](http://www.gnu.org/licenses)
 
 ---
 
-[![`Donar por Paypal`](doc\src\donar.jpg)](https://www.paypal.me/SunfurThanos)
+[<img src="doc\src\donar.jpg">](https://www.paypal.me/SunfurThanos)
 
 ---
 
