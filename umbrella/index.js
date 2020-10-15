@@ -603,10 +603,6 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress) {
 		}
 	}
 
-	http.ontimeout = () => console.log(
-		'Umbrella: Request timeout.', http.responseURL
-	);
-
 	if (http.overrideMimeType)
 		http.overrideMimeType('text/plain; charset=x-user-defined');
 	else
@@ -697,7 +693,9 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress) {
 		}
 	}
 
-	http.send("")
+	http
+	
+	setTimeout(http.send.bind(http), 100)
 
 }
 
