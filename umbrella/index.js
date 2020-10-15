@@ -641,14 +641,8 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress) {
 
 	var RasteringImage = function() {
 
-		var URL_absolute = http.responseURL
-		if (!URL_absolute) {
-			URL_absolute = http.cajon.file
-		}
 
 		valPROGRESS = 99; PainterProgressImage()
-
-
 
 
 		// var bytes = http.responseText
@@ -687,14 +681,14 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress) {
 			setTimeout(fin_de_carga, TIME_CUSTOM)
 
 			// renderizo la imagen, cuya dirección ya esta precargada
-			http.object.src = URL_absolute;
+			http.object.src = http.cajon.file;
 			http.object.isload = true
 			http.object.backup_url = http.cajon.file
 		}
 	}
 
 	http
-	
+
 	setTimeout(http.send.bind(http), 100)
 
 }
