@@ -8,28 +8,29 @@
   width: 560px;height: 303px;
 }
 
+.ProgressImage-size[name="imagen-banner2"] {
+  width: 489px;height: 200px;
+}
+
 </style>
 
 <script type="text/javascript" src="../umbrella/index.js"></script>
 <title>Umbrella - inicio</title>
 
 <div class="header">
-	<div class="columns2">
-		<div style="margin-left: auto;margin-right: auto;margin-top: auto;margin-bottom: auto;">
-			<b class="SELECT">INICIO</b>
-			<a href="instalar.html" style="margin-left: 0.4em;">INSTALACIÓN</a>
-			<a href="objeto.html" style="margin-left: 0.4em;">OBJETO</a>
-            <a href="imagen.html" style="margin-left: 0.4em;">IMAGEN</a>
-            <a href="simbolos.html" style="margin-left: 0.4em;">SIMBOLOS</a>
-			<a href="layout.html" style="margin-left: 0.4em;">LAYOUT</a>
-		</div>
+	<div style="position: relative;">
+		<b class="SELECT" hbox="true">INICIO</b>
+		<a href="instalar.html" hbox>INSTALACIÓN</a>
+		<a href="objeto.html" hbox>OBJETO</a>
+	    <a href="imagen.html" hbox>IMAGEN</a>
+	    <a href="simbolos.html" hbox>SIMBOLOS</a>
+		<a href="layout.html" hbox="true">LAYOUT</a>
 	</div>
 </div>
 
 <br><br><br><br>
 
 
-<!-- mensaje xD -->
 <div style="width: 90%" align="center">
 
 	<div style="transform:skewX(-25deg);background: #3581D5;height: 50px;width: 50%; padding: 0.4em;z-index: 0">
@@ -43,7 +44,7 @@
 
 	<img src="src/umbrella.jpg" name="imagen-banner">
 
-	<p><b>Umbrella</b> es un FrameWork cuya finalidad es otorgar una gran productividad a la hora de desarrollar paginas, pero ademas brindarle una gran experiencia a los usuarios web, para de esa manera generar un equilibrio de bienestar, aun que este Framework esta en desarrollo demuestra su enorme potencial a corto plazo.</p>
+	<p><b>Umbrella</b> es un FrameWork cuya finalidad es otorgar una gran productividad a la hora de desarrollar paginas web, brindando una gran experiencia a los usuarios web, para de esa manera generar un equilibrio de bienestar genérico, aunque este Framework esta en desarrollo demuestra su enorme potencial a corto plazo.</p>
 
 	<br>
 
@@ -51,4 +52,56 @@
     	<img NotProgress src="src/donar.jpg" style="mix-blend-mode: multiply;" link-tab="https://www.paypal.me/SunfurThanos">
     </div>
 
-</div><br><br><br><br>
+    <br>
+
+    <h2 align="left">Herramientas en desarrollo</h2>
+
+    <img src="src/banner.png" align="left" name="imagen-banner2">
+
+    <p style="margin-bottom: -0.64em;margin-top: 1.4em;"><span>Progreso para imágenes</span>:</p>
+    <ul style="text-align: left;">
+    	<li>soporte para la propiedad <strong>background-image</strong> de css.</li>
+    	<li>Botón de cancelar carga.</li>
+    	<li>Botón de recargar.</li>
+    	<li>Detectar cuando el usuario cambia la url de la celda tipo imagen desde Js.</li>
+    	<li>Detectar cuando el usuario ha insertado después de la carga inicial, una nueva celda tipo imagen.</li>
+    	<li>Personalización total desde css</li>
+    </ul>
+
+    <br>
+
+    <p style="margin-bottom: -0.64em;"><span>ImageProgress-autoSize</span>: ahora Umbrella podrá detectar de forma automática el tamaño de la imagen antes de que se cargue, para así calcular de forma automática el tamaño que tendrá la celda de progreso de la imagen deseada, antes de generar la <strong>pre-carga</strong> de cada imagen, guarda todas la url de las celdas de imágenes capturadas en un <strong>Array</strong> y las enviá al servidor para que averigüe la resolución de cada imagen, el cliente espera que termine, una vez que el servidor termine con su trabajo, el cliente construye cada celda de progreso pero insertándole la resolución de la determinada imagen en <strong>pre-cache</strong>, manteniendo las propiedades de auto-proporción que caracteriza a las celdas tipo imagen, esta implementación solo sera compatible con servidores con PHP, ¿que opinas, te gusta, te conviene este método?</p>
+
+    <br><br>
+
+    <p><span>Configuración de imágenes</span>: ventana de configuración inspirada en <strong>Adobe flash Player video Settings</strong>, que esta dirigido al usuario final & así !otorgarle poder decisión (democracia), cosa que parece que a nadie le importa lo que les pasa a ciertos usuarios, que no disponen de un buen monitor o conexión a Internet fiable!, en dicha ventana podrás hacer cambios aplicados a la imagen concurrente o a todas las imágenes ya sea en un formato especifico o todos los formatos seleccionados, las configuraciones a realizar podrán ser : brillo, saturación, contraste, negar la carga & renderizado <strong>bloqueo total</strong>, negar la carga automática & dejar que el usuario decida si desea cargar & rasterizar la imagen, conversión y descargar de vectores <strong>SVG</strong> seleccionados a <strong>png</strong>, descarga efectiva de todas imágenes de la pagina en forma recursiva o normal, Firefox es el único que trae algo parecido pero siendo honesto hace su trabajo en algunas ocasiones bastante mal aun cuando la implementación es nativa !lo cual deja mucho que pensar!, lo mágico de todo lo mencionado es que dichas configuraciones el navegador las guardara durante 30 días o hasta el infinito, es decir la interacción entre paginas con esta tecnología hará que crezca de forma exponencial el vencimiento de la configuración, quiero que Umbrella mantenga a todos contentos, ¿a vosotros usuarios y colaboradores de Umbrella, están de acuerdo con esto o creen que incluso faltan más cosas, o sencillamente los perjudica?, ¿creen que hay otra manera de equilibrar la balanza entre bienestar, lujo & seguridad?.</p>
+
+    <br>
+
+    <p><span>XSprites-CSS</span>: esta implementación QUITA del trono a la técnica actual de los <strong>sprites-css</strong>, básicamente solo deberás importar desde css de forma independiente los archivos de iconos deseados & Umbrella hará magia para hacer que cada icono este en el cache del navegador pero ademas solo hará una sola petición al servidor para leer un solo archivo, ya con esta acción todos los iconos involucrados serán cargados & rasterizados de forma auto-mágica donde corresponda como si se tratara de un solo archivo. !no es auto-magia, es simple lógica!...</p>
+
+    <p>Es muy simple de entender, al hacer la petición al servidor en realidad solo le manda un <strong>Array</strong> con la dirección de todos los iconos, el servidor lee los archivos y los guarda en una BD virtual muy ligera & limpia en la memoria RAM, este sistema BD a desarrollar la llamare <strong>InciteData</strong>, luego esta se la manda al cliente, después de enviarla el servidor destruye de la RAM todo rastro de la BD, el cliente leerá de la BD la estructura binaria de cada imagen y la pintara en donde corresponda, por supuesto en el proceso donde el cliente esta recibiendo los datos este mostrara una barra de progreso que se vera de forma duplicada en cada celda involucrada, al finalizar destruye de la RAM la BD virtual por el lado del cliente, ¿tienes algo que preguntar o agregar?.</p>
+
+
+    <br><p><span>TextResponsive</span>: ahora el texto en las paginas web tendrá un tamaño automático, acorde a las circunstancias del tamaño del navegador, es decir un sistema responsive automático.</p>
+
+
+    <p><span>Style DualCore</span>: permite de forma automática acelerar & cargar en segunda plano de forma paralelas múltiples archivos de estilos, permitiendo acelerar el tiempo de carga de la pagina, sin sacrificar el sistema de cache.</p>
+
+    <p><span>Responsive X</span>: permite un sistema futurista de reglas responsive auto-adaptativo, de las cuales no quiero hablar mucho, ya que quiero que sea !una sorpresa genial e impactante!.</p>
+
+    <p><span>Diseño CSS</span>: múltiples clases css para diseño: botones, barra de cargas, sliders, windows-popup, tooltips, ListBox, ListIcons, Menubars, ItemsMenus, extensa galería de canvas, efectos de animaciones & calendarios interactivos</p>
+
+    <p><span>auto-manifiesto de cache</span>: generación y ejecución automática del manifiesto de cache apartir de la interacción del usuario, esto permitiera una mayor experiencia de usuario para las compañías bancarias entre otras.</p>
+
+    <p><span>Bombercode 8</span>: increíble lenguaje de programación para <strong>backend</strong> que no requería instalar nada en el servidor, ya que estará indexado en PHP & JS, se destaca en: facilidad de tipeo, productividad general & potencia, !podrá programar de una manera más humana!, esta nueva sintaxis de este lenguaje sera compatible con <strong>Sublime text</strong> & <strong>visual studio code</strong>, aunque el motor de ejecución sera parte de Umbrella, aun no tengo un nombre final en si para el lenguaje, me encantaría que los que colaboren & usen a Umbrella decidan el nombre & su futuro...</p>
+
+    <p>La programación del lado del servidor es un mundo salvaje incluso con las tecnologías que existen en este año 2020, un montón de sintaxis grotesca que malgasta POR NADA mucha memoria contextual del cerebro humano, !con este lenguaje esas practicas derrocharas & comunistas LLEGAN A SU FIN!, programar con otros lenguajes es como estar en corea del norte, programar con <strong>Bombercode</strong> es como estar en corea del sur, ¿notas la diferencia?, ademas la documentación tendrá una jerga que cualquier persona podrá entender & asimilar de forma genérica & versátil, este nuevo lenguaje copiara & mejorara lo mejor de todas las tecnologías existentes en este ámbito tan salvaje, hostil & lleno de baches.</p>
+
+
+
+
+
+
+
+</div><br><br><br>

@@ -1,0 +1,74 @@
+<meta charset="utf-8">
+<link href="src/consola.png" rel="icon" type="image/x-icon">
+<link type="text/css" href="src/estilo.css" rel="stylesheet">
+
+<link rel="stylesheet" href="src/github.css">
+<script src="src/highlight.pack.js"></script>
+
+<style type="text/css">
+
+.ProgressImage-size[name="ejemplo1"] {
+  width: 560px;height: 303px;
+}
+
+.ProgressImage-size[name="ejemplo2"] {
+  width: 500px;height: 250px;
+}
+
+</style>
+
+<script type="text/javascript" src="../umbrella/index.js"></script>
+<title>Umbrella - imagen</title>
+
+<div class="header">
+    <div style="position: relative;">
+      <a href="index.html" hbox="true">INICIO</a>
+      <a href="instalar.html" hbox>INSTALACIÓN</a>
+      <a href="objeto.html" hbox>OBJETO</a>
+      <b class="SELECT" hbox>IMAGEN</b>
+      <a href="simbolos.html" hbox>SIMBOLOS</a>
+      <a href="layout.html" hbox="true">LAYOUT</a>
+    </div>
+</div>
+
+<br><br><br>
+
+<div style="width: 90%" align="center">
+
+	<h2 align="left">Ver imagen en otra pestaña al hacer doble clic</h2>
+
+	<p>Gracias a Umbrella, si a una celda tipo imagen no le activas el evento <span>onclick</span>, al hacer doble clic sobre dicha celda, mostrara la imagen en otra pestaña, permitiendo tapar un poco el hueco que deja <strong>Firefox</strong> frente a <strong>Chrome</strong>.</p>
+
+  <h2 align="left">Barra de progreso automática para imágenes</h2>
+
+  <p>En conexiones lentas, la mayoría de las veces las imágenes solo se logran cargar por la mitad o totalmente pixeladas, en el peor de los casos nunca llega a cargarse, con <b>Umbrella</b> esto llega a su fin, no tienes que hacer !NADA!, Umbrella hace todo el trabajo por ti, lo cual es fantástico, te muestra en pantalla el progreso de carga en porcentaje, peso de la imagen & cuantos kbs o MB se han descargado, al terminar Umbrella te muestra la imagen en su celda correspondiente, !como si nada hubiera pasado!, este es uno de los campos de Umbrella, !donde más innovaciones traerá en las nuevas versiones!, ¿tienes alguna idea que quieras compartir, para así mejorar la experiencia aun más?.</p>
+
+  <p>Por supuesto que la celda temporal de progreso puedes modificarla a tu antojo, pero requiere conocimientos intermedios en <strong>CSS</strong> & <strong>JS</strong>, si te interesa esta herramienta & deseas un explicación más detallada o tips sobre personalización, no dudes en contactarme & así poder ayudarte en vivo por el chat de <strong>Gmail</strong>.</p>
+
+  <pre><code class="html" id="code1"></code></pre>
+
+  <img src="src/umbrella.jpg" class="Umbrella-imageResponsive" name="ejemplo1">
+
+  <br><br>
+
+  <img src="src/resident-evil-1.gif" class="Umbrella-imageResponsive" name="ejemplo2">
+
+  <br>
+
+  <p>Si no deseas que <b>Umbrella</b>, capture las celdas tipo imagen y muestre un progreso de carga, debes insertar la siguiente etiqueta <span>NotProgress</span> en la celda tipo imagen, que no desees que sea pre-cargada, ¿algo que agregar?</p>
+
+</div>
+
+<br><br>
+
+<script type="text/javascript">
+
+    addEventListener('load', () => {
+
+        var block = document.getElementById("code1")
+        block.innerText = '<img src="src/chimoltrufia.jpg">\n\n<img src="src/chompiras-botija.gif">'
+        hljs.highlightBlock(block);
+
+    });
+
+</script>

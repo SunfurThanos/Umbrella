@@ -2,7 +2,7 @@
 
 <img src="doc/src/umbrella.jpg">
 
-Increible frameWork que brinda una gran experiencia & productividad a la hora de desarrollar e interactuar con paginas web.
+Increible frameWork futuristas que brinda una gran experiencia & productividad a la hora de desarrollar e interactuar con paginas web.
 
 ---
 

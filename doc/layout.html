@@ -1,0 +1,120 @@
+<meta charset="utf-8">
+<link href="src/consola.png" rel="icon" type="image/x-icon">
+<link type="text/css" href="src/estilo.css" rel="stylesheet">
+<script type="text/javascript" src="../umbrella/index.js"></script>
+<title>Umbrella - layout</title>
+
+<link rel="stylesheet" href="src/github.css">
+<script src="src/highlight.pack.js"></script>
+
+<style type="text/css">
+
+.caja {width: 100px;height: 100px;background: salmon;}
+
+</style>
+
+<div class="header">
+    <div style="position: relative;">
+      <a href="index.html" hbox="true">INICIO</a>
+      <a href="instalar.html" hbox>INSTALACIÓN</a>
+      <a href="objeto.html" hbox>OBJETO</a>
+      <a href="imagen.html" hbox>IMAGEN</a>
+            <a href="simbolos.html" hbox>SIMBOLOS</a>
+      <b class="SELECT" hbox="true">LAYOUT</b>
+    </div>
+</div>
+
+<br><br><br>
+
+<div style="width: 90%" align="center">
+
+	<h2 align="left">BoxComposite</h2>
+
+	<p>Colocar una celda encima de otra de forma centra u otra posición especifica, suele ser complejo & laborioso no solo codificarlo si no actualizarlo, no te preocupes con este Framework puedes hacerlo de manera sencilla con la etiqueta <span>BoxComposite</span> & asignarle cualquiera de las siguientes posiciones: <strong>Center</strong>, <strong>top:left</strong>, <strong>top:right</strong>, <strong>bottom:left</strong>, <strong>bottom:right</strong>, ¿quieres agregar algo, crees que falta algo?.</p>
+
+    <pre><code class="html" id="code1"></code></pre>
+
+    <div style="width: 500px;height: 400px;background: #E4E4E4" align="center">
+        <div style="width: 200px;height: 200px;background: #000;" BoxComposite="center">
+            <span BoxComposite="center">HELLO WORLD</span>
+        </div>
+    </div>
+
+    <br><br>
+
+    <pre><code class="html" id="code2"></code></pre>
+
+    <div style="width: 500px;height: 400px;background: black;" align="center">
+      <img src="src/umbrella.jpg" BoxComposite="center" class="Umbrella-imageResponsive">
+      <img src="src/donar.jpg" NotProgress BoxComposite="center">
+      <img src="src/doc.gif" NotProgress BoxComposite="top:right">
+      <img src="src/doc.gif" NotProgress BoxComposite="top:left">
+      <img src="src/doc.gif" NotProgress BoxComposite="bottom:right">
+      <img src="src/doc.gif" NotProgress BoxComposite="bottom:left">
+    </div>
+
+    <br><br>
+
+    <h2 align="left">Super-Flexbox</h2>
+
+    <p>Este es una de las herramientas más interesante de este apartado, ya que permite crear sistemas de columnas de manera muy sencilla, intuitiva & productiva, solo debes usar la etiqueta <span>hbox</span>, si ha dicha etiqueta no le colocas ningún valor quiere decir que quieres crear un objeto que no sea flexible horizontalmente, ahora bien si le colocas de valor <strong>true</strong>, el objeto sera flexible lo cual lo hace interesante ¿este sistema le falta mejorar aun MÁS su estructura, para que quede perfecto, aun así demuestra su potencial, tienes alguna sugerencia o comentario?, sin duda este sistema de <span>Grid</span> automatizado es mucho mejor que cualquiera que puedes encontrar en FrameWork de terceros, ¿que opinas te gusta, tienes una idea que compartir?</p>
+
+    <pre><code class="html" id="code3"></code></pre>
+
+    <div class="caja" hbox="true"></div>
+    <div class="caja" hbox></div>
+    <div class="caja" hbox></div>
+    <div class="caja" hbox="true"></div>
+
+    <pre><code class="html" id="code4"></code></pre>
+
+    <div class="caja" hbox="true"></div>
+    <div class="caja" hbox="true"></div>
+    <div class="caja" hbox="true"></div>
+
+    <pre><code class="html" id="code5"></code></pre>
+
+    <div class="caja" hbox="true" style="width: 35%;"></div>
+    <div class="caja" hbox="true" style="width: 60%;"></div>
+
+    <pre><code class="html" id="code6"></code></pre>
+
+    <div class="caja" hbox="true" style="width: 50%;"></div>
+    <div class="caja" hbox="true" style="width: 50%;background: red;"></div>
+
+</div>
+
+<br><br>
+
+<script type="text/javascript">
+
+    addEventListener('load', () => {
+
+        var block = document.getElementById("code1")
+        block.innerText = '<div style="width: 500px;height: 400px;background: #E4E4E4" align="center">\n  <div style="width: 200px;height: 200px;background: #000;" BoxComposite="center">\n    <span BoxComposite="center">HELLO WORLD</span>\n  </div>\n</div>'
+        hljs.highlightBlock(block);
+
+
+        var block = document.getElementById("code2")
+        block.innerText = '<div style="width: 500px;height: 400px;background: #E4E4E4" align="center">\n  <img src="src/umbrella.jpg" class="Umbrella-imageResponsive" BoxComposite="center">\n  <img src="src/donar.jpg" NotProgress BoxComposite="center">\n  <img src="src/doc.gif" NotProgress BoxComposite="top:right">\n  <img src="src/doc.gif" NotProgress BoxComposite="top:left">\n  <img src="src/doc.gif" NotProgress BoxComposite="bottom:right">\n  <img src="src/doc.gif" NotProgress BoxComposite="bottom:left">\n</div>'
+        hljs.highlightBlock(block);
+
+        var block = document.getElementById("code3")
+        block.innerText = '<style type="text/css">\n  .caja {width: 100px;height: 100px;background: salmon;}\n</style>\n\n<div class="caja" hbox="true"></div>\n\n<div class="caja" hbox></div\n\n<div class="caja" hbox></div\n\n<div class="caja" hbox="true"></div>'
+        hljs.highlightBlock(block);
+
+        var block = document.getElementById("code4")
+        block.innerText = '<div class="caja" hbox="true"></div>\n<div class="caja" hbox="true"></div>\n<div class="caja" hbox="true"></div>'
+        hljs.highlightBlock(block);
+
+        var block = document.getElementById("code5")
+        block.innerText = '<div class="caja" hbox="true" style="width: 35%;"></div>\n<div class="caja" hbox="true" style="width: 60%;"></div>'
+        hljs.highlightBlock(block);
+
+        var block = document.getElementById("code6")
+        block.innerText = '<div class="caja" hbox="true" style="width: 50%;"></div>\n<div class="caja" hbox="true" style="width: 50%;background: red;"></div>'
+        hljs.highlightBlock(block);
+
+    });
+
+</script>

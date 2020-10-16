@@ -15,7 +15,7 @@ CHILD : canvas de progreso para imagenes
 }
 
 .ProgressImage-logo-size {
-  width: 106px;height: 96px;
+  width: 80px;height: 72px;
 }
 
 .ProgressImage-logo {
@@ -83,4 +83,15 @@ canvas[name="SunfurThanos"] {
     background: transparent;
     box-sizing: border-box;
     border: none;
+}
+
+
+/*
+
+CHILD : configuraciones genericas
+
+*/
+
+.Umbrella-imageResponsive {
+  display: block;height: auto;max-width: 100%;
 }

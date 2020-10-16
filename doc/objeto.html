@@ -8,16 +8,14 @@
 <script src="src/highlight.pack.js"></script>
 
 <div class="header">
-	<div class="columns2">
-		<div style="margin-left: auto;margin-right: auto;margin-top: auto;margin-bottom: auto;">
-			<a href="index.html" style="margin-left: 0.4em;">INICIO</a>
-			<a href="instalar.html" style="margin-left: 0.4em;">INSTALACIÓN</a>
-			<b class="SELECT">OBJETO</b>
-            <a href="imagen.html" style="margin-left: 0.4em;">IMAGEN</a>
-            <a href="simbolos.html" style="margin-left: 0.4em;">SIMBOLOS</a>
-			<a href="layout.html" style="margin-left: 0.4em;">LAYOUT</a>
-		</div>
-	</div>
+    <div style="position: relative;">
+        <a href="index.html" hbox="true">INICIO</a>
+        <a href="instalar.html" hbox>INSTALACIÓN</a>
+        <b class="SELECT" hbox>OBJETO</b>
+        <a href="imagen.html" hbox>IMAGEN</a>
+        <a href="simbolos.html" hbox>SIMBOLOS</a>
+        <a href="layout.html" hbox="true">LAYOUT</a>
+    </div>
 </div>
 
 <br><br><br>
@@ -26,7 +24,7 @@
 
 	<h2 align="left">Mejora de la etiqueta "align"</h2>
 
-	<p>La tecnología web fue hecha a los trancazos, por eso quedo como quedo, ineficiente & lleno de baches :(, por ejemplo a la etiqueta <span>align</span> de HTML le aplicaron una lógica errática, es decir si yo a una celda mediante un estilo o clase css modifico las propiedades <span>position</span> o el tamaño <strong>WxH</strong> & luego le inserto la etiqueta <span>align</span>, esta ultima etiqueta se rompe si por ejemplo le agrego el valor <strong>center</strong>, pues gracias a <b>Umbrella</b> esto llega a su fin, ya que dicha etiqueta no se romperá, ¿Te ha sucedido lo mismo, hay más problemas de este estilo que desees que Umbrella los repare para ti, házmelo saber & estaré encantado de servirte?, esto demuestra el compromiso moral de <b>Umbrella</b>, proteger a los navegadores & usuarios de las tormentas de problemas erráticos.</p>
+	<p>La tecnología web fue hecha a los trancazos, por ejemplo a la etiqueta <span>align</span> de HTML le aplicaron una lógica con un rango muy cerrado, es decir si yo a una celda mediante un estilo o clase css modifico el tamaño <strong>WxH</strong> & luego le inserto la etiqueta <span>align</span> con un valor <strong>center</strong>, esta ultima etiqueta se rompe, gracias a <b>Umbrella</b> esto llega a su fin, ya que dicha etiqueta no se romperá, ¿Te ha sucedido lo mismo, hay más problemas de este estilo que desees que Umbrella los repare para ti, házmelo saber & estaré encantado de servirte?, esto demuestra el compromiso moral de <b>Umbrella</b>: proteger a los navegadores & usuarios de las tormentas de problemas erráticos.</p>
 
     <pre><code class="html" id="code1"></code></pre>
 
@@ -34,7 +32,7 @@
 
     <h2 align="left">Mejora de la etiqueta "href"</h2>
 
-    <p>Esta es otra etiqueta con lógica errática, para hacer corto el cuento, ahora con <b>Umbrella</b> puedes colocarle la etiqueta <span>href</span> a botones & imágenes, algo que no se podía hacer, no solo eso si no que ahora el nombre de la etiqueta es intuitiva, si deseas que el link a insertar se abra en la misma pestaña debes usar <span>link-main</span>, si deseas que se abra en otra pestaña usa <span>link-tab</span>, ¿estas contento/a con esta mejora, tienes algo que agregar?.</p>
+    <p>Esta es otra etiqueta con lógica errática, para hacer corto el cuento, ahora con <b>Umbrella</b> puedes crear interacción de link en celdas tipo texto, botones e imágenes, ademas ahora el nombre de la etiqueta es intuitiva, si deseas que el link a insertar se abra en la misma pestaña debes usar <span>link-main</span>, si deseas que se abra en otra pestaña usa <span>link-tab</span>, ¿estas contento/a con esta mejora, tienes algo que agregar?.</p>
 
     <pre><code class="html" id="code2"></code></pre>
 
@@ -50,9 +48,9 @@
     <a href="https://www.paypal.me/SunfurThanos" target="_black" style="cursor: pointer;display: inline-block;" id="texto_main">clic original</a>
     <a PasteAttributes="texto_main">clic copia</a>
 
-    <p><span>¿existe paradoja de uso, en esta nueva etiqueta?</span>, no ya que solo pegara etiquetas que no existan en la celda donde se insertaran, por lo tanto su uso es claro & no paradójico, ¿aun así, crees que puede ser mejor su funcionamiento?</p>
+    <p><span>¿existe paradoja de uso, en esta nueva etiqueta?</span>, la respuesta es !NO!, ya que solo pegara etiquetas que no existan en la celda donde se insertaran, por lo tanto su uso es claro & no paradójico, ¿aun así, crees que puede ser mejor su funcionamiento?</p>
 
-    <p>La sincronía también esta disponible desde JS o desde el inspector del navegador, con cual al modificar el valor de una etiqueta de la celda máster todas sus celdas esclavas cambiaran de forma automática, ¿que opinas, tienes algo que agregar?.</p>
+    <p>La sincronía también esta disponible desde JS o desde el inspector del navegador, con lo cual al modificar el valor de una etiqueta de la celda máster todas sus celdas esclavas cambiaran de forma automática, ¿que opinas, tienes algo que agregar?.</p>
 
     <pre><code class="html" id="code4"></code></pre>
 
@@ -79,7 +77,7 @@
         hljs.highlightBlock(block);
 
         var block = document.getElementById("code4")
-        block.innerText = '<a href="https://www.ilm.com" target="_black" id="texto_main">clic original</a>\n<a PasteAttributes="texto_main">clic copia</a>\n\n<button onclick="Cambiar()">Cambiar url</button>\n\n<script type="text/javascript">\n\nfunction Cambiar() {\n\n  celda = document.getElementById("texto_main")\n\n  celda.href = "https://www.bombercode.com"\n\n}\n\n<$NEO$script>'.replace(/\$NEO\$/g, "/")
+        block.innerText = '<a href="https://www.ilm.com" target="_black" id="texto_main">clic original</a>\n<a PasteAttributes="texto_main">clic copia</a>\n\n<button onclick="Cambiar()">Cambiar url</button>\n\n<script type="text/javascript">\n\nfunction Cambiar() {\n\n  celda = document.getElementById("texto_main")\n\n  celda.href = "https://www.ejemplo.net"\n\n}\n\n<$NEO$script>'.replace(/\$NEO\$/g, "/")
         hljs.highlightBlock(block);
 
     });
