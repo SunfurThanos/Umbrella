@@ -14,7 +14,7 @@ Increible frameWork futuristas que brinda una gran experiencia & productividad a
 
 ---
 
-[<img src="doc\src\donar.jpg">](https://www.paypal.me/SunfurThanos)
+[<img src="doc\src\donar.png">](https://www.paypal.me/SunfurThanos)
 
 ---
 
