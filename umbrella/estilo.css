@@ -1,51 +1,96 @@
 
-/*
+/*********************************************************************
 
-CHILD : canvas de progreso para imagenes
+  CHILD : canvas de progreso para imágenes
 
-*/
+*********************************************************************/
 
+/*celda donde muestra el total de los kbs descargados*/
 .ProgressImage-SizeRead {
   position: absolute;bottom: 0em;right: 0em;
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(50, 58, 95, 0.5);
+  color: rgba(0, 0, 0, 0.74);
+  font-weight: 600;
+  background: rgba(67, 86, 172, 0.2);
   padding: 0.4em;letter-spacing: 1px;
-  font-size: 14px;border-radius: 8px;
+  border-radius: 8px;
   padding-bottom: 0.3em;
 }
 
-.ProgressImage-logo-size {
-  width: 80px;height: 72px;
-}
+
+/*logotipo alusivo a una imagen, que identifica a usuarios final inexpertos de que el proceso efectuándose tiene que ver con imágenes :)*/
+.ProgressImage-logo-size {width: 30%;height: 30%;}
 
 .ProgressImage-logo {
-  background-image: url(imagen.png);
-  background-size: contain;
+  background-image: url(mimetype_image.svg);
+  background-size: initial;
   background-repeat: no-repeat;
   -webkit-animation: ProgressImage-logo 0.8s both ease 0.1s;
   -moz-animation: ProgressImage-logo 0.8s both ease 0.1s;
 }
 
+
+/*tamaño & el estilo del contenedor principal*/
 .ProgressImage-size {
-  width: 400px;height: 205px;
+  width: 200px;height: 160px;
 }
 
 .ProgressImage-container {
-  pointer-events: none;
+  pointer-events: auto;
   position: relative;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select: none;
+  cursor:default;
 	background: repeating-linear-gradient(
 		45deg,
-		rgba(14, 72, 42, 1),
-		rgba(14, 72, 42, 1) 25px,
-		rgba(39, 146, 88, 1) 25px,
-		rgba(39, 146, 88, 1) 50px
+		#AFD3FB,
+		#AFD3FB 25px,
+		rgba(175, 211, 251, 0.7) 25px,
+		rgba(175, 211, 251, 0.7) 50px
 	);
-	background-color: #121113;
+  background-color: white;
 	border-radius: 8px;
 	-webkit-box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.8);
   box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.8);
 }
 
+
+/*estilo  del contenedor principal, cuando ha sucedido un error de carga*/
+.ProgressImage-container-error {
+  background: repeating-linear-gradient(
+    45deg,
+    #FBB8BA,
+    #FBB8BA 25px,
+    #FACFD5 25px,
+    #FACFD5 50px
+  );
+  background-color: white;
+}
+
+/*estilo para el botón de re-intentar carga de imagen*/
+.ProgressImage-ButtonReload {
+  cursor: pointer;
+  margin-top: -0.2em;
+  outline: none;
+  border: 1px #353630 solid;
+  padding: 5px;
+  padding-bottom: 3px;
+  font-size: 1.14rem;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 600;
+  letter-spacing: 0.9px;
+  background: rgba(251, 43, 72, 0.9);
+  border-radius: 0.44rem;
+}
+
+.ProgressImage-ButtonReload:hover, .ProgressImage-ButtonReload:active {
+  background: rgba(251, 43, 72, 0.54);
+  border-color: black;
+  color: rgba(0, 0, 0, 1);
+}
+
+
+/*animación para el logo imagen alusivo*/
 @-webkit-keyframes ProgressImage-logo {
   0% {
     opacity: 0;
@@ -70,25 +115,10 @@ CHILD : canvas de progreso para imagenes
   }
 }
 
-.ProgressImage-column {
-  display: flex;
-  flex-wrap: wrap;
-  background: transparent;
-  height: calc(100%);
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-}
-
-canvas[name="SunfurThanos"] {
-    background: transparent;
-    box-sizing: border-box;
-    border: none;
-}
-
 
 /*
 
-CHILD : configuraciones genericas
+CHILD : ????????????????????????????????
 
 */
 

@@ -9,14 +9,12 @@
 
 
 <div class="header">
-	<div style="position: relative;">
-		<a href="index.html" hbox="true">INICIO</a>
-		<b class="SELECT" hbox>INSTALACIÓN</b>
-		<a href="objeto.html" hbox>OBJETO</a>
-		<a href="imagen.html" hbox>IMAGEN</a>
-		<a href="simbolos.html" hbox>SIMBOLOS</a>
-		<a href="layout.html" hbox="true">LAYOUT</a>
-	</div>
+	<a href="index.html" hbox="true">INICIO</a>
+	<b class="SELECT" hbox>INSTALACIÓN</b>
+	<a href="objeto.html" hbox>OBJETO</a>
+	<a href="imagen.html" hbox>IMAGEN</a>
+	<a href="simbolos.html" hbox>SIMBOLOS</a>
+	<a href="layout.html" hbox="true">LAYOUT</a>
 </div>
 
 
@@ -26,7 +24,7 @@
 
 	<h2 align="left">Como implemento este FrameWork?</h2>
 
-	<p>Una vez que descarges <b>Umbrella</b>, dentro del directorio del FrameWork copia la carpeta <span>umbrella</span> al directorio de tu proyecto, en cualquier archivo HTML donde desees utilizar dicha tecnologia, pega la siguiente linea de código en la cabecera de dicho archivo, dicho proyecto tiene que ejecutarse desde un protocolo http como puede ser un localhost.</p>
+	<p>Una vez que descarges <b>Umbrella</b>, dentro del directorio del FrameWork copia la carpeta <span>umbrella</span> al directorio de tu proyecto, en cualquier archivo HTML donde desees utilizar dicha tecnologia, pega la siguiente linea de código en la cabecera de dicho archivo, dicho proyecto tiene que ejecutarse desde un protocolo <strong>http</strong> como puede ser un <strong>localhost</strong> para que todas sus herramientas funcionen correctamente.</p>
 
     <pre><code class="html" id="code1"></code></pre>
 
@@ -46,7 +44,7 @@
 
 <script type="text/javascript">
 
-    addEventListener('load', () => {
+    addEventListener('DOMContentLoaded', () => {
         var block = document.getElementById("code1")
         block.innerText = '<script type="text/javascript" src="umbrella/index.js"><$NEO$script>'.replace(/\$NEO\$/g, "/")
         hljs.highlightBlock(block);

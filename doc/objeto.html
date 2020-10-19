@@ -8,14 +8,12 @@
 <script src="src/highlight.pack.js"></script>
 
 <div class="header">
-    <div style="position: relative;">
-        <a href="index.html" hbox="true">INICIO</a>
-        <a href="instalar.html" hbox>INSTALACIÓN</a>
-        <b class="SELECT" hbox>OBJETO</b>
-        <a href="imagen.html" hbox>IMAGEN</a>
-        <a href="simbolos.html" hbox>SIMBOLOS</a>
-        <a href="layout.html" hbox="true">LAYOUT</a>
-    </div>
+    <a href="index.html" hbox="true">INICIO</a>
+    <a href="instalar.html" hbox>INSTALACIÓN</a>
+    <b class="SELECT" hbox>OBJETO</b>
+    <a href="imagen.html" hbox>IMAGEN</a>
+    <a href="simbolos.html" hbox>SIMBOLOS</a>
+    <a href="layout.html" hbox="true">LAYOUT</a>
 </div>
 
 <br><br><br>
@@ -62,7 +60,7 @@
 
 <script type="text/javascript">
 
-    addEventListener('load', () => {
+    addEventListener('DOMContentLoaded', () => {
 
         var block = document.getElementById("code1")
         block.innerText = '<div style="width: 200px;height: 200px;background-color: salmon;" align="center"></div>'

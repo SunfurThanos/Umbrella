@@ -1,4 +1,4 @@
-## UMBRELLA X1
+## UMBRELLA X2
 
 <img src="doc/src/umbrella.jpg">
 

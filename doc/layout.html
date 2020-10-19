@@ -1,36 +1,38 @@
 <meta charset="utf-8">
 <link href="src/consola.png" rel="icon" type="image/x-icon">
-<link type="text/css" href="src/estilo.css" rel="stylesheet">
 <script type="text/javascript" src="../umbrella/index.js"></script>
-<title>Umbrella - layout</title>
+<link type="text/css" href="src/estilo.css" rel="stylesheet">
 
 <link rel="stylesheet" href="src/github.css">
 <script src="src/highlight.pack.js"></script>
 
+<title>Umbrella - layout</title>
+
 <style type="text/css">
 
-.caja {width: 100px;height: 100px;background: salmon;}
+.caja {
+    min-width: 100px;min-height: 100px;background: #DFE4EB;border: 1px #737373 dashed;
+}
 
 </style>
 
-<div class="header">
-    <div style="position: relative;">
-      <a href="index.html" hbox="true">INICIO</a>
-      <a href="instalar.html" hbox>INSTALACIÓN</a>
-      <a href="objeto.html" hbox>OBJETO</a>
-      <a href="imagen.html" hbox>IMAGEN</a>
-            <a href="simbolos.html" hbox>SIMBOLOS</a>
-      <b class="SELECT" hbox="true">LAYOUT</b>
-    </div>
+<div class="header" id="MENU" style="display: none;">
+    <a href="index.html" hbox="true">INICIO</a>
+    <a href="instalar.html" hbox>INSTALACIÓN</a>
+    <a href="objeto.html" hbox>OBJETO</a>
+    <a href="imagen.html" hbox>IMAGEN</a>
+    <a href="simbolos.html" hbox>SIMBOLOS</a>
+    <b class="SELECT" hbox="true">LAYOUT</b>
 </div>
+
 
 <br><br><br>
 
-<div style="width: 90%" align="center">
+<div style="width: 95%" align="center">
 
 	<h2 align="left">BoxComposite</h2>
 
-	<p>Colocar una celda encima de otra de forma centra u otra posición especifica, suele ser complejo & laborioso no solo codificarlo si no actualizarlo, no te preocupes con este Framework puedes hacerlo de manera sencilla con la etiqueta <span>BoxComposite</span> & asignarle cualquiera de las siguientes posiciones: <strong>Center</strong>, <strong>top:left</strong>, <strong>top:right</strong>, <strong>bottom:left</strong>, <strong>bottom:right</strong>, ¿quieres agregar algo, crees que falta algo?.</p>
+	<p>Colocar una celda encima de otra de forma centra u otra posición especifica, suele ser complejo & laborioso no solo codificarlo si no actualizarlo, no te preocupes con este Framework puedes hacerlo de manera sencilla con la etiqueta <span>BoxComposite</span> & asignarle cualquiera de las siguientes posiciones: <strong>top:left</strong>, <strong>top:center</strong> <strong>top:right</strong>, <strong>center:left</strong>, <strong>center</strong>, <strong>center:right</strong>, <strong>bottom:left</strong>, <strong>bottom:center</strong>, <strong>bottom:right</strong> ¿quieres agregar algo, crees que falta algo?.</p>
 
     <pre><code class="html" id="code1"></code></pre>
 
@@ -44,12 +46,17 @@
 
     <pre><code class="html" id="code2"></code></pre>
 
-    <div style="width: 500px;height: 400px;background: black;" align="center">
+
+    <div style="width: 500px;height: 400px;background: black;">
       <img src="src/umbrella.jpg" BoxComposite="center" class="Umbrella-imageResponsive">
-      <img src="src/donar.jpg" NotProgress BoxComposite="center">
       <img src="src/doc.gif" NotProgress BoxComposite="top:right">
+      <img src="src/doc.gif" NotProgress BoxComposite="top:center">
       <img src="src/doc.gif" NotProgress BoxComposite="top:left">
+      <img src="src/doc.gif" NotProgress BoxComposite="center:left">
+      <img src="src/doc.gif" NotProgress BoxComposite="center">
+      <img src="src/doc.gif" NotProgress BoxComposite="center:right">
       <img src="src/doc.gif" NotProgress BoxComposite="bottom:right">
+      <img src="src/doc.gif" NotProgress BoxComposite="bottom:center">
       <img src="src/doc.gif" NotProgress BoxComposite="bottom:left">
     </div>
 
@@ -57,7 +64,7 @@
 
     <h2 align="left">Super-Flexbox</h2>
 
-    <p>Este es una de las herramientas más interesante de este apartado, ya que permite crear sistemas de columnas de manera muy sencilla, intuitiva & productiva, solo debes usar la etiqueta <span>hbox</span>, si ha dicha etiqueta no le colocas ningún valor quiere decir que quieres crear un objeto que no sea flexible horizontalmente, ahora bien si le colocas de valor <strong>true</strong>, el objeto sera flexible lo cual lo hace interesante ¿este sistema le falta mejorar aun MÁS su estructura, para que quede perfecto, aun así demuestra su potencial, tienes alguna sugerencia o comentario?, sin duda este sistema de <span>Grid</span> automatizado es mucho mejor que cualquiera que puedes encontrar en FrameWork de terceros, ¿que opinas te gusta, tienes una idea que compartir?</p>
+    <p>Este es una de las herramientas más interesante de este apartado, ya que permite crear sistemas de columnas de manera muy sencilla, intuitiva & productiva, solo debes usar la etiqueta <span>hbox</span>, si ha dicha etiqueta no le colocas ningún valor quiere decir que quieres crear un objeto que no sea flexible horizontalmente, ahora bien si le colocas de valor <strong>true</strong>, el objeto sera flexible lo cual lo hace interesante, en desarrollo web profesional no solo es escribir un código & que sirva, si no que sea lo más simple y auto descriptible, para que los cambios en la pagina web sean fáciles & productivos, por ello esta opción <strong>GANA</strong> por goleada, ¿que opinas te gusta, tienes una idea que compartir, que haga más fácil la experiencia de desarrollo?.</p>
 
     <pre><code class="html" id="code3"></code></pre>
 
@@ -74,21 +81,96 @@
 
     <pre><code class="html" id="code5"></code></pre>
 
-    <div class="caja" hbox="true" style="width: 35%;"></div>
+    <div class="caja" hbox="true" style="width: 37.4%;"></div>
     <div class="caja" hbox="true" style="width: 60%;"></div>
 
     <pre><code class="html" id="code6"></code></pre>
 
-    <div class="caja" hbox="true" style="width: 50%;"></div>
-    <div class="caja" hbox="true" style="width: 50%;background: red;"></div>
+    <div class="caja" hbox="true" style="width: 50%;border: none !important;"></div>
+    <div class="caja" hbox="true" style="width: 50%;border: none !important;background: #4574C5 !important;"></div>
 
-</div>
+    <p><span>¿como Umbrella sabe, donde termina o empieza una fila de columnas?</span>: veras las celdas que tengan la etiqueta <strong>hbox</strong>, serán tomadas como filas, para saber el final de una fila solo basta con <strong>"decir"</strong>: si la celda siguiente es neutral & no tiene la etiqueta mágica, entonces colorin colorado este fila esta cerrada, al detectar la siguiente concurrencia de la etiqueta mencionada, se crea una nueva fila en busca de reclutas para que le hagan compañía.</p>
+
+    <pre><code class="html" id="code7"></code></pre>
+
+    <div class="caja" hbox="true"></div>
+    <div class="caja" hbox="true"></div>
+    <div class="caja" hbox="true"></div>
+
+    <br>
+
+    <div class="caja" hbox="true"></div>
+    <div class="caja" hbox="false"></div>
+    <div class="caja" hbox="true"></div>
+
+    <pre><code class="html" id="code8"></code></pre>
+
+    <div class="caja" hbox="true" style="width: 40%;margin-bottom: 0.44em;">
+        <div hbox="true" style="background: white;width: 30%">1</div>
+        <div hbox="true" style="background: white;width: 20%">2</div>
+        <div hbox="true" style="background: white;width: 30%">3</div>
+    </div>
+
+    <div class="caja" hbox="true" style="width: 40%;margin-bottom: 0.44em;">
+        <div BoxComposite="center">
+            <div hbox="true" style="background: white;width: 30%">4</div>
+            <div hbox="true" style="background: white;width: 20%">5</div>
+            <div hbox="true" style="background: white;width: 30%">7</div>
+        </div>
+    </div>
+
+    <img NotProgress src="src/donar.png" link-tab="https://www.paypal.me/SunfurThanos">
+
+    <div class="caja" hbox="true"></div>
+    <div class="caja" hbox="true"></div>
+
+    <br>
+
+    <p><span>¿hay forma de que cada ítems tenga un ancho automático?</span>: puedes hacerlo agregando el valor <strong>auto</strong>, ahora si quieres que los ítems no tengan margen izquierdo ni derecho, usa el valor <strong>auto+</strong>, mediante <strong>Css</strong> puedes modificar el margen por si lo requiere en ciertas situaciones.</p>
+
+    <pre><code class="html" id="code9"></code></pre>
+
+    <div class="caja" hbox="auto">
+        <div BoxComposite="center">HELLO</div>
+    </div>
+
+    <div class="caja" hbox="auto">
+        <div BoxComposite="center">HELLO</div>
+    </div>
+
+    <div class="caja" hbox="auto">
+        <div BoxComposite="center">HELLO</div>
+    </div>
+
+    <pre><code class="html" id="code10"></code></pre>
+
+    <div class="caja" hbox="auto+">
+        <div BoxComposite="center">GOOD</div>
+    </div>
+
+    <div class="caja" hbox="auto+">
+        <div BoxComposite="center">GOOD</div>
+    </div>
+
+    <div class="caja" hbox="auto+">
+        <div BoxComposite="center">GOOD</div>
+    </div>
+
+    <br>
+
+    <p><b>ADVERTENCIA</b>:&space;&space;las clases CSS a usarse en objetos con (Sunper FlexBox) deben estar dentro del archivo HTML como código & no como un archivo externo, de lo contrario Umbrella no podrá tomar el control total de la clase..</p>
+
+    <p><span>¿que pasa si las clases están en un archivo?</span>: pues que Umbrella no mejorara ciertas cosas, como por ejemplo para cambiar el margen tienes que usar la sentencia <strong>!important</strong>, ejemplo: <strong>margin-right: 0.9em !important;</strong>, en items que tengan un tamaño automático & mediante una clase quieras cambiar las dimensiones en porcentaje o pixeles, debes usar un máximo & no absoluto, ejemplo: <strong>max-width: 50%</strong>, lo cual no es cosa de otro mundo pero Umbrella te elimina esa leve carga de trabajo.</p>
+
+    <p><span>¿que pasa internamente si las clases están en código del HTML?</span>: para modificar el margen puedes hacerlo de forma normal sin usar ninguna sentencia, para modificar el tamaño de una celda con tamaño automático, puedes usar <strong>width</strong> o <strong>max-width</strong>, como vez te pone otro panorama donde el Framework decide que es mas importante o no, ¿algo que agregar?</p>
 
 <br><br>
 
+
+
 <script type="text/javascript">
 
-    addEventListener('load', () => {
+    addEventListener('DOMContentLoaded', () => {
 
         var block = document.getElementById("code1")
         block.innerText = '<div style="width: 500px;height: 400px;background: #E4E4E4" align="center">\n  <div style="width: 200px;height: 200px;background: #000;" BoxComposite="center">\n    <span BoxComposite="center">HELLO WORLD</span>\n  </div>\n</div>'
@@ -96,11 +178,11 @@
 
 
         var block = document.getElementById("code2")
-        block.innerText = '<div style="width: 500px;height: 400px;background: #E4E4E4" align="center">\n  <img src="src/umbrella.jpg" class="Umbrella-imageResponsive" BoxComposite="center">\n  <img src="src/donar.jpg" NotProgress BoxComposite="center">\n  <img src="src/doc.gif" NotProgress BoxComposite="top:right">\n  <img src="src/doc.gif" NotProgress BoxComposite="top:left">\n  <img src="src/doc.gif" NotProgress BoxComposite="bottom:right">\n  <img src="src/doc.gif" NotProgress BoxComposite="bottom:left">\n</div>'
+        block.innerText = '<div style="width: 500px;height: 400px;background: black;">\n  <img src="src/umbrella.jpg" BoxComposite="center" class="Umbrella-imageResponsive">\n  <img src="src/doc.gif" NotProgress BoxComposite="top:right">\n  <img src="src/doc.gif" NotProgress BoxComposite="top:center">\n  <img src="src/doc.gif" NotProgress BoxComposite="top:left">\n  <img src="src/doc.gif" NotProgress BoxComposite="center:left">\n  <img src="src/doc.gif" NotProgress BoxComposite="center">\n  <img src="src/doc.gif" NotProgress BoxComposite="center:right">\n  <img src="src/doc.gif" NotProgress BoxComposite="bottom:right">\n  <img src="src/doc.gif" NotProgress BoxComposite="bottom:center">\n  <img src="src/doc.gif" NotProgress BoxComposite="bottom:left">\n</div>'
         hljs.highlightBlock(block);
 
         var block = document.getElementById("code3")
-        block.innerText = '<style type="text/css">\n  .caja {width: 100px;height: 100px;background: salmon;}\n</style>\n\n<div class="caja" hbox="true"></div>\n\n<div class="caja" hbox></div\n\n<div class="caja" hbox></div\n\n<div class="caja" hbox="true"></div>'
+        block.innerText = '<style type="text/css">\n  .caja {min-width: 100px;min-height: 100px;background: #DFE4EB;border: 1px #737373 dashed;}\n</style>\n\n<div class="caja" hbox="true"></div>\n\n<div class="caja" hbox></div\n\n<div class="caja" hbox></div\n\n<div class="caja" hbox="true"></div>'
         hljs.highlightBlock(block);
 
         var block = document.getElementById("code4")
@@ -108,13 +190,32 @@
         hljs.highlightBlock(block);
 
         var block = document.getElementById("code5")
-        block.innerText = '<div class="caja" hbox="true" style="width: 35%;"></div>\n<div class="caja" hbox="true" style="width: 60%;"></div>'
+        block.innerText = '<div class="caja" hbox="true" style="width: 37.4%;"></div>\n<div class="caja" hbox="true" style="width: 60%;"></div>'
         hljs.highlightBlock(block);
 
         var block = document.getElementById("code6")
-        block.innerText = '<div class="caja" hbox="true" style="width: 50%;"></div>\n<div class="caja" hbox="true" style="width: 50%;background: red;"></div>'
+        block.innerText = '<div class="caja" hbox="true" style="width: 50%;border: none !important;"></div>\n<div class="caja" hbox="true" style="width: 50%;border: none !important;background: #4574C5 !important;"></div>'
         hljs.highlightBlock(block);
 
-    });
+        var block = document.getElementById("code7")
+        block.innerText = '<div class="caja" hbox="true"></div>\n<div class="caja" hbox="true"></div>\n<div class="caja" hbox="true"></div>\n\n<br>\n\n<div class="caja" hbox="true"></div>\n<div class="caja" hbox="false"></div>\n<div class="caja" hbox="true"></div>'
+        hljs.highlightBlock(block);
 
+        var block = document.getElementById("code8")
+        block.innerText = '<div class="caja" hbox="true" style="width: 40%;margin-bottom: 0.44em;">\n  <div hbox="true" style="background: white;width: 30%">1</div>\n  <div hbox="true" style="background: white;width: 20%">2</div>\n  <div hbox="true" style="background: white;width: 30%">3</div>\n</div>\n\n<div class="caja" hbox="true" style="width: 40%;margin-bottom: 0.44em;">\n  <div BoxComposite="center">\n    <div hbox="true" style="background: white;width: 30%">4</div>\n    <div hbox="true" style="background: white;width: 20%">5</div>\n    <div hbox="true" style="background: white;width: 30%">7</div>\n  </div>\n</div>\n\n<img NotProgress src="src/donar.png" link-tab="https://www.paypal.me/SunfurThanos">\n\n<div class="caja" hbox="true"></div>\n<div class="caja" hbox="true"></div>'
+        hljs.highlightBlock(block);
+
+        var block = document.getElementById("code9")
+        block.innerText = '<div class="caja" hbox="auto">\n    <div BoxComposite="center">HELLO</div>\n</div>\n\n<div class="caja" hbox="auto">\n    <div BoxComposite="center">HELLO</div>\n</div>\n\n<div class="caja" hbox="auto">\n    <div BoxComposite="center">HELLO</div>\n</div>'
+        hljs.highlightBlock(block);
+
+        var block = document.getElementById("code10")
+        block.innerText = '<div class="caja" hbox="auto+">\n    <div BoxComposite="center">GOOD</div>\n</div>\n\n<div class="caja" hbox="auto+">\n    <div BoxComposite="center">GOOD</div>\n</div>\n\n<div class="caja" hbox="auto+">\n    <div BoxComposite="center">GOOD</div>\n</div>'
+        hljs.highlightBlock(block);
+
+
+        document.getElementById("MENU").style.display = "block"
+
+
+    });
 </script>
