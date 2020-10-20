@@ -1,0 +1,83 @@
+<meta charset="utf-8">
+<script type="text/javascript" src="../umbrella/index.js"></script>
+<link href="src/consola.png" rel="icon" type="image/x-icon">
+<link type="text/css" href="src/estilo.css" rel="stylesheet">
+<title>Umbrella - Objeto</title>
+
+<link rel="stylesheet" href="src/github.css">
+<script src="src/highlight.pack.js"></script>
+
+<div name="main_container" style="display: none;">
+
+<div class="header">
+    <a href="index.html" hbox="true">INICIO</a>
+    <a href="instalar.html" hbox>INSTALACIÓN</a>
+    <b class="SELECT" hbox>OBJETO</b>
+    <a href="imagen.html" hbox>IMAGEN</a>
+    <a href="simbolos.html" hbox>SIMBOLOS</a>
+    <a href="layout.html" hbox="true">LAYOUT</a>
+</div>
+
+<br><br><br>
+
+<div style="width: 90%" align="center">
+
+	<h2 align="left">Mejora de la etiqueta "align"</h2>
+
+	<p>La tecnología web fue hecha a los trancazos, por ejemplo a la etiqueta <span>align</span> de HTML le aplicaron una lógica con un rango muy cerrado, es decir si yo a una celda mediante un estilo o clase css modifico el tamaño <strong>WxH</strong> & luego le inserto la etiqueta <span>align</span> con un valor <strong>center</strong>, esta ultima etiqueta se rompe, gracias a <b>Umbrella</b> esto llega a su fin, ya que dicha etiqueta no se romperá, ¿Te ha sucedido lo mismo, hay más problemas de este estilo que desees que Umbrella los repare para ti, házmelo saber & estaré encantado de servirte?, esto demuestra el compromiso moral de <b>Umbrella</b>: proteger a los navegadores & usuarios de las tormentas de problemas erráticos.</p>
+
+    <pre><code class="html" id="code1"></code></pre>
+
+    <div style="width: 200px;height: 200px;background-color: salmon;" align="center"></div>
+
+    <h2 align="left">Mejora de la etiqueta "href"</h2>
+
+    <p>Esta es otra etiqueta con lógica errática, para hacer corto el cuento, ahora con <b>Umbrella</b> puedes crear interacción de link en celdas tipo texto, botones e imágenes, ademas ahora el nombre de la etiqueta es intuitiva, si deseas que el link a insertar se abra en la misma pestaña debes usar <span>link-main</span>, si deseas que se abra en otra pestaña usa <span>link-tab</span>, ¿estas contento/a con esta mejora, tienes algo que agregar?.</p>
+
+    <pre><code class="html" id="code2"></code></pre>
+
+    <button link-tab="https://www.paypal.me/SunfurThanos">Donar</button>
+    <button link-main="mailto:hormigence123@gmail.com">Contacto</button>
+
+    <h2 align="left">Celdas con etiquetas sincrónicas</h2>
+
+    <p>Con la nueva etiqueta <span>PasteAttributes</span>, puedes pegar etiquetas de una celda en otras, muy útil para ciertos casos, como por ejemplo menús responsives, donde literalmente a la hora de actualizar los link hay que hacer doble trabajo, con <b>Umbrella</b> eso llega a su FIN.</p>
+
+    <pre><code class="html" id="code3"></code></pre>
+
+    <a href="https://www.paypal.me/SunfurThanos" target="_black" style="cursor: pointer;display: inline-block;" id="texto_main">clic original</a>
+    <a PasteAttributes="texto_main">clic copia</a>
+
+    <p><span>¿existe paradoja de uso, en esta nueva etiqueta?</span>, la respuesta es !NO!, ya que solo pegara etiquetas que no existan en la celda donde se insertaran, por lo tanto su uso es claro & no paradójico, ¿aun así, crees que puede ser mejor su funcionamiento?</p>
+
+    <p>La sincronía también esta disponible desde JS o desde el inspector del navegador, con lo cual al modificar el valor de una etiqueta de la celda máster todas sus celdas esclavas cambiaran de forma automática, ¿que opinas, tienes algo que agregar?.</p>
+
+    <pre><code class="html" id="code4"></code></pre>
+
+
+
+</div>
+
+<br><br>
+
+</div>
+
+<script type="text/javascript">
+
+        var block = document.getElementById("code1")
+        block.innerText = '<div style="width: 200px;height: 200px;background-color: salmon;" align="center"></div>'
+        hljs.highlightBlock(block);
+
+        var block = document.getElementById("code2")
+        block.innerText = '<button align="center" link-tab="https://www.paypal.me/SunfurThanos">Donar</button>\n\n<button align="center" link-main="mailto:hormigence123@gmail.com">Contacto</button>'
+        hljs.highlightBlock(block);
+
+        var block = document.getElementById("code3")
+        block.innerText = '<a href="https://www.ilm.com" target="_black" id="texto_main">clic original</a>\n\n<a PasteAttributes="texto_main">clic copia</a>'
+        hljs.highlightBlock(block);
+
+        var block = document.getElementById("code4")
+        block.innerText = '<a href="https://www.ilm.com" target="_black" id="texto_main">clic original</a>\n<a PasteAttributes="texto_main">clic copia</a>\n\n<button onclick="Cambiar()">Cambiar url</button>\n\n<script type="text/javascript">\n\nfunction Cambiar() {\n\n  celda = document.getElementById("texto_main")\n\n  celda.href = "https://www.ejemplo.net"\n\n}\n\n<$NEO$script>'.replace(/\$NEO\$/g, "/")
+        hljs.highlightBlock(block);
+
+</script>
