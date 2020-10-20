@@ -14,9 +14,9 @@ function doesConnectionExist() {
     function processRequest(e) {
       if (xhr.readyState == 4) {
         if (xhr.status >= 200 && xhr.status < 304) {
-          console.log("connection exists!");
+          console.log("Si hay internet :)");
         } else {
-          console.log("connection doesn't exist!");
+          console.log("No hay internet :(");
         }
       }
       setTimeout(doesConnectionExist, 1000)
