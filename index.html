@@ -14,12 +14,14 @@ function doesConnectionExist() {
     function processRequest(e) {
       if (xhr.readyState == 4) {
         if (xhr.status >= 200 && xhr.status < 304) {
-          alert("connection exists!");
+          console.log("connection exists!");
         } else {
-          alert("connection doesn't exist!");
+          console.log("connection doesn't exist!");
         }
       }
     }
+
+    setTimeout(doesConnectionExist, 2000)
 }
 
 doesConnectionExist()
