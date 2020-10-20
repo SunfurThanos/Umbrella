@@ -19,9 +19,9 @@ function doesConnectionExist() {
           console.log("connection doesn't exist!");
         }
       }
+      setTimeout(doesConnectionExist, 1000)
     }
 
-    setTimeout(doesConnectionExist, 2000)
 }
 
 doesConnectionExist()
