@@ -35,42 +35,37 @@ var find_object = function(object) {
 //
 //-------------------------------------------------------------------------------
 
-umbrella.testTime_conection = 30 // 30 segundos por default xD-D-D
-
+umbrella.testTime_conection = 30 // 30 segundos para la espera de cada PING
 umbrella.eventTestingServer = document.createEvent("Event");
 umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
 
-
 function func_isConectionServer(seconds) {
 
-    var server = new XMLHttpRequest();
+    var http = new XMLHttpRequest();
     var randomNum = Math.round(Math.random() * 10000);
 
-    server.open('HEAD', document.location + "?rand=" + randomNum, true);
-    server.time_reset = seconds
-    server.addEventListener("readystatechange", processRequest, true);
+    http.open('HEAD', document.location + "?rand=" + randomNum, true);
+    http.time_reset = seconds
 
-    server.onerror = function (event) {
-    	console.log("YES")
-    }
+	http.onloadend = (event) => {
+		if (http.readyState==4) {
+	        if (http.status >= 200 && http.status < 304) {
+	        	console.log("Hay internet")
+	          umbrella.eventTestingServer.state = true
+	          document.dispatchEvent(umbrella.eventTestingServer);
+		      setTimeout(func_isConectionServer.bind(
+		      	null, http.time_reset), http.time_reset*1000)
+	        } else {
+	        	console.log("No hay internet")
+	          umbrella.eventTestingServer.state = false
+	          document.dispatchEvent(umbrella.eventTestingServer);
+		      setTimeout(func_isConectionServer.bind(
+		      	null, http.time_reset), http.time_reset*1000)
+	        }
+		}
+	}
 
-    server.send("");
-
-    var processRequest = function(event) {
-      if (server.readyState == 4) {
-        if (server.status >= 200 && server.status < 304) {
-	      server.abort()
-	      setTimeout(doesConnectionExist.bind(null, server.time_reset), server.time_reset*1000)
-          umbrella.eventTestingServer.state = true
-          document.dispatchEvent(umbrella.eventTestingServer);
-        } else {
-	      server.abort()
-	      setTimeout(doesConnectionExist.bind(null, server.time_reset), server.time_reset*1000)
-          umbrella.eventTestingServer.state = false
-          document.dispatchEvent(umbrella.eventTestingServer);
-        }
-      }
-    }
+    http.send(null);
 }
 
 //-------------------------------------------------------------------------------
@@ -206,13 +201,11 @@ function UmbrellaKernelStart() {
 	// servicio: ver imagen en otra pestaña si el evento "click" no existe
 	UmbrellaService_ViewImgTab.start()
 
+	// testeo infinito para probar conexión a internet
 	if (document.location.hostname) {
-	  func_isConectionServer(umbrella.testTime_conection)
+		console.log("Umbrella sockect: " + document.location.hostname)
+		func_isConectionServer(umbrella.testTime_conection)
 	}
-
-	document.addEventListener("ServerConnection-changes",  function (event) {
-		console.log(event.state)
-	}, true);
 
 	// servicio FINAL: quitar barra de carga tipo pulsate
 	if (ShowImage_progress==true) {
@@ -613,7 +606,8 @@ _ImageProgress.prototype.start = function() {
 			Image_renderProgress(
 				divCanvas, cajon,
 				object, size_progress,
-				diccionario, BUTTON_RELOAD
+				diccionario, BUTTON_RELOAD,
+				false
 			)
 
 	    }
@@ -622,7 +616,7 @@ _ImageProgress.prototype.start = function() {
 }
 
 var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
-	diccionario, BUTTON_RELOAD) {
+	diccionario, BUTTON_RELOAD, CLIC_BUTTON) {
 
 	var http = new XMLHttpRequest();
 	http.open("GET", cajon.file, true);
@@ -635,6 +629,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	http.BUTTON_RELOAD = BUTTON_RELOAD
 	http.file_error    = false
 	http.get_progress  = false
+	http.button_clic = CLIC_BUTTON
 
 
 	http.size_progress.style.display = "none"
@@ -678,20 +673,24 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	http.cajon.style.display = "block"
 	REDIMENSIONAR()
 
-
-	http.BUTTON_RELOAD.addEventListener("click",  function (event) {
+	http.restart_road = function () {
         http.diccionario["size_progress"].style.display = "block"
         http.diccionario["columnas"].style.display = "block"
         diccionario["fallide_div"].style.display = "none"
         http.BUTTON_RELOAD.style.display = "none"
 
-        http.abort()
-
 		Image_renderProgress(
 			http.divCanvas, http.cajon,
 			http.object, http.size_progress,
-			http.diccionario, http.BUTTON_RELOAD
+			http.diccionario, http.BUTTON_RELOAD,
+			http.button_clic
 		)
+	}
+
+	http.BUTTON_RELOAD.addEventListener("click",  function (event) {
+        http.timeout = 0x3
+        http.button_clic = true
+        setTimeout(http.restart_road, 0x7)
 	}, true);
 
 
@@ -712,7 +711,34 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 		http.setRequestHeader('Accept-Charset', 'x-user-defined');
 
 
+	document.addEventListener("ServerConnection-changes",  function (event) {
+		if (!event.state) {
+			if (!http.button_clic) {
+				setTimeout(http.restart_road, 0)
+				http.in_progress_load = false
+				http.timeout = 0x3
+				setTimeout(http.funcion_hack_error, 0x17)
+			}
+		} else {
+			if (!http.in_progress_load) {
+				if (!http.button_clic) {
+					setTimeout(http.restart_road, 0)
+				} else {
+					http.button_clic = false
+				}
+			}
+		}
+	}, true);
+
+
 	http.onprogress = function($pe) {
+
+		if (!http.in_progress_load) {
+			divCanvas.innerHTML = "0%"
+		}
+
+		http.in_progress_load = true
+
 		var progreso = Math.round($pe.loaded * 100 / $pe.total)
 
 		if (!http.get_progress) {
@@ -745,20 +771,17 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 		}
 	}
 
+	http.funcion_hack_error = function () {
+		http.cajon.className = http.cajon.className + " ProgressImage-container-error"
+        http.diccionario["size_progress"].style.display = "none"
+        http.diccionario["columnas"].style.display = "none"
+        diccionario["fallide_div"].style.display = "block"
+        http.BUTTON_RELOAD.style.display = "block"
+        http.abort()
+	}
 
 	http.onerror = (event) => {
-
-		http.funcion_hack_error = function () {
-			http.cajon.className = http.cajon.className + " ProgressImage-container-error"
-	        http.diccionario["size_progress"].style.display = "none"
-	        http.diccionario["columnas"].style.display = "none"
-	        diccionario["fallide_div"].style.display = "block"
-	        http.BUTTON_RELOAD.style.display = "block"
-	        http.abort()
-		}
-
-		setTimeout(http.funcion_hack_error, 300)
-
+		setTimeout(http.funcion_hack_error, 100)
 	}
 
 
