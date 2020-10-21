@@ -48,21 +48,19 @@ function func_isConectionServer(seconds) {
     http.time_reset = seconds
 
 	http.onloadend = (event) => {
-		if (http.readyState==4) {
-	        if (http.status >= 200 && http.status < 304) {
-	        	console.log("Hay internet")
-	          umbrella.eventTestingServer.state = true
-	          document.dispatchEvent(umbrella.eventTestingServer);
-		      setTimeout(func_isConectionServer.bind(
-		      	null, http.time_reset), http.time_reset*1000)
-	        } else {
-	        	console.log("No hay internet")
-	          umbrella.eventTestingServer.state = false
-	          document.dispatchEvent(umbrella.eventTestingServer);
-		      setTimeout(func_isConectionServer.bind(
-		      	null, http.time_reset), http.time_reset*1000)
-	        }
-		}
+        if (http.status >= 200 && http.status < 304) {
+			console.log("Hay internet")
+			umbrella.eventTestingServer.state = true
+			document.dispatchEvent(umbrella.eventTestingServer);
+			setTimeout(func_isConectionServer.bind(null,
+				http.time_reset), http.time_reset*1000)
+        } else {
+			console.log("No hay internet")
+			umbrella.eventTestingServer.state = false
+			document.dispatchEvent(umbrella.eventTestingServer);
+			setTimeout(func_isConectionServer.bind(
+				null, http.time_reset), http.time_reset*1000)
+        }
 	}
 
     http.send(null);
@@ -722,6 +720,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 		} else {
 			if (!http.in_progress_load) {
 				if (!http.button_clic) {
+					console.log("Auto-reload_activate")
 					setTimeout(http.restart_road, 0)
 				} else {
 					http.button_clic = false
