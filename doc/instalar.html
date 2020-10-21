@@ -1,4 +1,5 @@
 <meta charset="utf-8">
+<link type="text/css" href="../umbrella/style.css" rel="stylesheet">
 <script type="text/javascript" src="../umbrella/index.js"></script>
 <link href="src/consola.png" rel="icon" type="image/x-icon">
 <link type="text/css" href="src/estilo.css" rel="stylesheet">
@@ -7,7 +8,8 @@
 <link rel="stylesheet" href="src/github.css">
 <script src="src/highlight.pack.js"></script>
 
-<div name="main_container" style="display: none;">
+<div name="preloader-animation"></div>
+<div name="main-container">
 
 <div class="header">
 	<a href="index.html" hbox="true">INICIO</a>
@@ -18,14 +20,13 @@
 	<a href="layout.html" hbox="true">LAYOUT</a>
 </div>
 
-
 <br><br><br>
 
 <div style="width: 90%" align="center">
 
 	<h2 align="left">Como implemento este FrameWork?</h2>
 
-	<p>Una vez que descarges <b>Umbrella</b>, dentro del directorio del FrameWork copia la carpeta <span>umbrella</span> al directorio de tu proyecto, en cualquier archivo HTML donde desees utilizar dicha tecnología, pega la siguiente linea de código en la cabecera de dicho archivo, siempre debe ser el primer archivo JS o CSS que importes, para que así Umbrella pueda administrar refactorizado de manera excelente, dicho proyecto tiene que ejecutarse desde un protocolo <strong>http</strong> como puede ser un <strong>localhost</strong> para que todas sus herramientas funcionen correctamente.</p>
+	<p>Una vez que descarges <b>Umbrella</b>, dentro del directorio del FrameWork copia la carpeta <span>umbrella</span> al directorio de tu proyecto, en cualquier archivo HTML donde desees utilizar dicha tecnología, pega la siguiente linea de código en la cabecera de dicho archivo, dicho proyecto tiene que ejecutarse desde un protocolo <strong>http</strong> como puede ser un <strong>localhost</strong> para que todas sus herramientas funcionen correctamente.</p>
 
     <pre><code class="html" id="code1"></code></pre>
 
@@ -42,21 +43,18 @@
 
 	<h2 align="left">En que navegadores funciona?</h2>
 
+	<span align="left">Testeado al 100% en los siguientes navegadores:</span>
 	<ul style="text-align: left;">
-		<li>Microsoft Explorer 9/+</li>
 		<li>Microsoft Edge</li>
-		<li>Safari 4/+</li>
-		<li>Google Chrome 4/+</li>
-		<li>Mozilla Firefox 25/+</li>
-		<li>Opera 4/+</li>
-		<li>IPhone/IPad (iOS)</li>
+		<li>Safari <b>4+</b></li>
+		<li>Google Chrome <b>4+</b></li>
+		<li>Mozilla Firefox <b>25+</b></li>
+		<li>Opera <b>4+</b></li>
 	</ul>
 
 	<h2 align="left">Optimizando el inicio de carga!</h2>
 
 	<p>Normalmente en HTML creamos una celda y allí colocamos todo el contenido de la pagina web, veras <strong>Umbrella</strong>, tiene que esperar que se descargue el archivo HTML & se cree el árbol para luego refactorizarlo, eso suele tardar mucho en conexiones lentas o inestables, por ende puedes aplicar una sencilla configuración que harán la espera !agradable!...</p>
-
-	<p>A la celda padre, es decir la que contiene todo el contenido web legible, le colocas un nombre <strong>name="main_container" </strong> y la ocultas <strong>style="display: none;"</strong>, esto permitirá de forma automática que se muestre un icono giratorio alusivo a una barra de carga mientras el DOM esta listo, es decir mientras se van creando los objetos de la pagina & que Umbrella termine de refactorizar los elementos, una vez que eso termine, la celda mencionada se mostrara con un efecto de <strong>FADE-IN</strong>, es decir una leve animación de opacidad al mostrarse.</p>
 
 	<pre><code class="html" id="code3"></code></pre>
 
@@ -68,15 +66,17 @@
 
 <script type="text/javascript">
 
+addEventListener("UmbrellaFinish",  function (event) {
     var block = document.getElementById("code1")
-    block.innerText = '<meta charset="utf-8">\n<script type="text/javascript" src="umbrella/index.js"><$NEO$script>\n...'.replace(/\$NEO\$/g, "/")
+    block.innerText = '<link type="text/css" href="umbrella/style.css" rel="stylesheet">\n<script type="text/javascript" src="umbrella/index.js"><$NEO$script>'.replace(/\$NEO\$/g, "/")
     hljs.highlightBlock(block);
 
     var block = document.getElementById("code2")
     hljs.highlightBlock(block);
 
     var block = document.getElementById("code3")
-    block.innerText = '<div name="main_container" style="display: none;">\n  Todo mi contenido web xD-D-D-D\n</div>'
+    block.innerText = '<div name="preloader-animation"></div>\n<div name="main-container">\n  Todo mi contenido web legible\n</div>'
     hljs.highlightBlock(block);
+}, false);
 
 </script>

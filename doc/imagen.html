@@ -1,5 +1,8 @@
 <meta charset="utf-8">
+
+<link type="text/css" href="../umbrella/style.css" rel="stylesheet">
 <script type="text/javascript" src="../umbrella/index.js"></script>
+
 <link href="src/consola.png" rel="icon" type="image/x-icon">
 <link type="text/css" href="src/estilo.css" rel="stylesheet">
 
@@ -20,17 +23,18 @@
 
 <title>Umbrella - imagen</title>
 
-<div name="main_container" style="display: none;">
+
+
+<div name="preloader-animation"></div>
+<div name="main-container">
 
 <div class="header">
-    <div style="position: relative;">
       <a href="index.html" hbox="true">INICIO</a>
       <a href="instalar.html" hbox>INSTALACIÓN</a>
       <a href="objeto.html" hbox>OBJETO</a>
       <b class="SELECT" hbox>IMAGEN</b>
       <a href="simbolos.html" hbox>SIMBOLOS</a>
       <a href="layout.html" hbox="true">LAYOUT</a>
-    </div>
 </div>
 
 <br><br><br>
@@ -53,6 +57,10 @@
 
   <br><br>
 
+  <img src="src/chompiras.gif" class="Umbrella-imageResponsive">
+
+  <br><br>
+
   <img src="src/resident-evil-1.gif" class="Umbrella-imageResponsive" name="ejemplo2">
 
   <br>
@@ -67,8 +75,10 @@
 
 <script type="text/javascript">
 
+addEventListener("UmbrellaFinish",  function (event) {
     var block = document.getElementById("code1")
-    block.innerText = '<img src="src/umbrella.jpg">\n\n<img src="src/resident-evil-1.gif">'
+    block.innerText = '<img src="src/umbrella.jpg">\n\n<img src="src/chompiras.gif">\n\n<img src="src/resident-evil-1.gif">'
     hljs.highlightBlock(block);
+}, false);
 
 </script>

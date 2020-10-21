@@ -16,7 +16,7 @@
 //-------------------------------------------------------------------------------
 
 // metodo global => NameSpace*
-var umbrella = function(kernell=0x2857674D, brain_hide="Cithara2") {}
+var umbrella = function() {}
 
 // ver si un (list=>item*) existe
 var find_object = function(object) {
@@ -29,15 +29,59 @@ var find_object = function(object) {
 	return false
 }
 
-// soporte extendido para controlador de Eventos
-umbrella.EventListener = function (obj,evt,fnc,useCapture){
-	if (!useCapture) useCapture=false;
-	if (obj.addEventListener){
-		obj.addEventListener(evt,fnc,useCapture);
-		return true;
-	} else if (obj.attachEvent) return obj.attachEvent("on"+evt,fnc);
+//-------------------------------------------------------------------------------
+//
+// Umbrella => eventos personalizado para detectar conexión a internet xD-D-DDDD
+//
+//-------------------------------------------------------------------------------
+
+umbrella.testTime_conection = 30 // 30 segundos por default xD-D-D
+
+umbrella.eventTestingServer = document.createEvent("Event");
+umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
+
+
+function func_isConectionServer(seconds) {
+
+    var server = new XMLHttpRequest();
+    var randomNum = Math.round(Math.random() * 10000);
+
+    server.open('HEAD', document.location + "?rand=" + randomNum, true);
+    server.time_reset = seconds
+    server.addEventListener("readystatechange", processRequest, true);
+
+    server.onerror = function (event) {
+    	console.log("YES")
+    }
+
+    server.send("");
+
+    var processRequest = function(event) {
+      if (server.readyState == 4) {
+        if (server.status >= 200 && server.status < 304) {
+	      server.abort()
+	      setTimeout(doesConnectionExist.bind(null, server.time_reset), server.time_reset*1000)
+          umbrella.eventTestingServer.state = true
+          document.dispatchEvent(umbrella.eventTestingServer);
+        } else {
+	      server.abort()
+	      setTimeout(doesConnectionExist.bind(null, server.time_reset), server.time_reset*1000)
+          umbrella.eventTestingServer.state = false
+          document.dispatchEvent(umbrella.eventTestingServer);
+        }
+      }
+    }
 }
 
+//-------------------------------------------------------------------------------
+//
+// Umbrella => eventos personalizados
+//
+//-------------------------------------------------------------------------------
+
+// pre-carga de pagina completa
+umbrella.eventPageRefactory = document.createEvent("Event");
+umbrella.eventPageRefactory.initEvent("UmbrellaFinish", true, false);
 
 //-------------------------------------------------------------------------------
 //
@@ -45,99 +89,16 @@ umbrella.EventListener = function (obj,evt,fnc,useCapture){
 //
 //-------------------------------------------------------------------------------
 
-umbrella.EventListener(document, "readystatechange",  function (event) {
+document.addEventListener("readystatechange",  function (event) {
 	if (!umbrella.start_load) {
-		umbrella.box_inLoad_progressHide = document.querySelector("*[name='main_container']")
-
-		if (umbrella.box_inLoad_progressHide) {
-
-			umbrella.box_inLoad_progressHide.style.display = "none"
-
-            var head = document.getElementsByTagName('head')[0];
-            var style = document.createElement('style');
-            head.appendChild(style);
-
-			var prefixes = ['webkit', 'Moz', 'ms', 'O']
-			var prop = "transform"
-			var prop = prop.charAt(0).toUpperCase() + prop.slice(1)
-
-			var composer = "webkit"
-			for(var i=0; i<prefixes.length; i++) {
-			  var pp = prefixes[i]+prop
-			  if(document.body.style[pp] !== undefined) {
-
-			  	var DATA = "@-"+prefixes[i]+"-keyframes rotateSpinner_umbrellaPrivate{0%{transform:rotate(0deg)}100%{transform:rotate(36000deg)}}"
-			  	style.sheet.insertRule(DATA, style.sheet.cssRules.length)
-			  	composer = prefixes[i]
-
-			  	var DATA = "@-"+prefixes[i]+"-keyframes textFadeInUmbrellaPrivate {0% {opacity: 0;}100% {opacity: 1;}}"
-			  	style.sheet.insertRule(DATA, style.sheet.cssRules.length)
-
-			  	var DATA = ".Class_textFadeInUmbrellaPrivate {"+"-"+composer+"-animation: textFadeInUmbrellaPrivate 0.7s both ease .024s;"+"}"
-			  	style.sheet.insertRule(DATA, style.sheet.cssRules.length)
-
-				umbrella.box_inLoad_progressHide.className = umbrella.box_inLoad_progressHide.className + " Class_textFadeInUmbrellaPrivate"
-
-			  	break
-			  }
-			}
-
-			umbrella.start_load = true
-			umbrella.cajita = document.createElement("div")
-			umbrella.cajita.style = "width: 100%;height: 100%;"
-			var celda = document.createElement("img")
-			celda.src = PATH_UMBRELLA + "loading.png"
-			celda.setAttribute("notprogress", "")
-			celda.style = "width: auto;-"+composer+"-animation:rotateSpinner_umbrellaPrivate 70s linear infinite;"
-			celda.setAttribute("BoxComposite", "center")
-			umbrella.cajita.appendChild(celda)
-			umbrella.box_inLoad_progressHide.parentElement.appendChild(umbrella.cajita)
-		}
+		umbrella.start_load = document.querySelector("*[name='main-container']")
+		umbrella.circule_progress = document.querySelector("*[name='preloader-animation']")
 	}
-}, false);
+}, true);
 
 //-------------------------------------------------------------------------------
 //
-// Variables globales
-//
-//-------------------------------------------------------------------------------
-
-// Umbrella versión
-umbrella.version = new Number(8)
-
-// creando clase de Entities
-var Entities = function(kernell=0x2857674D) {}
-
-// Entities: crear tipo espacio
-Entities.space = new RegExp(/&amp;space;/g) // => "$space;" = "\xA0"
-
-// tiempo "FLASH" de espera en eventos personalizados => int*
-var TIME_CUSTOM = new Number(0x17)
-
-// activar o desactivar barra de progreso para imagenes => Bool*
-var ShowImage_progress = new Boolean(true)
-
-// despues de precargar imagen mostrarla => Bool*
-var isLoad_showImage = new Boolean(true)
-
-// estilo para (barra de carga circular) para imagenes => method*
-var circleImageProgress = function(kernell=0x2857674D) {}
-
-circleImageProgress.textColor  = "rgba(255, 255, 2, 0.9)";
-circleImageProgress.textShadow = "black";
-circleImageProgress.textFonts  = "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Oxygen,Ubuntu,Cantarell,Open Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji,Arial";
-
-circleImageProgress.sizeCircle1   = 70;
-circleImageProgress.colorCircle1  = 'rgba(2, 1, 1, 0.5)';
-circleImageProgress.shadowCircle1 = "salmon";
-
-circleImageProgress.widthCircle2  = 8;
-circleImageProgress.colorCircle2  = 'rgba(55, 207, 130, 0.9)';
-circleImageProgress.shadowCircle2 = "rgba(255, 0, 0, 0.9)";
-
-//-------------------------------------------------------------------------------
-//
-// hack blanco: calculando ruta del archivo de ***
+// hack blanco: calculando ruta de este archivo :)
 //
 //-------------------------------------------------------------------------------
 
@@ -154,14 +115,44 @@ for (var $object of $lista) {
 	}
 }
 
-// cargando archivo de estilo
-var styleTmp   = document.createElement("link");
-styleTmp.href  = PATH_UMBRELLA + "estilo.css";
-styleTmp.rel   = "stylesheet";
-styleTmp.type  = "text/css";
-styleTmp.media = 'screen';
-document.head.appendChild(styleTmp);
+//-------------------------------------------------------------------------------
+//
+// Variables globales
+//
+//-------------------------------------------------------------------------------
 
+// Umbrella versión
+umbrella.version = new Number(8)
+
+// creando clase de Entities
+var Entities = function() {}
+
+// Entities: crear tipo espacio
+Entities.space = new RegExp(/&amp;space;/g) // => "$space;" = "\xA0"
+
+// tiempo "FLASH" de espera en eventos personalizados => int*
+var TIME_CUSTOM = new Number(0x17)
+
+// activar o desactivar barra de progreso para imagenes => Bool*
+var ShowImage_progress = new Boolean(true)
+
+// despues de precargar imagen mostrarla => Bool*
+var isLoad_showImage = new Boolean(true)
+
+// estilo para (barra de carga circular) para imagenes => method*
+var circleImageProgress = function() {}
+
+circleImageProgress.textColor  = "rgba(255, 255, 2, 0.9)";
+circleImageProgress.textShadow = "black";
+circleImageProgress.textFonts  = "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Oxygen,Ubuntu,Cantarell,Open Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji,Arial";
+
+circleImageProgress.sizeCircle1   = 70;
+circleImageProgress.colorCircle1  = 'rgba(2, 1, 1, 0.5)';
+circleImageProgress.shadowCircle1 = "salmon";
+
+circleImageProgress.widthCircle2  = 8;
+circleImageProgress.colorCircle2  = 'rgba(55, 207, 130, 0.9)';
+circleImageProgress.shadowCircle2 = "rgba(255, 0, 0, 0.9)";
 
 //-------------------------------------------------------------------------------
 //
@@ -171,9 +162,6 @@ document.head.appendChild(styleTmp);
 
 // Carga Fallida
 var FALLIDE_PNG = PATH_UMBRELLA + "loading-crashed.svg"
-
-// MinimeType:Image => edintificador de que es una barra de carga
-// var BAR_imagenType = PATH_UMBRELLA + "mimetype_image.svg"
 
 //-------------------------------------------------------------------------------
 //
@@ -192,7 +180,7 @@ function show_Umbrella_banner() {
 //
 //-------------------------------------------------------------------------------
 
-umbrella.EventListener(document, "DOMContentLoaded", UmbrellaKernelStart, true);
+document.addEventListener("DOMContentLoaded", UmbrellaKernelStart, true);
 
 // ejecutando servicios dedicados
 function UmbrellaKernelStart() {
@@ -218,15 +206,28 @@ function UmbrellaKernelStart() {
 	// servicio: ver imagen en otra pestaña si el evento "click" no existe
 	UmbrellaService_ViewImgTab.start()
 
-	// quitan barra de carga tipo $pulsate*
-	if (umbrella.box_inLoad_progressHide) {
-		umbrella.cajita.style.display = "none"
-		umbrella.box_inLoad_progressHide.style.display = "block"
+	if (document.location.hostname) {
+	  func_isConectionServer(umbrella.testTime_conection)
 	}
 
-	// servicio FINAL: agregar canvas de progreso para imagenes
+	document.addEventListener("ServerConnection-changes",  function (event) {
+		console.log(event.state)
+	}, true);
+
+	// servicio FINAL: quitar barra de carga tipo pulsate
 	if (ShowImage_progress==true) {
 		UmbrellaService_ImageProgress.start()
+	}
+
+	// avisando que Umbrella ya termino de refactorizar
+    document.dispatchEvent(umbrella.eventPageRefactory);
+
+	// quitan barra de carga tipo $pulsate*
+	if (umbrella.start_load) {
+		if (umbrella.circule_progress) {
+			umbrella.circule_progress.style.display = "none"
+		}
+		umbrella.start_load.style.display = "block"
 	}
 }
 
@@ -651,10 +652,16 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 
 		if (!http.cajon.parentNode) {return null}
 
-		if ((http.cajon.offsetHeight+http.cajon.offsetWidth) < (150+120)) {
-			http.cajon.style.width  = 150
-			http.cajon.style.height = 120
+
+		if (http.cajon.offsetWidth>0) {
+			if (http.cajon.offsetHeight>0) {
+				if ((http.cajon.offsetHeight+http.cajon.offsetWidth) < (150+120)) {
+					http.cajon.style.width  = 150
+					http.cajon.style.height = 120
+				}
+			}
 		}
+
 
 		http.diccionario["fallide_img"].style.width = (http.cajon.offsetHeight/2) + 'px'
 
@@ -672,7 +679,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	REDIMENSIONAR()
 
 
-	umbrella.EventListener(http.BUTTON_RELOAD, "click",  function (event) {
+	http.BUTTON_RELOAD.addEventListener("click",  function (event) {
         http.diccionario["size_progress"].style.display = "block"
         http.diccionario["columnas"].style.display = "block"
         diccionario["fallide_div"].style.display = "none"
@@ -778,7 +785,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 		var RenderImagePro = function () {
 			if (isLoad_showImage==true) {
 				// oculto celda de progreso, solo cuando la imagen en cache se haya terminado de renderizar en su correspondiente celda
-				umbrella.EventListener(http.object, "load",  function (event) {
+				http.object.addEventListener("load",  function (event) {
 					clearTimeout(fin_de_carga)
 					setTimeout(fin_de_carga, 0)
 				}, true);
@@ -1061,7 +1068,7 @@ _FlexBox.prototype.start = function() {
 	    			MAIN.removeChild(object);
 
 	    			var columnas = document.createElement("div")
-	    			columnas.style = "display: flex;flex-wrap: wrap;background: transparent;-webkit-box-orient: vertical;-webkit-box-direction: normal;"
+	    			columnas.style = "display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;-webkit-flex-wrap: wrap;-moz-flex-wrap: wrap;-ms-flex-wrap: wrap;flex-wrap: wrap;background: transparent;-webkit-box-orient: vertical;-webkit-box-direction: normal;"
 	    			columnas.appendChild(object);
 	    			Comboy_anterior = columnas
 	    			contenedor.appendChild(columnas)

@@ -1,4 +1,5 @@
 <meta charset="utf-8">
+<link type="text/css" href="../umbrella/style.css" rel="stylesheet">
 <script type="text/javascript" src="../umbrella/index.js"></script>
 <link href="src/consola.png" rel="icon" type="image/x-icon">
 <link type="text/css" href="src/estilo.css" rel="stylesheet">
@@ -7,7 +8,8 @@
 <link rel="stylesheet" href="src/github.css">
 <script src="src/highlight.pack.js"></script>
 
-<div name="main_container" style="display: none;">
+<div name="preloader-animation"></div>
+<div name="main-container">
 
 <div class="header">
     <a href="index.html" hbox="true">INICIO</a>
@@ -64,6 +66,7 @@
 
 <script type="text/javascript">
 
+addEventListener("UmbrellaFinish",  function (event) {
         var block = document.getElementById("code1")
         block.innerText = '<div style="width: 200px;height: 200px;background-color: salmon;" align="center"></div>'
         hljs.highlightBlock(block);
@@ -79,5 +82,6 @@
         var block = document.getElementById("code4")
         block.innerText = '<a href="https://www.ilm.com" target="_black" id="texto_main">clic original</a>\n<a PasteAttributes="texto_main">clic copia</a>\n\n<button onclick="Cambiar()">Cambiar url</button>\n\n<script type="text/javascript">\n\nfunction Cambiar() {\n\n  celda = document.getElementById("texto_main")\n\n  celda.href = "https://www.ejemplo.net"\n\n}\n\n<$NEO$script>'.replace(/\$NEO\$/g, "/")
         hljs.highlightBlock(block);
+}, false);
 
 </script>
