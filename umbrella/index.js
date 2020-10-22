@@ -781,6 +781,8 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 					setTimeout(http.restart_road, 0)
 					http.in_progress_load = false
 					http.timeout = 0x00000003
+					http.abort()
+					console.log("desconectado")
 					// setTimeout(http.funcion_hack_error, 0x17)
 				}
 			}
