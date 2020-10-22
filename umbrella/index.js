@@ -782,8 +782,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 					http.in_progress_load = false
 					http.timeout = 0x00000003
 					http.abort()
-					console.log("desconectado")
-					// setTimeout(http.funcion_hack_error, 0x17)
+					setTimeout(http.funcion_hack_error, 0x17)
 				}
 			}
 			http.is_internet = false
