@@ -35,7 +35,7 @@ var find_object = function(object) {
 //
 //-------------------------------------------------------------------------------
 
-umbrella.testTime_conection = 30 // 30 segundos para la espera de cada PING
+umbrella.testTime_conection = 10 // 10 segundos para la espera de cada PING
 umbrella.eventTestingServer = document.createEvent("Event");
 umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
 
@@ -49,14 +49,12 @@ function func_isConectionServer(seconds) {
 
 	http.onloadend = (event) => {
         if (http.status >= 200 && http.status < 304) {
-			console.log("Hay internet")
-			umbrella.eventTestingServer.state = true
+			umbrella.eventTestingServer.connection = true
 			document.dispatchEvent(umbrella.eventTestingServer);
 			setTimeout(func_isConectionServer.bind(null,
 				http.time_reset), http.time_reset*1000)
         } else {
-			console.log("No hay internet")
-			umbrella.eventTestingServer.state = false
+			umbrella.eventTestingServer.connection = false
 			document.dispatchEvent(umbrella.eventTestingServer);
 			setTimeout(func_isConectionServer.bind(
 				null, http.time_reset), http.time_reset*1000)
@@ -154,7 +152,7 @@ circleImageProgress.shadowCircle2 = "rgba(255, 0, 0, 0.9)";
 //-------------------------------------------------------------------------------
 
 // Carga Fallida
-var FALLIDE_PNG = PATH_UMBRELLA + "loading-crashed.svg"
+var FALLIDE_PNG = PATH_UMBRELLA + "not-connection.svg"
 
 //-------------------------------------------------------------------------------
 //
@@ -563,7 +561,7 @@ _ImageProgress.prototype.start = function() {
 			var fallide_img = document.createElement("img")
 			fallide_img.alt = " "
 			fallide_img.src = FALLIDE_PNG
-			fallide_img.style = "pointer-events: none;border: none;opacity: 0.95;"
+			fallide_img.style = "pointer-events: none;border: none;opacity: 0.5;"
 			fallide_div.appendChild(fallide_img)
 			cajon.appendChild(MAIN_fallide_div)
 
@@ -572,6 +570,7 @@ _ImageProgress.prototype.start = function() {
 			BUTTON_RELOAD.style.display = "none"
 			BUTTON_RELOAD.className = "ProgressImage-ButtonReload"
 			var BR = document.createElement("div")
+			BR.style = "margin-top: 0.7em;"
 			fallide_div.appendChild(BR)
 			fallide_div.appendChild(BUTTON_RELOAD)
 
@@ -627,8 +626,8 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	http.BUTTON_RELOAD = BUTTON_RELOAD
 	http.file_error    = false
 	http.get_progress  = false
-	http.button_clic = CLIC_BUTTON
-
+	http.button_clic   = CLIC_BUTTON
+	http.is_internet   = false
 
 	http.size_progress.style.display = "none"
 
@@ -656,7 +655,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 		}
 
 
-		http.diccionario["fallide_img"].style.width = (http.cajon.offsetHeight/2) + 'px'
+		http.diccionario["fallide_img"].style.width = (http.cajon.offsetHeight/1.8) + 'px'
 
 		if (http.cajon.offsetHeight > http.cajon.offsetWidth) {
 			divCanvas.style.fontSize = (http.cajon.offsetWidth/6.5) + 'px'
@@ -709,27 +708,6 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 		http.setRequestHeader('Accept-Charset', 'x-user-defined');
 
 
-	document.addEventListener("ServerConnection-changes",  function (event) {
-		if (!event.state) {
-			if (!http.button_clic) {
-				setTimeout(http.restart_road, 0)
-				http.in_progress_load = false
-				http.timeout = 0x3
-				setTimeout(http.funcion_hack_error, 0x17)
-			}
-		} else {
-			if (!http.in_progress_load) {
-				if (!http.button_clic) {
-					console.log("Auto-reload_activate")
-					setTimeout(http.restart_road, 0)
-				} else {
-					http.button_clic = false
-				}
-			}
-		}
-	}, true);
-
-
 	http.onprogress = function($pe) {
 
 		if (!http.in_progress_load) {
@@ -770,18 +748,42 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 		}
 	}
 
+
 	http.funcion_hack_error = function () {
 		http.cajon.className = http.cajon.className + " ProgressImage-container-error"
         http.diccionario["size_progress"].style.display = "none"
         http.diccionario["columnas"].style.display = "none"
         diccionario["fallide_div"].style.display = "block"
         http.BUTTON_RELOAD.style.display = "block"
-        http.abort()
+        http.Error_start = true
 	}
 
-	http.onerror = (event) => {
-		setTimeout(http.funcion_hack_error, 100)
-	}
+
+	document.addEventListener("ServerConnection-changes",  function (event) {
+		if (!event.connection) {
+			if (!http.button_clic) {
+				if (http.in_progress_load) {
+					setTimeout(http.restart_road, 0)
+					http.in_progress_load = false
+					http.timeout = 0x00000003
+					// setTimeout(http.funcion_hack_error, 0x17)
+				}
+			}
+			http.is_internet = false
+		} else {
+			if (!http.in_progress_load) {
+				if (http.Error_start) {
+					if (!http.button_clic) {
+						setTimeout(http.restart_road, 0)
+					} else {
+						http.button_clic = false
+					}
+					http.Error_start = false
+				}
+			}
+			http.is_internet = false
+		}
+	}, true);
 
 
 	http.onloadend = (event) => {

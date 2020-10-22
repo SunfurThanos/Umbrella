@@ -18,7 +18,7 @@ Increible frameWork futuristas que brinda una gran experiencia & productividad a
 
 ---
 
-**NOTA:** para el dia `jueves, 29 de octubre de 2020` esta versión de Umbrella ya estara estable & lista para usarse en proyectos de maquetado,
+**NOTA:** para el dia `jueves, 29 de octubre de 2020` esta versión de Umbrella ya estara estable & lista para usarse en proyectos de maquetado, por ahora se recomienda probarlo solo a modo de testeo comparativo.
 
 ---
 
