@@ -35,9 +35,10 @@ var find_object = function(object) {
 //
 //-------------------------------------------------------------------------------
 
-umbrella.testTime_conection = 10 // 10 segundos para la espera de cada PING
+umbrella.testTime_conection = 17 // 10 segundos para la espera de cada PING
 umbrella.eventTestingServer = document.createEvent("Event");
 umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
+umbrella.eventTestingServer.status_conection = null
 
 function func_isConectionServer(seconds) {
 
@@ -47,18 +48,32 @@ function func_isConectionServer(seconds) {
     http.open('HEAD', document.location + "?rand=" + randomNum, true);
     http.time_reset = seconds
 
+
 	http.onloadend = (event) => {
         if (http.status >= 200 && http.status < 304) {
 			umbrella.eventTestingServer.connection = true
 			document.dispatchEvent(umbrella.eventTestingServer);
 			setTimeout(func_isConectionServer.bind(null,
 				http.time_reset), http.time_reset*1000)
+			var status_actual = true
         } else {
 			umbrella.eventTestingServer.connection = false
 			document.dispatchEvent(umbrella.eventTestingServer);
 			setTimeout(func_isConectionServer.bind(
 				null, http.time_reset), http.time_reset*1000)
+			var status_actual = false
         }
+
+        if (umbrella.eventTestingServer.status_conection!=status_actual) {
+        	umbrella.eventTestingServer.status_conection = status_actual
+
+        	if (status_actual) {
+        		console.log("hay internet")
+        	} else {
+        		console.log("No hay internet")
+        	}
+        }
+
 	}
 
     http.send(null);
