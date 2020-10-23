@@ -47,7 +47,7 @@ var find_object = function(object) {
 //
 //-------------------------------------------------------------------------------
 
-umbrella.testTime_conection = 27 // 27 segundos para la espera de cada PING
+umbrella.testTime_conection = 20 // 20 segundos para la espera de cada PING
 umbrella.eventTestingServer = document.createEvent("Event");
 umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
 umbrella.eventTestingServer.status_conection = null
@@ -62,7 +62,6 @@ function func_isConectionServer(seconds) {
     http.time_reset = seconds
 
 	http.onloadend = (event) => {
-
         if (http.status >= 200 && http.status < 304) {
 			umbrella.eventTestingServer.connection = true
 			document.dispatchEvent(umbrella.eventTestingServer);
@@ -86,7 +85,6 @@ function func_isConectionServer(seconds) {
         		console.log("Umbrella Sockect: No hay internet")
         	}
         }
-
 	}
 
     http.send(null);
@@ -141,7 +139,7 @@ for (var $object of $lista) {
 //-------------------------------------------------------------------------------
 
 // Umbrella versión
-umbrella.version = new Number(8)
+umbrella.version = new Number(9)
 
 // creando clase de Entities
 var Entities = function() {}
