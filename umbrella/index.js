@@ -47,10 +47,11 @@ var find_object = function(object) {
 //
 //-------------------------------------------------------------------------------
 
-umbrella.testTime_conection = 30 // 7 segundos para la espera de cada PING
+umbrella.testTime_conection = 27 // 27 segundos para la espera de cada PING
 umbrella.eventTestingServer = document.createEvent("Event");
 umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
 umbrella.eventTestingServer.status_conection = null
+
 
 function func_isConectionServer(seconds) {
 
@@ -61,8 +62,6 @@ function func_isConectionServer(seconds) {
     http.time_reset = seconds
 
 	http.onloadend = (event) => {
-
-		console.log(http.status)
 
         if (http.status >= 200 && http.status < 304) {
 			umbrella.eventTestingServer.connection = true
@@ -82,9 +81,9 @@ function func_isConectionServer(seconds) {
         	umbrella.eventTestingServer.status_conection = status_actual
 
         	if (status_actual) {
-        		console.log("hay internet")
+        		console.log("Umbrella Sockect: hay internet")
         	} else {
-        		console.log("No hay internet")
+        		console.log("Umbrella Sockect: No hay internet")
         	}
         }
 
@@ -602,18 +601,18 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 
 	var http = new XMLHttpRequest();
 	http.open("GET", cajon.file, true);
-	http.divCanvas     = divCanvas
-	http.cajon         = cajon
-	http.object        = object
-	http.progress_back = false
-	http.size_progress = size_progress
-	http.diccionario   = diccionario
-	http.file_error    = false
-	http.get_progress  = false
-	http.button_clic   = CLIC_BUTTON
-	http.is_internet   = true
+	http.divCanvas                   = divCanvas
+	http.cajon                       = cajon
+	http.object                      = object
+	http.progress_back               = false
+	http.size_progress               = size_progress
+	http.diccionario                 = diccionario
+	http.file_error                  = false
+	http.get_progress                = false
+	http.button_clic                 = CLIC_BUTTON
+	http.is_internet                 = true
 	http.size_progress.style.display = "none"
-
+	http.object.isload               = false
 
 	if (!http.cajon.CLASS_MAIN) {
 		http.cajon.className = "ProgressImage-container ProgressImage-size " + http.cajon.className
@@ -722,21 +721,23 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 
 
 	document.addEventListener("ServerConnection-changes",  function (event) {
-		if (!event.connection) {
-			http.cajon.className = http.cajon.className + " ProgressImage-container-error"
-			http.timeout = 0x00000003
-			http.abort()
-			http.is_internet = false
-			http.diccionario["size_progress"].style.display = "none"
-			http.divCanvas.innerHTML = ""
-			var celda = document.createElement("img")
-			celda.src = "data:image/svg+xml;base64," + ICON_FALLIDE_CONNECT
-			celda.style.width = http.icons_xD
-			http.divCanvas.appendChild(celda)
-		} else {
-			if (!http.is_internet) {
-				setTimeout(http.restart_road, 0)
+		if (!http.object.isload) {
+			if (!event.connection) {
+				http.cajon.className = http.cajon.className + " ProgressImage-container-error"
+				http.timeout = 0x00000003
+				http.abort()
 				http.is_internet = false
+				http.diccionario["size_progress"].style.display = "none"
+				http.divCanvas.innerHTML = ""
+				var celda = document.createElement("img")
+				celda.src = "data:image/svg+xml;base64," + ICON_FALLIDE_CONNECT
+				celda.style.width = http.icons_xD
+				http.divCanvas.appendChild(celda)
+			} else {
+				if (!http.is_internet) {
+					setTimeout(http.restart_road, 0)
+					http.is_internet = false
+				}
 			}
 		}
 	}, false);
