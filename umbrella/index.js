@@ -796,8 +796,6 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 					setTimeout(fin_de_carga, 0)
 				}, false);
 
-				console.log(http.cajon.file)
-
 				setTimeout(fin_de_carga, 1000000) // Hack blanco: soporte para versiones viejas de Firefox & PC que tardar en rasterizar la imagen xD-D-D-DDDDDDD
 
 				// renderizo la imagen, cuya dirección ya esta pre-cargada => (navigator:cache*)
