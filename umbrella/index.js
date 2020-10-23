@@ -811,11 +811,11 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 			}
 		}
 
-		setTimeout(funcion_hack, 0x17)
+		setTimeout(funcion_hack, 0x00000007)
 
 	}
 
-	setTimeout(http.send.bind(http), 0x17)
+	setTimeout(http.send.bind(http), 0x00000003)
 
 }
 
