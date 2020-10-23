@@ -61,7 +61,10 @@ function func_isConectionServer(seconds) {
     http.time_reset = seconds
 
 
-	http.onloadend = (event) => {
+	http.onerror = (event) => {
+
+		console.log(http.status)
+
         if (http.status >= 200 && http.status < 304) {
 			umbrella.eventTestingServer.connection = true
 			document.dispatchEvent(umbrella.eventTestingServer);
@@ -737,7 +740,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 				http.is_internet = false
 			}
 		}
-	}, true);
+	}, false);
 
 
 	http.funcion_hack_error = function () {
