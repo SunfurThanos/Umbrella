@@ -60,31 +60,23 @@ function func_isConectionServer(seconds) {
     http.open('HEAD', document.location + "?rand=" + randomNum, true);
     http.time_reset = seconds
 
-
 	http.onloadend = (event) => {
         if (http.status >= 200 && http.status < 304) {
 			umbrella.eventTestingServer.connection = true
 			document.dispatchEvent(umbrella.eventTestingServer);
-			setTimeout(func_isConectionServer.bind(null,
-				http.time_reset), http.time_reset*1000)
 			var status_actual = true
         } else {
 			umbrella.eventTestingServer.connection = false
 			document.dispatchEvent(umbrella.eventTestingServer);
-			setTimeout(func_isConectionServer.bind(
-				null, http.time_reset), http.time_reset*1000)
 			var status_actual = false
         }
 
-        if (umbrella.eventTestingServer.status_conection!=status_actual) {
-        	umbrella.eventTestingServer.status_conection = status_actual
+    	if (!status_actual) {
+    		console.log("No hay internet")
+    	}
 
-        	if (status_actual) {
-        		console.log("hay internet")
-        	} else {
-        		console.log("No hay internet")
-        	}
-        }
+		setTimeout(func_isConectionServer.bind(
+			null, http.time_reset), http.time_reset*1000)
 
 	}
 
@@ -811,11 +803,11 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 			}
 		}
 
-		setTimeout(funcion_hack, 0x17)
+		setTimeout(funcion_hack, 0)
 
 	}
 
-	setTimeout(http.send.bind(http), 0x77)
+	setTimeout(http.send.bind(http), 0)
 
 }
 
