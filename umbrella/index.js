@@ -60,8 +60,7 @@ function func_isConectionServer(seconds) {
     http.open('HEAD', document.location + "?rand=" + randomNum, true);
     http.time_reset = seconds
 
-    // # onloadend
-	http.onerror = (event) => {
+	http.onloadend = (event) => {
 
 		console.log(http.status)
 
