@@ -11,6 +11,18 @@
 
 //-------------------------------------------------------------------------------
 //
+// Iconos => UI
+//
+//-------------------------------------------------------------------------------
+
+// ICON : archivo no encontrado
+var ICON_imageNotFound = "PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNDAgNDAiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMjAiIHkxPSIyLjg1IiB4Mj0iMjAiIHkyPSIzNy4xNSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZTYzYjJlIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYzMzOTMxIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9InVybCgjZ3JhZGllbnQpIiBkPSJNMzkuMDQ4LDYuNzk4SDE5LjAwNCBDMTYuNzE1LDYuNzgyIDE2LjE5NSw1LjY1NiAxNS44MzksNC4zOTcgMTUuNDgsMy4xMjggMTQuNzYzLDIgMTIuNjEsMiA2LjgzNSwyIDcuMTg5OTk5OCwyIDYuNDQzLDIgNC4yOSwyIDMuNTczLDMuMTI3IDMuMjE0LDQuMzk3IDIuODU1LDUuNjY2IDIuMzMyLDYuOCAwLDYuOEgwLjk0IEMwLjQyMSw2LjgwOCAwLjAwMyw3LjIzMyAwLjAwMyw3Ljc1OHYyNy41ODNjMCwwLjUzIDAuNDI2LDAuOTU5IDAuOTUyLDAuOTU5SDM5LjA0OCBDMzkuNTc0LDM2LjMgNDAsMzUuODcxIDQwLDM1LjM0MSBWIDcuNzU3IEM0MCw3LjIyNyAzOS41NzQsNi43OTggMzkuMDQ4LDYuNzk4IFogTTguNDQwOTk5OCwxNy4wODJjMCwtMi4xMTkgMS43MDUwMDAyLC0zLjgzNyAzLjgwOTAwMDIsLTMuODM3IDIuMTAzLDAgMy44MDksMS43MTggMy44MDksMy44MzcgMCwyLjExOSAtMS43MDUsMy44MzcgLTMuODA5LDMuODM3IC0yLjEwNCwwIC0zLjgwOTAwMDIsLTEuNzE4IC0zLjgwOTAwMDIsLTMuODM3eiBNMjYuNzE3LDMwLjk4Yy0xLjUyNSwwIC0xLjUyNSwtMi4zMDUgLTYuODY0LC0yLjMwNSAtNS4zMzksMCAtNS4zMzksMi4zMDUgLTYuODY0LDIuMzA1IC0wLjg0MiwwIC0xLjUyNiwtMC41MTIgLTEuNTI2LC0xLjUzNyAwLC0xLjAyNCAxLjI3MSwtMy44NDIgOC4zOSwtMy44NDIgNy4xMTksMCA4LjM5LDIuODA0IDguMzksMy44NDIgMCwxLjAzOCAtMC42ODMsMS41MzcgLTEuNTI2LDEuNTM3eiBtIDAuNzY4LC0xMC4wNjFjLTIuMTA0LDAgLTMuODA5LC0xLjcxOCAtMy44MDksLTMuODM3IDAsLTIuMTE5IDEuNzA1LC0zLjgzNyAzLjgwOSwtMy44MzcgMi4xMDQsMCAzLjgwOSwxLjcxOCAzLjgwOSwzLjgzNyAwLDIuMTE5IC0xLjcwNiwzLjgzNyAtMy44MDksMy44Mzd6Ii8+Cjwvc3ZnPg=="
+
+// ICON : Carga Fallida
+var ICON_FALLIDE_CONNECT = "PCEtLSB0b21hZG8gZGVsIG5hdmVnYWRvciBDaHJvbWUgLS0+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDIwNDggMjA0OCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTE2MDAgMTE1MnE5MyAwIDE3NCAzNXQxNDMgOTYgOTYgMTQyIDM1IDE3NXEwIDkzLTM1IDE3NHQtOTYgMTQzLTE0MiA5Ni0xNzUgMzVxLTkzIDAtMTc0LTM1dC0xNDMtOTYtOTYtMTQyLTM1LTE3NXEwLTkzIDM1LTE3NHQ5Ni0xNDMgMTQyLTk2IDE3NS0zNXptLTMyMCA0NDhxMCA2NiAyNSAxMjR0NjggMTAyIDEwMiA2OSAxMjUgMjVxNDcgMCA5Mi0xM3Q4NC00MGwtNDQzLTQ0M3EtMjYgMzktMzkgODR0LTE0IDkyem01ODcgMTc2cTI2LTM5IDM5LTg0dDE0LTkycTAtNjYtMjUtMTI0dC02OS0xMDEtMTAyLTY5LTEyNC0yNnEtNDcgMC05MiAxM3QtODQgNDBsNDQzIDQ0M3ptLTc3NCAxMjVxMjIgMzYgNDggNjl0NTcgNjJxLTQzIDgtODYgMTJ0LTg4IDRxLTE0MSAwLTI3Mi0zNnQtMjQ0LTEwNC0yMDctMTYwLTE2MS0yMDctMTAzLTI0NS0zNy0yNzJxMC0xNDEgMzYtMjcydDEwNC0yNDQgMTYwLTIwNyAyMDctMTYxVDc1MiAzN3QyNzItMzdxMTQxIDAgMjcyIDM2dDI0NCAxMDQgMjA3IDE2MCAxNjEgMjA3IDEwMyAyNDUgMzcgMjcycTAgNDQtNCA4N3QtMTIgODdxLTU0LTU5LTExOC05OGw0LTM4cTItMTkgMi0zOCAwLTEzMC0zOC0yNTZoLTM2MnE4IDYyIDExIDEyM3Q1IDEyNHEtMzMgMy02NSAxMHQtNjQgMTh2LTM5cTAtNjAtNC0xMTh0LTEyLTExOEg2NTdxLTkgNjQtMTMgMTI3dC00IDEyOXEwIDY1IDQgMTI4dDEzIDEyOGg0NDZxLTM3IDU5LTYwIDEyOEg2NzlxOCAzNyAyMyA4OXQzNyAxMDkgNTEgMTEzIDY0IDEwMSA3OCA3MiA5MiAyOHExOCAwIDM1LTV0MzQtMTR6bTczOS0xMjYxcS0zOC04MS05MS0xNTJ0LTEyMC0xMzEtMTQzLTEwNC0xNjItNzVxMzYgNDkgNjQgMTA1dDUxIDExNSA0MCAxMjEgMjkgMTIxaDMzMnptLTgwOC01MTJxLTQ5IDAtOTEgMjd0LTc4IDczLTY1IDEwMS01MSAxMTMtMzcgMTA5LTIzIDg5aDY5MHEtOC0zNy0yMy04OXQtMzctMTA5LTUxLTExMy02NC0xMDEtNzgtNzItOTItMjh6bS0yOTIgNTBxLTg1IDI5LTE2MiA3NFQ0MjcgMzU3IDMwOCA0ODd0LTkyIDE1M2gzMzJxMTItNTkgMjgtMTIwdDM5LTEyMSA1Mi0xMTYgNjUtMTA1em0tNjA0IDg0NnEwIDEzMCAzOCAyNTZoMzYycS04LTY0LTEyLTEyN3QtNC0xMjlxMC02NSA0LTEyOHQxMi0xMjhIMTY2cS0zOCAxMjYtMzggMjU2em04OCAzODRxMzggODEgOTEgMTUydDEyMCAxMzEgMTQzIDEwNCAxNjIgNzVxLTM2LTQ5LTY1LTEwNXQtNTEtMTE1LTM5LTEyMS0yOS0xMjFIMjE2eiIgZmlsbD0iIzEwMTAxMCIvPjwvc3ZnPg=="
+
+//-------------------------------------------------------------------------------
+//
 // utilidades globales
 //
 //-------------------------------------------------------------------------------
@@ -35,7 +47,7 @@ var find_object = function(object) {
 //
 //-------------------------------------------------------------------------------
 
-umbrella.testTime_conection = 17 // 10 segundos para la espera de cada PING
+umbrella.testTime_conection = 7 // 7 segundos para la espera de cada PING
 umbrella.eventTestingServer = document.createEvent("Event");
 umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
 umbrella.eventTestingServer.status_conection = null
@@ -148,27 +160,6 @@ var isLoad_showImage = new Boolean(true)
 // estilo para (barra de carga circular) para imagenes => method*
 var circleImageProgress = function() {}
 
-circleImageProgress.textColor  = "rgba(255, 255, 2, 0.9)";
-circleImageProgress.textShadow = "black";
-circleImageProgress.textFonts  = "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Oxygen,Ubuntu,Cantarell,Open Sans,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji,Arial";
-
-circleImageProgress.sizeCircle1   = 70;
-circleImageProgress.colorCircle1  = 'rgba(2, 1, 1, 0.5)';
-circleImageProgress.shadowCircle1 = "salmon";
-
-circleImageProgress.widthCircle2  = 8;
-circleImageProgress.colorCircle2  = 'rgba(55, 207, 130, 0.9)';
-circleImageProgress.shadowCircle2 = "rgba(255, 0, 0, 0.9)";
-
-//-------------------------------------------------------------------------------
-//
-// Iconos => UI
-//
-//-------------------------------------------------------------------------------
-
-// Carga Fallida
-var FALLIDE_PNG = PATH_UMBRELLA + "not-connection.svg"
-
 //-------------------------------------------------------------------------------
 //
 // BANNER de bienbenida para la consola
@@ -186,7 +177,7 @@ function show_Umbrella_banner() {
 //
 //-------------------------------------------------------------------------------
 
-document.addEventListener("DOMContentLoaded", UmbrellaKernelStart, true);
+document.addEventListener("DOMContentLoaded", UmbrellaKernelStart, false);
 
 // ejecutando servicios dedicados
 function UmbrellaKernelStart() {
@@ -214,11 +205,13 @@ function UmbrellaKernelStart() {
 
 	// testeo infinito para probar conexión a internet
 	if (document.location.hostname) {
-		console.log("Umbrella sockect: " + document.location.hostname)
-		func_isConectionServer(umbrella.testTime_conection)
+		if (document.location.hostname!="localhost") {
+			console.log("Umbrella sockect: " + document.location.hostname)
+			func_isConectionServer(umbrella.testTime_conection)
+		}
 	}
 
-	// servicio FINAL: quitar barra de carga tipo pulsate
+	// servicio FINAL: barra de progreso para imagenes
 	if (ShowImage_progress==true) {
 		UmbrellaService_ImageProgress.start()
 	}
@@ -518,6 +511,12 @@ _ImageProgress.prototype.start = function() {
 
 	var arbol_web = document.querySelectorAll('img')
 
+	var imageDecodeExt = function(url) {
+		var struct = url.split(".")
+		var ext = struct[struct.length-1].toUpperCase()
+		return ext
+	}
+
 	for (var object of arbol_web) {
 	  if (typeof object == "object") {
 	    if (!find_object(object)) {
@@ -567,59 +566,28 @@ _ImageProgress.prototype.start = function() {
 	    		size_progress.setAttribute("name", object.name)
 	    	}
 
-	    	var MAIN_fallide_div = document.createElement("div")
-	    	MAIN_fallide_div.align = "center"
-	    	var fallide_div = document.createElement("div")
-	    	MAIN_fallide_div.appendChild(fallide_div)
-	    	MAIN_fallide_div.style = "background: transparent;"
-	    	fallide_div.style = "display: none;position: absolute;top: 46%;left: 50%;-webkit-transform: translate(-50%, -50%);-moz-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);-o-transform: translate(-50%, -50%);transform: translate(-50%, -50%);background: transparent;"
-			var fallide_img = document.createElement("img")
-			fallide_img.alt = " "
-			fallide_img.src = FALLIDE_PNG
-			fallide_img.style = "pointer-events: none;border: none;opacity: 0.5;"
-			fallide_div.appendChild(fallide_img)
-			cajon.appendChild(MAIN_fallide_div)
-
-			var BUTTON_RELOAD = document.createElement("button")
-			BUTTON_RELOAD.innerHTML = "Reintentar"
-			BUTTON_RELOAD.style.display = "none"
-			BUTTON_RELOAD.className = "ProgressImage-ButtonReload"
-			var BR = document.createElement("div")
-			BR.style = "margin-top: 0.7em;"
-			fallide_div.appendChild(BR)
-			fallide_div.appendChild(BUTTON_RELOAD)
-
-
-			diccionario["fallide_div"] = fallide_div
-			diccionario["fallide_img"] = fallide_img
-
 			var columnas = document.createElement("div")
 			columnas.style = "position: absolute;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);-moz-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);-o-transform: translate(-50%, -50%);transform: translate(-50%, -50%);background: transparent;pointer-events: none;"
 			diccionario["columnas"] = columnas
 			cajon.appendChild(columnas)
 
 			var logo_id = document.createElement("div")
-
-	    	if (object.name) {
-	    		logo_id.setAttribute("name", object.name)
-	    	}
-
-			logo_id.className = "ProgressImage-logo ProgressImage-logo-size"
-			logo_id.style="position: absolute;left: 0.2em;top: 0.2em;display: block;image-rendering: optimizeQuality;pointer-events: none;"
+			logo_id.style="position: absolute;left: 0.4em;top: 0.1em;display: block;image-rendering: optimizeQuality;pointer-events: none;"
+			logo_id.innerHTML = imageDecodeExt(cajon.file)
 			cajon.appendChild(logo_id)
+			diccionario["logo_id"] = logo_id
 
 
 			var divCanvas = document.createElement("h2")
 			divCanvas.style = "color: black;font-size: 50px;pointer-events: none;border: none;background: transparent;"
-			divCanvas.innerHTML = ""
+			divCanvas.innerHTML = "0%"
 			columnas.appendChild(divCanvas)
 
 
 			Image_renderProgress(
 				divCanvas, cajon,
 				object, size_progress,
-				diccionario, BUTTON_RELOAD,
-				false
+				diccionario, false
 			)
 
 	    }
@@ -628,7 +596,7 @@ _ImageProgress.prototype.start = function() {
 }
 
 var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
-	diccionario, BUTTON_RELOAD, CLIC_BUTTON) {
+	diccionario, CLIC_BUTTON) {
 
 	var http = new XMLHttpRequest();
 	http.open("GET", cajon.file, true);
@@ -638,12 +606,10 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	http.progress_back = false
 	http.size_progress = size_progress
 	http.diccionario   = diccionario
-	http.BUTTON_RELOAD = BUTTON_RELOAD
 	http.file_error    = false
 	http.get_progress  = false
 	http.button_clic   = CLIC_BUTTON
-	http.is_internet   = false
-
+	http.is_internet   = true
 	http.size_progress.style.display = "none"
 
 
@@ -669,8 +635,9 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 			}
 		}
 
+		http.icons_xD = (http.cajon.offsetHeight/1.7) + 'px'
 
-		http.diccionario["fallide_img"].style.width = (http.cajon.offsetHeight/1.8) + 'px'
+		http.diccionario["logo_id"].style.fontSize = (http.cajon.offsetHeight/7) + 'px'
 
 		if (http.cajon.offsetHeight > http.cajon.offsetWidth) {
 			divCanvas.style.fontSize = (http.cajon.offsetWidth/6.5) + 'px'
@@ -687,23 +654,14 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 
 	http.restart_road = function () {
         http.diccionario["size_progress"].style.display = "block"
-        http.diccionario["columnas"].style.display = "block"
-        diccionario["fallide_div"].style.display = "none"
-        http.BUTTON_RELOAD.style.display = "none"
+        http.divCanvas.innerHTML = "0%"
 
 		Image_renderProgress(
 			http.divCanvas, http.cajon,
 			http.object, http.size_progress,
-			http.diccionario, http.BUTTON_RELOAD,
-			http.button_clic
+			http.diccionario, http.button_clic
 		)
 	}
-
-	http.BUTTON_RELOAD.addEventListener("click",  function (event) {
-        http.timeout = 0x3
-        http.button_clic = true
-        setTimeout(http.restart_road, 0x7)
-	}, true);
 
 
 	var medir_peso = function($bytes) {
@@ -725,10 +683,6 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 
 	http.onprogress = function($pe) {
 
-		if (!http.in_progress_load) {
-			divCanvas.innerHTML = "0%"
-		}
-
 		http.in_progress_load = true
 
 		var progreso = Math.round($pe.loaded * 100 / $pe.total)
@@ -748,7 +702,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 
 			if (http.progress_back!=progreso) {
 				var valPROGRESS = Math.min(progreso, 98)
-				divCanvas.innerHTML = valPROGRESS + "%"
+				http.divCanvas.innerHTML = valPROGRESS + "%"
 			}
 		}
 	}
@@ -764,56 +718,68 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	}
 
 
-	http.funcion_hack_error = function () {
-		http.cajon.className = http.cajon.className + " ProgressImage-container-error"
-        http.diccionario["size_progress"].style.display = "none"
-        http.diccionario["columnas"].style.display = "none"
-        diccionario["fallide_div"].style.display = "block"
-        http.BUTTON_RELOAD.style.display = "block"
-        http.Error_start = true
-	}
-
 
 	document.addEventListener("ServerConnection-changes",  function (event) {
 		if (!event.connection) {
-			if (!http.button_clic) {
-				if (http.in_progress_load) {
-					setTimeout(http.restart_road, 0)
-					http.in_progress_load = false
-					http.timeout = 0x00000003
-					http.abort()
-					setTimeout(http.funcion_hack_error, 0x17)
-				}
-			}
+			http.cajon.className = http.cajon.className + " ProgressImage-container-error"
+			http.timeout = 0x00000003
+			http.abort()
 			http.is_internet = false
+			http.diccionario["size_progress"].style.display = "none"
+			http.divCanvas.innerHTML = ""
+			var celda = document.createElement("img")
+			celda.src = "data:image/svg+xml;base64," + ICON_FALLIDE_CONNECT
+			celda.style.width = http.icons_xD
+			http.divCanvas.appendChild(celda)
 		} else {
-			if (!http.in_progress_load) {
-				if (http.Error_start) {
-					if (!http.button_clic) {
-						setTimeout(http.restart_road, 0)
-					} else {
-						http.button_clic = false
-					}
-					http.Error_start = false
-				}
+			if (!http.is_internet) {
+				setTimeout(http.restart_road, 0)
+				http.is_internet = false
 			}
-			http.is_internet = false
 		}
 	}, true);
 
 
-	http.onloadend = (event) => {
-		if (http.status!=0) {
-			if (http.status!=200) {
-				http.file_error = http.cajon.file
-				clearTimeout(http.funcion_hack_error)
-				http.onerror(0x2857674D)
+	http.funcion_hack_error = function () {
+		http.cajon.className = http.cajon.className + " ProgressImage-container-error"
+		http.timeout = 0x00000003
+		http.abort()
+		http.diccionario["size_progress"].style.display = "none"
+		http.divCanvas.innerHTML = ""
+		var celda = document.createElement("img")
+		celda.src = "data:image/svg+xml;base64," + ICON_imageNotFound
+		celda.style.width = http.icons_xD
+		http.divCanvas.appendChild(celda)
+	}
+
+	http.error_archivo_noEncontrado = function() {
+		if (http.is_internet) {
+			if (http.status==404 || http.status==0) {
+				if (http.status!=200) {
+					http.file_error = http.cajon.file
+					clearTimeout(http.funcion_hack_error)
+					setTimeout(http.funcion_hack_error, 0x77)
+					return true
+				}
 			}
+		}
+		return false
+	}
+
+	if (!document.location.hostname) {
+		http.onerror =  (event) => {
+			http.error_archivo_noEncontrado()
 		}
 	}
 
 
     http.onload = (event) => {
+
+    	if (document.location.hostname) {
+	    	if (http.error_archivo_noEncontrado()) {
+	    		return 0xAA17B0A5
+	    	}
+	   	}
 
         if (event.loaded && http.response) {
             RasteringImage()
@@ -849,7 +815,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 
 	}
 
-	setTimeout(http.send.bind(http), 0x17)
+	setTimeout(http.send.bind(http), 0x77)
 
 }
 

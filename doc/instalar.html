@@ -27,14 +27,6 @@
 
     <pre><code class="html" id="code1"></code></pre>
 
-	<h2 align="left">Hay forma de que funcione sin usar un http?</h2>
-
-	<p>Por fortuna en cualquier navegador basado en Chrome puedes hacer un truco que te <mark>LIBERA</mark> como Alicia en el país de las maravillas xD, primero crea un nuevo lanzador de escritorio y ponle el nombre que quieras, en la ruta del programa a usar debes poner la siguiente linea de código...</p>
-
-	<div align="left">
-		<pre><code class="makefile" id="code2">"$Chrome" --profile-directory=Default --allow-file-access-from-files</code></pre>
-	</div>
-
 	<p>Donde dice <mark>$Chrome</mark> es la ruta del navegador basado en Chrome, una vez creado este lanzador dicho navegador aceptara todas las funciones de <b>Umbrella</b> sin problemas, en resumen tu proyecto funcionara como relojito suizo xD.</p>
 
 
@@ -42,7 +34,7 @@
 
 	<span align="left">Testeado al 100% en los siguientes navegadores:</span>
 	<ul style="text-align: left;">
-		<li>Microsoft Edge</li>
+		<li>Microsoft Edge <b>14+</b></li>
 		<li>Safari <b>4+</b></li>
 		<li>Google Chrome <b>4+</b></li>
 		<li>Mozilla Firefox <b>25+</b></li>
@@ -71,9 +63,6 @@
 addEventListener("UmbrellaFinish",  function (event) {
     var block = document.getElementById("code1")
     block.innerText = '<link type="text/css" href="umbrella/style.css" rel="stylesheet">\n<script type="text/javascript" src="umbrella/index.js"><$NEO$script>'.replace(/\$NEO\$/g, "/")
-    hljs.highlightBlock(block);
-
-    var block = document.getElementById("code2")
     hljs.highlightBlock(block);
 
     var block = document.getElementById("code3")
