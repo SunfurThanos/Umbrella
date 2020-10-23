@@ -47,7 +47,7 @@ var find_object = function(object) {
 //
 //-------------------------------------------------------------------------------
 
-umbrella.testTime_conection = 7 // 7 segundos para la espera de cada PING
+umbrella.testTime_conection = 30 // 7 segundos para la espera de cada PING
 umbrella.eventTestingServer = document.createEvent("Event");
 umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
 umbrella.eventTestingServer.status_conection = null
@@ -60,7 +60,7 @@ function func_isConectionServer(seconds) {
     http.open('HEAD', document.location + "?rand=" + randomNum, true);
     http.time_reset = seconds
 
-
+    // # onloadend
 	http.onerror = (event) => {
 
 		console.log(http.status)
