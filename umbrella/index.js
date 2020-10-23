@@ -60,7 +60,10 @@ function func_isConectionServer(seconds) {
     http.open('HEAD', document.location + "?rand=" + randomNum, true);
     http.time_reset = seconds
 
-	http.onloadend = (event) => {
+	http.onerror = (event) => {
+
+		console.log(http.status)
+
         if (http.status >= 200 && http.status < 304) {
 			umbrella.eventTestingServer.connection = true
 			document.dispatchEvent(umbrella.eventTestingServer);
@@ -71,9 +74,7 @@ function func_isConectionServer(seconds) {
 			var status_actual = false
         }
 
-    	if (!status_actual) {
-    		console.log("No hay internet")
-    	}
+    	console.log("internet", status_actual)
 
 		setTimeout(func_isConectionServer.bind(
 			null, http.time_reset), http.time_reset*1000)
