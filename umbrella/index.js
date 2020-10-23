@@ -60,24 +60,31 @@ function func_isConectionServer(seconds) {
     http.open('HEAD', document.location + "?rand=" + randomNum, true);
     http.time_reset = seconds
 
-	http.onerror = (event) => {
 
-		console.log(http.status)
-
+	http.onloadend = (event) => {
         if (http.status >= 200 && http.status < 304) {
 			umbrella.eventTestingServer.connection = true
 			document.dispatchEvent(umbrella.eventTestingServer);
+			setTimeout(func_isConectionServer.bind(null,
+				http.time_reset), http.time_reset*1000)
 			var status_actual = true
         } else {
 			umbrella.eventTestingServer.connection = false
 			document.dispatchEvent(umbrella.eventTestingServer);
+			setTimeout(func_isConectionServer.bind(
+				null, http.time_reset), http.time_reset*1000)
 			var status_actual = false
         }
 
-    	console.log("internet", status_actual)
+        if (umbrella.eventTestingServer.status_conection!=status_actual) {
+        	umbrella.eventTestingServer.status_conection = status_actual
 
-		setTimeout(func_isConectionServer.bind(
-			null, http.time_reset), http.time_reset*1000)
+        	if (status_actual) {
+        		console.log("hay internet")
+        	} else {
+        		console.log("No hay internet")
+        	}
+        }
 
 	}
 
@@ -787,7 +794,9 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 				http.object.addEventListener("load",  function (event) {
 					clearTimeout(fin_de_carga)
 					setTimeout(fin_de_carga, 0)
-				}, true);
+				}, false);
+
+				console.log(http.cajon.file)
 
 				setTimeout(fin_de_carga, 1000000) // Hack blanco: soporte para versiones viejas de Firefox & PC que tardar en rasterizar la imagen xD-D-D-DDDDDDD
 
@@ -799,16 +808,16 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 		}
 
 		var funcion_hack = function () {
-			if (http.file_error!=http.cajon.file) {
+			if (http.file_error!= http.cajon.file) {
 				RenderImagePro()
 			}
 		}
 
-		setTimeout(funcion_hack, 0)
+		setTimeout(funcion_hack, 0x17)
 
 	}
 
-	setTimeout(http.send.bind(http), 0)
+	setTimeout(http.send.bind(http), 0x17)
 
 }
 
