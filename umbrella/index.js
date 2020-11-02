@@ -1730,9 +1730,9 @@ _TemplateBody.prototype.start = function() {
 		}
 
 
-		if (YesBucle==false) {
-			console.log("YES IN SCROLL :)")
-		}
+		// if (YesBucle==false) {
+		// 	console.log("YES IN SCROLL :)")
+		// }
 
 
 		var resta = new Number()
