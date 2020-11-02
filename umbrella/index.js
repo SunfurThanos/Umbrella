@@ -1712,22 +1712,28 @@ _TemplateBody.prototype.start = function() {
 			var reboot = function(self, conteo=17) {
 				if (YesBucle) {
 					setTimeout(RasterizarDimensiones.bind(self, true), conteo)
-				} else {
-					console.log("YES SCROLL xD-D-DDDD")
 				}
 			}
 
 		var height_page = window.innerHeight
 		var height_page2 = window.innerWidth
 
-		if (this.previus_master!=undefined) {
-			if (height_page==this.previus_master) {
-				if (height_page2==this.previus_master2) {
-					this.previus_master = height_page
-					return reboot(this)
+		if (YesBucle) {
+			if (this.previus_master!=undefined) {
+				if (height_page==this.previus_master) {
+					if (height_page2==this.previus_master2) {
+						this.previus_master = height_page
+						return reboot(this)
+					}
 				}
 			}
 		}
+
+
+		if (YesBucle==false) {
+			console.log("YES IN SCROLL :)")
+		}
+
 
 		var resta = new Number()
 		for (var object of slaves) {
@@ -1760,7 +1766,7 @@ _TemplateBody.prototype.start = function() {
 
 		document.addEventListener("scroll", function(Event) {
 
-			if (celda.conteo_timeOut_instance!=7) {
+			if (celda.conteo_timeOut_instance!=6) {
 				if (celda.setTimeout_instance) {
 					clearTimeout(celda.setTimeout_instance)
 				}
@@ -1769,7 +1775,7 @@ _TemplateBody.prototype.start = function() {
 			}
 
 			celda.setTimeout_instance = setTimeout(
-				RasterizarDimensiones.bind(celda, false), 100)
+				RasterizarDimensiones.bind(celda, false), 77)
 
 			celda.conteo_timeOut_instance++
 		}, false);
