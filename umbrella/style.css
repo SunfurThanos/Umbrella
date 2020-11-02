@@ -71,13 +71,13 @@ CHILD : PreLoad Page
 
 *********************************************************************/
 
-div[name="main-container"] {
+div[name="body.container"] {
   display: none;
   -webkit-animation: umbrella_opacityBoDy 0.7s both ease .05s;
   -moz-animation: umbrella_opacityBoDy 0.7s both ease .05s;
 }
 
-div[name="preloader-animation"] {
+div[name="body.progress"] {
   box-sizing        : border-box;
   display           : block;
   position          : absolute;

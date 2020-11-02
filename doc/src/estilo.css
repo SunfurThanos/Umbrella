@@ -1,10 +1,62 @@
 
+.menu_triger_line {
+    width: 25px;
+    height: 3px;
+    background: #000;
+    margin-bottom: 4px;
+    transition: all .24s ease-in-out;
+}
+
+.menu_mobile_button {
+    width: 32px;
+    position: relative;
+    background: transparent;
+    margin-left: 0.74em;
+    cursor: pointer;
+    display: none;
+}
+
+.menu_list_bar {
+    margin-top: 50px;
+    padding: 0.44em;
+    padding-top: 0em;
+    padding-bottom: 0em;
+    margin-left: 0.2em;
+    background: rgba(255, 255, 255, 1);
+    width: 99%;
+    height: calc(65%);
+    display: none;
+    overflow: auto;
+    position: fixed;
+    z-index: 998;
+    box-shadow: .1rem .5rem .5rem rgba(0, 0, 0, 0.3);
+}
+
+.header {
+  width: 100%;
+  padding: 0em;
+  background-color: white;
+  box-shadow: .0 .5rem .5rem rgba(0, 0, 0, 0.3);
+  position: fixed;
+  z-index: 999;
+  height: 52px;
+}
+
+.margen_menu_botones {
+  padding-left: 0.4em;padding-right: 0.4em;
+}
+
 body {
   background: #F2F2F2;
   color: #3B3C40;
   margin: 0;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Oxygen,Ubuntu,Cantarell,"Open Sans","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.ContenedorX {
+  width: 87.2%
 }
 
 .SELECT {
@@ -12,16 +64,36 @@ body {
   font-weight: bold;
   letter-spacing: 1px;
   font-size: 17px;
-  margin-left: 0.4em;
   pointer-events: none;
+  background: transparent;
+  padding: 0.14em !important;
+}
+
+pre, code {
+	position: relative;
+	width: auto !important;
 }
 
 code {
   font-size: 0.94rem;
   font-weight: 500;
   text-align: left;
-  border: 1px #B7B3CC solid;
 }
+
+div[name="cajita_loca"] {
+  padding-left: 0.54em;padding-right: 0.54em;
+  border: 1px rgba(92, 143, 207, 0.34) dashed;
+}
+
+.rules_style {
+  padding: 0.5em;border: 1px rgba(92, 143, 207, 0.34) dashed;
+  align-items: center;
+}
+
+img, h2, code {
+  border: 1px #5C8FCF dashed;
+}
+
 
 strong {
   color: #343342;
@@ -35,7 +107,6 @@ span {
 
 p {
   text-align: left;
-  word-spacing: all;
   text-align: justify;
 }
 
@@ -43,6 +114,7 @@ p {
 b {
   color: #d01a72;
   font-weight: bold;
+  text-align: left;
 }
 
 h2 {
@@ -52,13 +124,12 @@ h2 {
   padding-top: 0.1em;
   padding-bottom: 0.35em;
   padding-left: 0.5em;
-  width: calc(80%);
   font-size: 1.4rem;
 }
 
 mark {
   background: transparent;
-  border: 1px blue solid;
+  border: 1px blue dashed;
   padding: 0px;
   padding-left: 0.2em;
   padding-right: 0.2em;
@@ -67,18 +138,7 @@ mark {
   font-weight: 600;
 }
 
-.header {
-  width: 100%;
-  padding-top: 0.4em;
-  padding-bottom: 0.4em;
-  background-color: white;
-  top: -0.4em;
-  box-shadow: .0 .5rem .5rem rgba(0, 0, 0, 0.3);
-  position: fixed;
-  z-index: 999;
-}
-
-a[href] {
+a[link-main] {
   color: rgba(0, 0, 0, 0.9);
   text-decoration: none;
   font-weight: bold;
@@ -86,14 +146,24 @@ a[href] {
   font-size: 15px;
   border: 1px #2E323D solid;
   letter-spacing: 1px;
-  border-radius: 8px;
+  border-radius: 2.44px;
+  margin: 0em;
+  cursor: pointer;
+
 }
 
-a[href]:hover, a[href]:active {
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a[link-main]:hover, a[link-main]:active {
   color: #0E69DA;
   border-color: #0E69DA;
   text-shadow: none;
   outline: none;
+  box-shadow: 0 0 0 1px rgba(0 ,0 ,0 ,.14) inset
 }
 
 
@@ -108,7 +178,7 @@ button {
   border-radius: 18px;
   text-decoration: none;
   padding: 5px 12px 6px;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 1.64px;
   font-weight: 600;
   outline: 0;

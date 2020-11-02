@@ -1,4 +1,4 @@
-## UMBRELLA X3
+## UMBRELLA v4
 
 <img src="doc/src/umbrella.jpg">
 
@@ -15,10 +15,6 @@ Increible frameWork futuristas que brinda una gran experiencia & productividad a
 ---
 
 [<img src="doc\src\donar.png">](https://www.paypal.me/SunfurThanos)
-
----
-
-**NOTA:** Para el dia `miercoles, 28 de octubre de 2020` esta versión de Umbrella ya estara estable & lista para usarse en proyectos de maquetado, por ahora se recomienda probarlo solo a modo de testeo comparativo.
 
 ---
 

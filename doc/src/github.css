@@ -14,7 +14,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 .hljs-comment,
 .hljs-quote {
-  color: #998;
+  color: #787878;
+  font-weight: 500;
+  letter-spacing: 0.7px;
   font-style: italic;
 }
 
