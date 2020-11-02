@@ -1706,11 +1706,16 @@ _TemplateBody.prototype.start = function() {
 	}
 
 	// Cithara generate => simulation custom event=>Resize*
-	var RasterizarDimensiones = function() {
+	var RasterizarDimensiones = function(YesBucle) {
 
-		var reboot = function(self, conteo=17) {
-			setTimeout(RasterizarDimensiones.bind(self), conteo)
-		}
+
+			var reboot = function(self, conteo=17) {
+				if (YesBucle) {
+					setTimeout(RasterizarDimensiones.bind(self, true), conteo)
+				} else {
+					// console.log("YES SCROLL xD-D-DDDD")
+				}
+			}
 
 		var height_page = window.innerHeight
 		var height_page2 = window.innerWidth
@@ -1749,7 +1754,25 @@ _TemplateBody.prototype.start = function() {
 	if (master) {
 		var celda = document.createElement("node")
 		celda.cambios_estado = false
-		setTimeout(RasterizarDimensiones.bind(celda), 0)
+		setTimeout(RasterizarDimensiones.bind(celda, true), 0)
+		celda.setTimeout_instance = false
+		celda.conteo_timeOut_instance = 0
+
+		document.addEventListener("scroll", function(Event) {
+
+			if (celda.conteo_timeOut_instance!=7) {
+				if (celda.setTimeout_instance) {
+					clearTimeout(celda.setTimeout_instance)
+				}
+			} else {
+				celda.conteo_timeOut_instance = 0
+			}
+
+			celda.setTimeout_instance = setTimeout(
+				RasterizarDimensiones.bind(celda, false), 100)
+
+			celda.conteo_timeOut_instance++
+		}, false);
 	}
 }
 
