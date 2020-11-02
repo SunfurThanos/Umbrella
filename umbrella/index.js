@@ -1713,7 +1713,7 @@ _TemplateBody.prototype.start = function() {
 				if (YesBucle) {
 					setTimeout(RasterizarDimensiones.bind(self, true), conteo)
 				} else {
-					// console.log("YES SCROLL xD-D-DDDD")
+					console.log("YES SCROLL xD-D-DDDD")
 				}
 			}
 
