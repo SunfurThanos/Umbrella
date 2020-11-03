@@ -128,7 +128,7 @@ var ICON_FALLIDE_CONNECT = "PCEtLSB0b21hZG8gZGVsIG5hdmVnYWRvciBDaHJvbWUgLS0+DQo8
 //
 //-------------------------------------------------------------------------------
 
-umbrella.testTime_conection = 30 // 30 segundos para la espera de cada PING !yes-change!
+umbrella.testTime_conection = 10 // 10 segundos para la espera de cada PING !yes-change!
 umbrella.eventTestingServer = document.createEvent("Event");
 umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
 umbrella.eventTestingServer.status_conection = null
@@ -140,7 +140,6 @@ function func_isConectionServer() {
     var http = new XMLHttpRequest();
     http.timeout  = 10 * 977
     var randomNum = Math.round(Math.random() * 10000);
-
     http.open('HEAD', document.location + "?rand=" + randomNum, true);
 
 	http.onloadend = (event) => {
@@ -1732,14 +1731,14 @@ _TemplateBody.prototype.start = function() {
 		var height_page = window.innerHeight
 		var height_page2 = window.innerWidth
 
-		if (this.previus_master!=undefined) {
-			if (height_page==this.previus_master) {
-				if (height_page2==this.previus_master2) {
-					this.previus_master = height_page
-					return reboot(this)
-				}
-			}
-		}
+		// if (this.previus_master!=undefined) {
+		// 	if (height_page==this.previus_master) {
+		// 		if (height_page2==this.previus_master2) {
+		// 			this.previus_master = height_page
+		// 			return reboot(this)
+		// 		}
+		// 	}
+		// }
 
 		var resta = new Number()
 		for (var object of slaves) {
