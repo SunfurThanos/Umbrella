@@ -780,7 +780,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 			http.divCanvas.innerHTML = ""
 			return http.divCanvas.appendChild(http.activare_error_mensaje)
 		}
-		setTimeout(funcion_set_logz, 1000)
+		setTimeout((http.funcion_set_logz, 1000)
 	}
 
 
@@ -956,7 +956,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	}
 
 	if (http.SEND) {
-		setTimeout(funcion_set_logz, 1000)
+		setTimeout(http.funcion_set_logz, 1000)
 		setTimeout(http.send.bind(http), 0x00000003)
 	}
 
