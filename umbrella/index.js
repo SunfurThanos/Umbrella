@@ -128,7 +128,7 @@ var ICON_FALLIDE_CONNECT = "PCEtLSB0b21hZG8gZGVsIG5hdmVnYWRvciBDaHJvbWUgLS0+DQo8
 //
 //-------------------------------------------------------------------------------
 
-umbrella.testTime_conection = 20; // 20 segundos para la espera de cada PING !yes-change!
+umbrella.testTime_conection = 17; // 17 segundos para la espera de cada PING !yes-change!
 umbrella.eventTestingServer = document.createEvent("Event");
 umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
 umbrella.eventTestingServer.status_conection = null;
@@ -778,7 +778,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	http.funcion_set_logz = function () {
 		if (http.activare_error_mensaje) {
 			http.divCanvas.innerHTML = ""
-			http.activare_error_mensaje.style.border = "none !important"
+			http.activare_error_mensaje.style.border = "none"
 			return http.divCanvas.appendChild(http.activare_error_mensaje)
 		}
 		setTimeout(http.funcion_set_logz, 1000)
@@ -833,7 +833,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 					http.diccionario["size_progress"].style.display = "none"
 					var celda = document.createElement("img")
 					celda.src = "data:image/svg+xml;base64," + ICON_FALLIDE_CONNECT
-					celda.style.boder = "none !important"
+					celda.style.border = "none !important"
 					http.activare_error_mensaje = celda
 
 					http.logo_size_notFound = function() {
@@ -861,7 +861,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 		http.diccionario["size_progress"].style.display = "none"
 		var celda = document.createElement("img")
 		celda.src = "data:image/svg+xml;base64," + ICON_imageNotFound
-		celda.style.boder = "none !important"
+		celda.style.border = "none !important"
 		http.activare_error_mensaje = celda
 
 		celda.addEventListener("load",  function (event) {
