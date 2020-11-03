@@ -690,7 +690,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	diccionario, SEND, PUNTERO_xD, lista_images) {
 
 	var http = new XMLHttpRequest();
-	http.timeout = umbrella.testTime_conection_backup;
+	http.timeout = 1000;
 	http.open("GET", cajon.file, true);
 	http.withCredentials             = true;
 	http.divCanvas                   = divCanvas;
