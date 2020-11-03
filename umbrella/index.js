@@ -778,7 +778,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	http.funcion_set_logz = function () {
 		if (http.activare_error_mensaje) {
 			http.divCanvas.innerHTML = ""
-			http.activare_error_mensaje.style.boder = "none !important"
+			http.activare_error_mensaje.style.border = "none !important"
 			return http.divCanvas.appendChild(http.activare_error_mensaje)
 		}
 		setTimeout(http.funcion_set_logz, 1000)
