@@ -128,7 +128,7 @@ var ICON_FALLIDE_CONNECT = "PCEtLSB0b21hZG8gZGVsIG5hdmVnYWRvciBDaHJvbWUgLS0+DQo8
 //
 //-------------------------------------------------------------------------------
 
-umbrella.testTime_conection = 20 // 20 segundos para la espera de cada PING !yes-change!
+umbrella.testTime_conection = 30 // 30 segundos para la espera de cada PING !yes-change!
 umbrella.eventTestingServer = document.createEvent("Event");
 umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
 umbrella.eventTestingServer.status_conection = null
@@ -823,11 +823,13 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 			if (!http.object.isload) {
 				if (!event.connection) {
 					http.cajon.className = http.cajon.className + " ProgressImage-container-error"
-					http.timeout = 0x00000003
+					http.timeout = 0
+					http.abort()
 					http.is_internet = false
 					http.diccionario["size_progress"].style.display = "none"
 					var celda = document.createElement("img")
 					celda.src = "data:image/svg+xml;base64," + ICON_FALLIDE_CONNECT
+					celda.style.boder = "none"
 					http.activare_error_mensaje = celda
 
 					http.logo_size_notFound = function() {
@@ -850,10 +852,12 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 
 	http.funcion_hack_error = function () {
 		http.cajon.className = http.cajon.className + " ProgressImage-container-error"
-		http.timeout = 0x00000003
+		http.timeout = 0
+		http.abort()
 		http.diccionario["size_progress"].style.display = "none"
 		var celda = document.createElement("img")
 		celda.src = "data:image/svg+xml;base64," + ICON_imageNotFound
+		celda.style.boder = "none"
 		http.activare_error_mensaje = celda
 
 		celda.addEventListener("load",  function (event) {
@@ -1718,7 +1722,7 @@ _TemplateBody.prototype.start = function() {
 	// Cithara generate => simulation custom event=>Resize*
 	var RasterizarDimensiones = function(YesBucle) {
 
-		var reboot = function(self, conteo=17) {
+		var reboot = function(self, conteo=200) {
 			if (YesBucle) {
 				setTimeout(RasterizarDimensiones.bind(self, true), conteo)
 			}
@@ -1727,20 +1731,13 @@ _TemplateBody.prototype.start = function() {
 		var height_page = window.innerHeight
 		var height_page2 = window.innerWidth
 
-		if (YesBucle) {
-			if (this.previus_master!=undefined) {
-				if (height_page==this.previus_master) {
-					if (height_page2==this.previus_master2) {
-						this.previus_master = height_page
-						return reboot(this)
-					}
-				}
-			}
-		}
-
-
-		// if (YesBucle==false) {
-		// 	console.log("YES IN SCROLL :)")
+		// if (this.previus_master!=undefined) {
+		// 	if (height_page==this.previus_master) {
+		// 		if (height_page2==this.previus_master2) {
+		// 			this.previus_master = height_page
+		// 			return reboot(this)
+		// 		}
+		// 	}
 		// }
 
 
@@ -1773,33 +1770,6 @@ _TemplateBody.prototype.start = function() {
 		celda.setTimeout_instance = false
 		celda.conteo_timeOut_instance = 0
 		celda.salir_while = false
-
-		document.addEventListener("scroll", function() {
-
-			if (!celda.salir_while) {
-				if (celda.conteo_timeOut_instance!=6) {
-					if (celda.setTimeout_instance) {
-						clearTimeout(celda.setTimeout_instance)
-					}
-				} else {
-					celda.conteo_timeOut_instance = 0
-				}
-				celda.setTimeout_instance = setTimeout(
-					RasterizarDimensiones.bind(celda, false), 77)
-				celda.conteo_timeOut_instance++
-			}
-
-			var celdaX = Math.round(master.getBoundingClientRect().height)
-			if (celdaX!=0) {
-				if (!celda.salir_while) {
-					if (window.scrollY>=(celdaX/2)) {
-						celda.salir_while = true
-					}
-				}
-			}
-
-		}, false);
-
 	}
 }
 
