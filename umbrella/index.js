@@ -138,6 +138,7 @@ umbrella.testTime_conection_backup = umbrella.testTime_conection // !not-change!
 function func_isConectionServer() {
 
     var http = new XMLHttpRequest();
+    http.timeout = 5000
     var randomNum = Math.round(Math.random() * 10000);
 
     http.open('HEAD', document.location + "?rand=" + randomNum, true);
@@ -689,6 +690,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	diccionario, SEND, PUNTERO_xD, lista_images) {
 
 	var http = new XMLHttpRequest();
+	http.timeout = umbrella.testTime_conection_backup;
 	http.open("GET", cajon.file, true);
 	http.withCredentials             = true;
 	http.divCanvas                   = divCanvas;
@@ -1731,15 +1733,14 @@ _TemplateBody.prototype.start = function() {
 		var height_page = window.innerHeight
 		var height_page2 = window.innerWidth
 
-		// if (this.previus_master!=undefined) {
-		// 	if (height_page==this.previus_master) {
-		// 		if (height_page2==this.previus_master2) {
-		// 			this.previus_master = height_page
-		// 			return reboot(this)
-		// 		}
-		// 	}
-		// }
-
+		if (this.previus_master!=undefined) {
+			if (height_page==this.previus_master) {
+				if (height_page2==this.previus_master2) {
+					this.previus_master = height_page
+					return reboot(this)
+				}
+			}
+		}
 
 		var resta = new Number()
 		for (var object of slaves) {
