@@ -96,9 +96,10 @@ img, h2, code {
 
 
 strong {
-  color: #343342;
+  color: rgba(29, 33, 48, 0.94);
+  /*color: #343342;*/
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 0.75px;
 }
 
 span {

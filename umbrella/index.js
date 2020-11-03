@@ -65,7 +65,8 @@ for (var index in $lista) {
 // ver si un (list=>item*) existe
 var find_object = function(object) {
 	var list = new Array()
-	for (var compared of list) {
+	for (var index in list) {
+		var compared = list[index]
 		if (compared==object) {
 			return true;
 		}
@@ -75,21 +76,21 @@ var find_object = function(object) {
 
 // comprobando que sea el navegador web Firefox
 function isFirefox() {
-  var $match = window.navigator.userAgent.match(/Firefox\/([0-9]+)\./);
-  var $version = $match ? parseInt($match[1]) : 0;
-  var validar = false
-  var version = false
-  if (navigator.userAgent.match(/firefox/i)) {
-  	validar = true
-  	version = $version
-  }
-  return {"validar":validar, "version":version}
+	var $match   = window.navigator.userAgent.match(/Firefox\/([0-9]+)\./);
+	var $version = $match ? parseInt($match[1]) : 0;
+	var validar  = false
+	var version  = false
+	if (navigator.userAgent.match(/firefox/i)) {
+		validar = true
+		version = $version
+	}
+	return {"validar":validar, "version":version}
 }
 
 
 //-------------------------------------------------------------------------------
 //
-// Detectar la porqueria de "IE" & navegadores obsoletos
+// Detectar la porqueria fasista de "IE" & navegadores obsoletos
 //
 //-------------------------------------------------------------------------------
 
@@ -101,7 +102,7 @@ if (isIE) {obsolete_navigator = true;}
 // detectando una versión de Firefox absoleta
 var firefox = isFirefox()
 if (firefox.validar) {
-	if (firefox.version<52) {obsolete_navigator = true;}
+	if (firefox.version<35) {obsolete_navigator = true;}
 }
 
 // comprobando si es un navegador obsoleto
@@ -127,11 +128,11 @@ var ICON_FALLIDE_CONNECT = "PCEtLSB0b21hZG8gZGVsIG5hdmVnYWRvciBDaHJvbWUgLS0+DQo8
 //
 //-------------------------------------------------------------------------------
 
-umbrella.testTime_conection = 27 // 30 segundos para la espera de cada PING !not-change!
+umbrella.testTime_conection = 20 // 20 segundos para la espera de cada PING !yes-change!
 umbrella.eventTestingServer = document.createEvent("Event");
 umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
 umbrella.eventTestingServer.status_conection = null
-umbrella.testTime_conection_backup = umbrella.testTime_conection // !yes-change!
+umbrella.testTime_conection_backup = umbrella.testTime_conection // !not-change!
 
 
 function func_isConectionServer() {
@@ -704,6 +705,8 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	http.SEND                        = SEND;
 	http.PUNTERO_xD                  = PUNTERO_xD;
 	http.lista_images                = lista_images
+	http.activare_error_mensaje      = false
+
 
 	if (!http.cajon.CLASS_MAIN) {
 		http.cajon.className = "ProgressImage-container ProgressImage-size " + http.cajon.className
@@ -775,6 +778,11 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 
 	http.onprogress = function($pe) {
 
+		if (http.activare_error_mensaje) {
+			http.divCanvas.innerHTML = ""
+			return http.divCanvas.appendChild(http.activare_error_mensaje)
+		}
+
 		http.in_progress_load = true
 
 		var progreso = Math.round($pe.loaded * 100 / $pe.total)
@@ -818,9 +826,9 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 					http.timeout = 0x00000003
 					http.is_internet = false
 					http.diccionario["size_progress"].style.display = "none"
-					http.divCanvas.innerHTML = ""
 					var celda = document.createElement("img")
 					celda.src = "data:image/svg+xml;base64," + ICON_FALLIDE_CONNECT
+					http.activare_error_mensaje = celda
 
 					http.logo_size_notFound = function() {
 						if (http.icons_xD!="0px") {
@@ -830,7 +838,6 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 						setTimeout(http.logo_size_notFound, 0x77)
 					}; setTimeout(http.logo_size_notFound, 0x77)
 
-					http.divCanvas.appendChild(celda)
 				} else {
 					if (!http.is_internet) {
 						setTimeout(http.restart_road, 0)
@@ -845,15 +852,14 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 		http.cajon.className = http.cajon.className + " ProgressImage-container-error"
 		http.timeout = 0x00000003
 		http.diccionario["size_progress"].style.display = "none"
-		http.divCanvas.innerHTML = ""
 		var celda = document.createElement("img")
 		celda.src = "data:image/svg+xml;base64," + ICON_imageNotFound
+		http.activare_error_mensaje = celda
 
 		celda.addEventListener("load",  function (event) {
 			celda.style.width = http.icons_xD
 		}, false);
 
-		http.divCanvas.appendChild(celda)
 		http.next_image()
 	}
 
@@ -1066,7 +1072,7 @@ _BoxComposite.prototype.start = function() {
 
 //-------------------------------------------------------------------------------
 //
-// SERVICIO : Sunfur FlexBox
+// SERVICIO : Sunfur Super-FlexBox
 //
 //-------------------------------------------------------------------------------
 
@@ -1525,6 +1531,10 @@ _FlexBox.prototype.start = function() {
 
 			    			if (object.getAttribute("hbox-isWidth")) {
 			    				var valor = object.getAttribute("hbox-isWidth")
+			    				var struct = valor.split("=")
+			    				var xW = struct[0]
+			    				var cmd = struct[1].replace("max:", "max:"+xW+"=").replace("min:", "min:"+xW+"=")
+			    				var valor = cmd
 			    				diccionarioHbox_responsive["Width-min"] = valor.split("|")
 			    			}
 
@@ -1593,7 +1603,7 @@ _FlexBox.prototype.start = function() {
 	}
 
 
-	// fectorizar celdas, creando mascaras de extructras multi dimensionales
+	// rectorizar celdas, creando mascaras de extructras multi dimensionales
 	var HACK = function (OBJ) {
 		var arbol_web    = OBJ.querySelectorAll('*[hbox]')
 		var box_anterior = false
@@ -1661,7 +1671,7 @@ _FlexBox.prototype.start = function() {
 		return HACK(DOC)
 	}
 
-	// !QUE SE HAGA LA LUZ xD!, o mejor dicho que no se vaya la luz :(
+	// !QUE SE HAGA LA LUZ xD!, o mejor dicho que no se vaya la luz !MADURO #!@*...! :(
 	GenerateInCitharaV1(document)
 
 }
@@ -1708,12 +1718,11 @@ _TemplateBody.prototype.start = function() {
 	// Cithara generate => simulation custom event=>Resize*
 	var RasterizarDimensiones = function(YesBucle) {
 
-
-			var reboot = function(self, conteo=17) {
-				if (YesBucle) {
-					setTimeout(RasterizarDimensiones.bind(self, true), conteo)
-				}
+		var reboot = function(self, conteo=17) {
+			if (YesBucle) {
+				setTimeout(RasterizarDimensiones.bind(self, true), conteo)
 			}
+		}
 
 		var height_page = window.innerHeight
 		var height_page2 = window.innerWidth
@@ -1763,22 +1772,34 @@ _TemplateBody.prototype.start = function() {
 		setTimeout(RasterizarDimensiones.bind(celda, true), 0)
 		celda.setTimeout_instance = false
 		celda.conteo_timeOut_instance = 0
+		celda.salir_while = false
 
-		document.addEventListener("scroll", function(Event) {
+		document.addEventListener("scroll", function() {
 
-			if (celda.conteo_timeOut_instance!=6) {
-				if (celda.setTimeout_instance) {
-					clearTimeout(celda.setTimeout_instance)
+			if (!celda.salir_while) {
+				if (celda.conteo_timeOut_instance!=6) {
+					if (celda.setTimeout_instance) {
+						clearTimeout(celda.setTimeout_instance)
+					}
+				} else {
+					celda.conteo_timeOut_instance = 0
 				}
-			} else {
-				celda.conteo_timeOut_instance = 0
+				celda.setTimeout_instance = setTimeout(
+					RasterizarDimensiones.bind(celda, false), 77)
+				celda.conteo_timeOut_instance++
 			}
 
-			celda.setTimeout_instance = setTimeout(
-				RasterizarDimensiones.bind(celda, false), 77)
+			var celdaX = Math.round(master.getBoundingClientRect().height)
+			if (celdaX!=0) {
+				if (!celda.salir_while) {
+					if (window.scrollY>=(celdaX/2)) {
+						celda.salir_while = true
+					}
+				}
+			}
 
-			celda.conteo_timeOut_instance++
 		}, false);
+
 	}
 }
 
