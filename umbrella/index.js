@@ -128,29 +128,29 @@ var ICON_FALLIDE_CONNECT = "PCEtLSB0b21hZG8gZGVsIG5hdmVnYWRvciBDaHJvbWUgLS0+DQo8
 //
 //-------------------------------------------------------------------------------
 
-umbrella.testTime_conection = 10 // 10 segundos para la espera de cada PING !yes-change!
+umbrella.testTime_conection = 10; // 10 segundos para la espera de cada PING !yes-change!
 umbrella.eventTestingServer = document.createEvent("Event");
 umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
-umbrella.eventTestingServer.status_conection = null
-umbrella.testTime_conection_backup = umbrella.testTime_conection // !not-change!
+umbrella.eventTestingServer.status_conection = null;
+umbrella.testTime_conection_backup = umbrella.testTime_conection; // !not-change!
 
 
 function func_isConectionServer() {
 
     var http = new XMLHttpRequest();
-    http.timeout  = 10 * 977
+    http.timeout  = 10 * 977;
     var randomNum = Math.round(Math.random() * 10000);
     http.open('HEAD', document.location + "?rand=" + randomNum, true);
 
 	http.onloadend = (event) => {
         if (http.status >= 200 && http.status < 304) {
-			umbrella.eventTestingServer.connection = true
+			umbrella.eventTestingServer.connection = true;
 			document.dispatchEvent(umbrella.eventTestingServer);
-			var status_actual = true
+			var status_actual = true;
         } else {
-			umbrella.eventTestingServer.connection = false
+			umbrella.eventTestingServer.connection = false;
 			document.dispatchEvent(umbrella.eventTestingServer);
-			var status_actual = false
+			var status_actual = false;
         }
 
         if (umbrella.eventTestingServer.status_conection!=status_actual) {
@@ -775,13 +775,16 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	else
 		http.setRequestHeader('Accept-Charset', 'x-user-defined');
 
-
-	http.onprogress = function($pe) {
-
+	http.funcion_set_logz = function () {
 		if (http.activare_error_mensaje) {
 			http.divCanvas.innerHTML = ""
 			return http.divCanvas.appendChild(http.activare_error_mensaje)
 		}
+		setTimeout(funcion_set_logz, 1000)
+	}
+
+
+	http.onprogress = function($pe) {
 
 		http.in_progress_load = true
 
@@ -953,6 +956,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	}
 
 	if (http.SEND) {
+		setTimeout(funcion_set_logz, 1000)
 		setTimeout(http.send.bind(http), 0x00000003)
 	}
 
