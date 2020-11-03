@@ -138,7 +138,7 @@ umbrella.testTime_conection_backup = umbrella.testTime_conection // !not-change!
 function func_isConectionServer() {
 
     var http = new XMLHttpRequest();
-    http.timeout = 5000
+    http.timeout = 1024
     var randomNum = Math.round(Math.random() * 10000);
 
     http.open('HEAD', document.location + "?rand=" + randomNum, true);
@@ -690,7 +690,6 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	diccionario, SEND, PUNTERO_xD, lista_images) {
 
 	var http = new XMLHttpRequest();
-	http.timeout = 1000;
 	http.open("GET", cajon.file, true);
 	http.withCredentials             = true;
 	http.divCanvas                   = divCanvas;
