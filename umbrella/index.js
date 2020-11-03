@@ -138,7 +138,7 @@ umbrella.testTime_conection_backup = umbrella.testTime_conection // !not-change!
 function func_isConectionServer() {
 
     var http = new XMLHttpRequest();
-    http.timeout  = umbrella.testTime_conection_backup
+    http.timeout  = 10 * 977
     var randomNum = Math.round(Math.random() * 10000);
 
     http.open('HEAD', document.location + "?rand=" + randomNum, true);
