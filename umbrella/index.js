@@ -128,7 +128,7 @@ var ICON_FALLIDE_CONNECT = "PCEtLSB0b21hZG8gZGVsIG5hdmVnYWRvciBDaHJvbWUgLS0+DQo8
 //
 //-------------------------------------------------------------------------------
 
-umbrella.testTime_conection = 17; // 17 segundos para la espera de cada PING !yes-change!
+umbrella.testTime_conection = 20; // 20 segundos para la espera de cada PING !yes-change!
 umbrella.eventTestingServer = document.createEvent("Event");
 umbrella.eventTestingServer.initEvent("ServerConnection-changes", true, false);
 umbrella.eventTestingServer.status_conection = null;
@@ -244,7 +244,7 @@ function UmbrellaKernelStart() {
 	// testeo infinito para probar conexión a internet
 	if (document.location.hostname) {
 		if (document.location.hostname!="localhost") {
-			console.log("Umbrella sockect: " + document.location.hostname)
+			console.log("Umbrella: " + document.location.hostname)
 			func_isConectionServer()
 		}
 	}
@@ -252,6 +252,7 @@ function UmbrellaKernelStart() {
 	// servicio FINAL: barra de progreso para imagenes
 	if (ShowImage_progress==true) {
 		if (document.location.hostname || TesttinOnNotLocalHost==true) {
+			console.log("Umbrella: pre-carga de imagenes activada")
 			UmbrellaService_ImageProgress.start()
 		}
 	}
@@ -611,8 +612,16 @@ _ImageProgress.prototype.start = function() {
 			object.src = ""
 			cajon.display = object.style.display
 			object.style.display = "none"
-			object.parentNode.insertBefore(cajon, object);
+
+
 			object.alt = ""
+
+
+			if (object.parentNode.getAttribute("hbox_finish")) {
+				object.parentNode.parentNode.insertBefore(cajon, object.parentNode);
+			} else {
+				object.parentNode.insertBefore(cajon, object);
+			}
 
 
 			var size_progress = document.createElement("div")
@@ -638,9 +647,14 @@ _ImageProgress.prototype.start = function() {
 			diccionario["logo_id"] = logo_id
 
 			var divCanvas = document.createElement("h2")
-			divCanvas.style = "color: black !important;font-size: 50px;pointer-events: none;border: none;background: transparent;"
+			divCanvas.style = "font-size: 50px;pointer-events: none;border: none;background: transparent;"
 			divCanvas.innerHTML = "0%"
+			divCanvas.className = "ProgressImage-container-text"
 			columnas.appendChild(divCanvas)
+
+	    	if (object.name) {
+	    		divCanvas.setAttribute("name", object.name)
+	    	}
 
 			var Zdiccionario = {"ServerHot": [divCanvas, cajon, object, size_progress, diccionario, false]}
 			lista_images = lista_images.concat(Zdiccionario)
@@ -1735,6 +1749,7 @@ _TemplateBody.prototype.start = function() {
 
 		var height_page = window.innerHeight
 		var height_page2 = window.innerWidth
+
 
 		// if (this.previus_master!=undefined) {
 		// 	if (height_page==this.previus_master) {

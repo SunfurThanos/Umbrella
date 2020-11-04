@@ -29,7 +29,11 @@ CHILD : Utilidades CSS
 
 /*tamaño & el estilo del contenedor principal*/
 .ProgressImage-size {
-  width: 100%;height: 200px;
+  width: 50%;height: 170px;
+}
+
+.ProgressImage-container-text {
+  color: #01080F;
 }
 
 .ProgressImage-container {

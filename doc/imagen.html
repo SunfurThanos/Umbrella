@@ -96,7 +96,7 @@ body {
 
             <p>En conexiones lentas e inestables, la mayoría de las veces las imágenes solo se logran cargar por la mitad o totalmente pixeladas, en el peor de los casos nunca llega a cargarse, con <b>Umbrella</b> esto llega a su fin, no tienes que hacer !NADA!, Umbrella hace todo el trabajo por ti, lo cual es fantástico, te muestra en pantalla el progreso de carga de manera profesional, al terminar Umbrella te muestra la imagen en su celda correspondiente, !como si nada hubiera pasado!, este es uno de los campos de Umbrella, !donde más innovaciones traerá en las nuevas versiones!.</p>
 
-            <p>Por supuesto que la celda temporal de progreso puedes modificarla a tu antojo, pero requiere conocimientos elementales en <strong>CSS</strong> & <strong>JS</strong>, <span>¿que pasa si se va el Internet cuando la imagen no se termino de descargar?</span>: en la misma celda de progreso aparecerá un icono indicando que no posees conexión al servidor para seguir descargando, cuando ya poseas conexión la carga de imágenes se reanuda de forma automática, !sin que hagas NADA, más fácil imposible!, <span>¿como es eso posible?</span>: el FrameWork ejecuta una función cada <strong>20 segundos</strong> para comprobar la conexión al servidor de la pagina, de esta manera se puede comprobar si se puede o no reanudar la pre-carga de imágenes, <b>¿que pasa si la imagen no existe?</b>: aparecerá un icono de archivo no encontrado, pero esta vez si quieres probar suerte con la carga de la imagen debes reiniciar la pagina, ya que hacer ajustes automáticos provocaría un mal rendimiento & de manera innecesaria..</p>
+            <p><span>¿que pasa si se va el Internet cuando la imagen no se termino de descargar?</span>: en la misma celda de progreso aparecerá un icono indicando que no posees conexión al servidor para seguir descargando, cuando ya poseas conexión la carga de imágenes se reanuda de forma automática, !sin que hagas NADA, más fácil imposible!, <span>¿como es eso posible?</span>: el FrameWork ejecuta una función cada <strong>20 segundos</strong> para comprobar la conexión al servidor de la pagina, de esta manera se puede comprobar si se puede o no reanudar la pre-carga de imágenes, <b>¿que pasa si la imagen no existe?</b>: aparecerá un icono de archivo no encontrado, pero esta vez si quieres probar suerte con la carga de la imagen debes reiniciar la pagina, ya que hacer ajustes automáticos provocaría un mal rendimiento & de manera innecesaria..</p>
 
             <pre><code class="html" id="code1"></code></pre>
 
@@ -108,9 +108,15 @@ body {
 
             <br>
 
+            <p>Para cambiar la resolución, fondo & texto de la celda donde se muestra el progreso de carga de la imagen, puedes usar las siguientes clases css: <strong>ProgressImage-SizeRead</strong>, <strong>ProgressImage-size</strong>, <strong>ProgressImage-container</strong>, <strong>ProgressImage-container-error</strong>, <strong>text-umbrella-img_progress</strong>, para mayor detalle visualiza el archivo de estilo de Umbrella, <mark>umbrella\style.css</mark>, podre un ejemplo sencillo para ilustrar.</p>
+
+            <pre><code class="html" id="code2"></code></pre>
+
+            <br>
+
             <p>Si no deseas que <b>Umbrella</b>, capture las celdas tipo imagen y muestre un progreso de carga, debes insertar la siguiente etiqueta <span>NotProgress</span> en la celda tipo imagen, que no desees que sea pre-cargada.</p>
 
-            <p><span>¿Puedo pre-cargar imágenes de otro dominio?</span>: por ahora el soporte esta totalmente experimental, así que no es seguro & estable pre-cargar imágenes de otro dominio.</p>
+            <p><span>¿Puedo pre-cargar imágenes de otro dominio?</span>: por ahora el soporte esta totalmente experimental.</p>
 
         </div>
 
@@ -187,6 +193,11 @@ addEventListener("UmbrellaFinish",  function (event) {
     var block = document.getElementById("code1")
     block.innerText = '<img src="src/chompiras.gif">\n\n<img src="src/resident-evil-1.gif">'
     hljs.highlightBlock(block);
+
+    var block = document.getElementById("code2")
+    block.innerText = '<style type="text/css">\n\n.ProgressImage-size[name="mi-imagen"] {\n  width: 250px;height: 130px;\n}\n\n.ProgressImage-container[name="mi-imagen"] {\n    background: black;\n}\n\n.ProgressImage-container-text[name="mi-imagen"] {\n  color: red;\n}\n\n</style>\n\n<img name="mi-imagen" src="src/diseno-web-responsive-adaptable.jpg">'
+    hljs.highlightBlock(block);
+
 }, false);
 
 </script>
