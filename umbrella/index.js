@@ -19,7 +19,7 @@
 var umbrella = function() {}
 
 // Umbrella versión => XXX
-umbrella.build_new = new Number(17)
+umbrella.build_new = new Number(18.2)
 
 // creando clase de Entities
 var Entities = function() {}
@@ -138,7 +138,7 @@ umbrella.testTime_conection_backup = umbrella.testTime_conection; // !not-change
 function func_isConectionServer() {
 
     var http = new XMLHttpRequest();
-    http.timeout  = 10 * 977;
+    http.timeout  = 20 * 1000;
     var randomNum = Math.round(Math.random() * 10000);
     http.open('HEAD', document.location + "?rand=" + randomNum, true);
 
@@ -252,7 +252,7 @@ function UmbrellaKernelStart() {
 	// servicio FINAL: barra de progreso para imagenes
 	if (ShowImage_progress==true) {
 		if (document.location.hostname || TesttinOnNotLocalHost==true) {
-			console.log("Umbrella: pre-carga de imagenes activada")
+			console.log("Umbrella: carga automatica de imagenes activada")
 			UmbrellaService_ImageProgress.start()
 		}
 	}
@@ -378,7 +378,7 @@ var UmbrellaService_ViewImgTab_VerImagen = function(imagen) {
 	return new Array(
 		window.open(imagen.src, "_blank" ),
 		0x2857674D,
-		0x08FD19A3
+		0x08FF7542
 	)
 }
 
@@ -1741,28 +1741,42 @@ _TemplateBody.prototype.start = function() {
 	// Cithara generate => simulation custom event=>Resize*
 	var RasterizarDimensiones = function(YesBucle) {
 
-		var reboot = function(self, conteo=200) {
+		var reboot = function(self, conteo=77) {
 			if (YesBucle) {
 				setTimeout(RasterizarDimensiones.bind(self, true), conteo)
 			}
 		}
 
-		var height_page = window.innerHeight
-		var height_page2 = window.innerWidth
+		var height_body_simulation = master.getBoundingClientRect().height
+		var width_body_simulation  = master.getBoundingClientRect().width
+		var width_windowsXp        = window.innerWidth
+		var seguir = true
 
 
-		// if (this.previus_master!=undefined) {
-		// 	if (height_page==this.previus_master) {
-		// 		if (height_page2==this.previus_master2) {
-		// 			this.previus_master = height_page
-		// 			return reboot(this)
-		// 		}
-		// 	}
-		// }
+		if (height_body_simulation==this.height_body_simulation) {
+			seguir = false
+		}
+
+
+		if (this.width_windowsXp!=width_windowsXp) {
+			seguir = true
+		}
+
+
+		if (!seguir) {
+			return reboot(this)
+		} else {
+			// console.log(height_body_simulation, width_body_simulation)
+		}
+
+
+		this.height_body_simulation = height_body_simulation
+		this.width_body_simulation  = width_body_simulation
+		this.width_windowsXp        = width_windowsXp
+
 
 		var resta = new Number()
 		for (var object of slaves) {
-
 			var cuartaDimension = object.getBoundingClientRect().height
 			if (cuartaDimension==0) {
 				return reboot(this)
@@ -1770,13 +1784,17 @@ _TemplateBody.prototype.start = function() {
 			resta+=cuartaDimension
 		}
 
-		this.previus_master = height_page
-		this.previus_master2 = height_page2
-		master.style.minHeight = ""
-		var MASTER = document.body.scrollHeight
 
+		var MASTER = document.body.scrollHeight
 		var anchura = MASTER - resta
-		master.style.minHeight = anchura + "px"
+
+		if (MASTER==window.innerHeight) {
+			master.style.minHeight = anchura + "px"
+		} else {
+			master.style.minHeight = ""
+		}
+
+		master.style.height = anchura + "px"
 		this.cambios_estado = true
 
 		reboot(this)
