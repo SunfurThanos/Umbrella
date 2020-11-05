@@ -1820,6 +1820,12 @@ _TemplateBody.prototype.start = function() {
 
 	if (master) {
 
+		let resizeObserver = new ResizeObserver(() => {
+		    console.log("The element was resized");
+		});
+
+		resizeObserver.observe(master);
+
 		var celda = document.createElement("node")
 		celda.cambios_estado = false
 		setTimeout(RasterizarDimensiones.bind(celda, true), 0)
