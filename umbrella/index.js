@@ -1798,7 +1798,7 @@ _TemplateBody.prototype.start = function() {
 			resta+=cuartaDimension
 		}
 
-		console.log("change ok.")
+		console.log("change ok body.")
 
 
 		master.style.minHeight = ""
@@ -1823,11 +1823,15 @@ _TemplateBody.prototype.start = function() {
 	if (master) {
 
 		var celda = document.createElement("node")
+		celda.instance_mutationObserver = false
 
 		var observer = new MutationObserver(function(mutations) {
 		  mutations.forEach(function(mutation) {
-		  	console.log("cambio capturado...")
-			setTimeout(RasterizarDimensiones.bind(celda, false), 0x17)
+		  	if (celda.instance_mutationObserver) {
+		  		clearTimeout(celda.instance_mutationObserver)
+		  	}
+			celda.instance_mutationObserver = setTimeout(
+				RasterizarDimensiones.bind(celda, false), 200)
 		  });
 		});
 		var config = {subtree: true, childList: true};
