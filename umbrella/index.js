@@ -1781,6 +1781,8 @@ _TemplateBody.prototype.start = function() {
 			if (!seguir) {
 				return reboot(this)
 			}
+		} else {
+			console.log("ok detect...")
 		}
 
 
@@ -1798,7 +1800,7 @@ _TemplateBody.prototype.start = function() {
 			resta+=cuartaDimension
 		}
 
-		console.log("change ok body.")
+		// console.log("change ok body.")
 
 
 		master.style.minHeight = ""
@@ -1826,16 +1828,19 @@ _TemplateBody.prototype.start = function() {
 		celda.instance_mutationObserver = false
 
 		var observer = new MutationObserver(function(mutations) {
-			mutations.forEach(function(mutation) {
-				console.log("YES -> Event")
-				setTimeout(RasterizarDimensiones.bind(celda, true), 0)
-			});
+		  mutations.forEach(function(mutation) {
+		  	if (celda.instance_mutationObserver) {
+		  		clearTimeout(celda.instance_mutationObserver)
+		  	}
+			celda.instance_mutationObserver = setTimeout(
+				RasterizarDimensiones.bind(celda, false), 0)
+		  });
 		});
-		var config = {attributes: true};
+		var config = {subtree: true, childList: true};
 		observer.observe(master, config);
 
 		celda.cambios_estado = false
-		// setTimeout(RasterizarDimensiones.bind(celda, true), 0)
+		setTimeout(RasterizarDimensiones.bind(celda, true), 0x00000007)
 		celda.setTimeout_instance = false
 		celda.conteo_timeOut_instance = 0
 		celda.salir_while = false
