@@ -1827,14 +1827,15 @@ _TemplateBody.prototype.start = function() {
 
 		var observer = new MutationObserver(function(mutations) {
 		  mutations.forEach(function(mutation) {
+		  	console.log("YES -> Event")
 		  	if (celda.instance_mutationObserver) {
 		  		clearTimeout(celda.instance_mutationObserver)
 		  	}
 			celda.instance_mutationObserver = setTimeout(
-				RasterizarDimensiones.bind(celda, false), 10)
+				RasterizarDimensiones.bind(celda, false), 200)
 		  });
 		});
-		var config = {subtree: true, childList: true};
+		var config = {attributes: true};
 		observer.observe(master, config);
 
 		celda.cambios_estado = false
