@@ -1782,7 +1782,9 @@ _TemplateBody.prototype.start = function() {
 				return reboot(this)
 			}
 		} else {
-			console.log("ok detect...")
+			if (seguir) {
+				console.log("ok detect -> MutationObserver")
+			}
 		}
 
 
@@ -1799,8 +1801,6 @@ _TemplateBody.prototype.start = function() {
 			}
 			resta+=cuartaDimension
 		}
-
-		// console.log("change ok body.")
 
 
 		master.style.minHeight = ""
@@ -1832,31 +1832,15 @@ _TemplateBody.prototype.start = function() {
 		  	if (celda.instance_mutationObserver) {
 		  		clearTimeout(celda.instance_mutationObserver)
 		  	}
-
-
-			var seguir = true
-
-			if (master.getBoundingClientRect().height==celda.height_body_simulation) {
-				seguir = false
-			}
-
-			if (celda.width_windowsXp!=window.innerWidth) {
-				seguir = true
-			}
-
-
-			if (seguir) {
-				celda.instance_mutationObserver = setTimeout(
-					RasterizarDimensiones.bind(celda, false), 0)
-			}
-
-			});
+			celda.instance_mutationObserver = setTimeout(
+				RasterizarDimensiones.bind(celda, false), 36)
+		  });
 		});
 		var config = {subtree: true, childList: true};
 		observer.observe(master, config);
 
 		celda.cambios_estado = false
-		setTimeout(RasterizarDimensiones.bind(celda, true), 0x00000007)
+		setTimeout(RasterizarDimensiones.bind(celda, true), 0)
 		celda.setTimeout_instance = false
 		celda.conteo_timeOut_instance = 0
 		celda.salir_while = false
