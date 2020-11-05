@@ -1820,15 +1820,16 @@ _TemplateBody.prototype.start = function() {
 
 	if (master) {
 
+		var celda = document.createElement("node")
+
 		var observer = new MutationObserver(function(mutations) {
 		  mutations.forEach(function(mutation) {
-			console.log(mutation.type)
+			setTimeout(RasterizarDimensiones.bind(celda, false), 0x17)
 		  });
 		});
 		var config = {childList: true, characterData: true};
 		observer.observe(master, config);
 
-		var celda = document.createElement("node")
 		celda.cambios_estado = false
 		setTimeout(RasterizarDimensiones.bind(celda, true), 0)
 		celda.setTimeout_instance = false
