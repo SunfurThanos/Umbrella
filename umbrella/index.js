@@ -1777,7 +1777,7 @@ _TemplateBody.prototype.start = function() {
 		}
 
 
-		if (!YesBucle) {
+		if (YesBucle) {
 			if (!seguir) {
 				return reboot(this)
 			}
@@ -1815,19 +1815,29 @@ _TemplateBody.prototype.start = function() {
 		this.width_body_simulation  = master.getBoundingClientRect().width
 		this.width_windowsXp        = window.innerWidth
 
-		console.log("yes change size:page*")
-
 		reboot(this)
 	}
 
 	if (master) {
+
+		var observer = new MutationObserver(function(mutations) {
+		  mutations.forEach(function(mutation) {
+			console.log(mutation.type)
+		  });
+		});
+		var config = {childList: true, characterData: true};
+		observer.observe(master, config);
+
 		var celda = document.createElement("node")
 		celda.cambios_estado = false
 		setTimeout(RasterizarDimensiones.bind(celda, true), 0)
 		celda.setTimeout_instance = false
 		celda.conteo_timeOut_instance = 0
 		celda.salir_while = false
+
 	}
+
+
 }
 
 
