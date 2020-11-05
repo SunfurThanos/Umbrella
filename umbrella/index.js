@@ -1832,9 +1832,25 @@ _TemplateBody.prototype.start = function() {
 		  	if (celda.instance_mutationObserver) {
 		  		clearTimeout(celda.instance_mutationObserver)
 		  	}
-			celda.instance_mutationObserver = setTimeout(
-				RasterizarDimensiones.bind(celda, false), 0)
-		  });
+
+
+			var seguir = true
+
+			if (master.getBoundingClientRect().height==celda.height_body_simulation) {
+				seguir = false
+			}
+
+			if (celda.width_windowsXp!=window.innerWidth) {
+				seguir = true
+			}
+
+
+			if (seguir) {
+				celda.instance_mutationObserver = setTimeout(
+					RasterizarDimensiones.bind(celda, false), 0)
+			}
+
+			});
 		});
 		var config = {subtree: true, childList: true};
 		observer.observe(master, config);
