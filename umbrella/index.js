@@ -1777,10 +1777,10 @@ _TemplateBody.prototype.start = function() {
 		}
 
 
-		if (!seguir) {
-			return reboot(this)
-		} else {
-			// console.log(height_body_simulation, width_body_simulation)
+		if (!YesBucle) {
+			if (!seguir) {
+				return reboot(this)
+			}
 		}
 
 
@@ -1804,8 +1804,6 @@ _TemplateBody.prototype.start = function() {
 		var MASTER = document.body.getBoundingClientRect().height
 		var anchura = MASTER - resta
 
-		// console.log("YES")
-
 		if (MASTER==window.innerHeight) {
 			master.style.minHeight = anchura + "px"
 		} else {
@@ -1816,6 +1814,8 @@ _TemplateBody.prototype.start = function() {
 		this.height_body_simulation = master.getBoundingClientRect().height
 		this.width_body_simulation  = master.getBoundingClientRect().width
 		this.width_windowsXp        = window.innerWidth
+
+		console.log("yes change size:page*")
 
 		reboot(this)
 	}
