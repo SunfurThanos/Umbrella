@@ -1761,7 +1761,7 @@ _TemplateBody.prototype.start = function() {
 			}
 		}
 
-		var height_body_simulation = master.getBoundingClientRect().height
+		var height_body_simulation = master.scrollHeight
 		var width_body_simulation  = master.getBoundingClientRect().width
 		var width_windowsXp        = window.innerWidth
 		var seguir = true
@@ -1801,7 +1801,7 @@ _TemplateBody.prototype.start = function() {
 
 		master.style.minHeight = ""
 		master.style.height    = ""
-		var MASTER = document.body.getBoundingClientRect().height
+		var MASTER = master.scrollHeight
 		var anchura = MASTER - resta
 
 		if (MASTER==window.innerHeight) {
@@ -1811,7 +1811,7 @@ _TemplateBody.prototype.start = function() {
 		}
 
 		this.cambios_estado = true
-		this.height_body_simulation = master.getBoundingClientRect().height
+		this.height_body_simulation = master.scrollHeight
 		this.width_body_simulation  = master.getBoundingClientRect().width
 		this.width_windowsXp        = window.innerWidth
 
@@ -1824,7 +1824,7 @@ _TemplateBody.prototype.start = function() {
 		    console.log("The element was resized");
 		});
 
-		resizeObserver.observe(master);
+		resizeObserver.observe(document.body);
 
 		var celda = document.createElement("node")
 		celda.cambios_estado = false
