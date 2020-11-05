@@ -1815,16 +1815,17 @@ _TemplateBody.prototype.start = function() {
 		this.width_body_simulation  = master.getBoundingClientRect().width
 		this.width_windowsXp        = window.innerWidth
 
+		console.log("ok")
+
 		reboot(this)
 	}
 
 	if (master) {
 
-		let resizeObserver = new ResizeObserver(() => {
-		    console.log("The element was resized");
-		});
-
-		resizeObserver.observe(document.body);
+		// let resizeObserver = new ResizeObserver(() => {
+		//     console.log("The element was resized");
+		// });
+		// resizeObserver.observe(document.body);
 
 		var celda = document.createElement("node")
 		celda.cambios_estado = false
