@@ -1824,21 +1824,14 @@ _TemplateBody.prototype.start = function() {
 
 		var celda = document.createElement("node")
 
-		// var observer = new MutationObserver(function(mutations) {
-		//   mutations.forEach(function(mutation) {
-		// 	setTimeout(RasterizarDimensiones.bind(celda, false), 0x17)
-		//   });
-		// });
-		// var config = {childList: true, characterData: true};
-		// observer.observe(master, config);
-
-
-		var ro = new ResizeObserver(entries => {
-			console.log("cambio capturado...")
+		var observer = new MutationObserver(function(mutations) {
+		  mutations.forEach(function(mutation) {
+		  	console.log("cambio capturado...")
 			setTimeout(RasterizarDimensiones.bind(celda, false), 0x17)
+		  });
 		});
-		ro.observe(master);
-
+		var config = {subtree: true, childList: true};
+		observer.observe(master, config);
 
 		celda.cambios_estado = false
 		setTimeout(RasterizarDimensiones.bind(celda, true), 0)
