@@ -1833,7 +1833,7 @@ _TemplateBody.prototype.start = function() {
 		  		clearTimeout(celda.instance_mutationObserver)
 		  	}
 			celda.instance_mutationObserver = setTimeout(
-				RasterizarDimensiones.bind(celda, false), 128)
+				RasterizarDimensiones.bind(celda, false), 0)
 		  });
 		});
 		var config = {subtree: true, childList: true};
