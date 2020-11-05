@@ -1781,10 +1781,6 @@ _TemplateBody.prototype.start = function() {
 			if (!seguir) {
 				return reboot(this)
 			}
-		} else {
-			if (seguir) {
-				console.log("ok detect -> MutationObserver")
-			}
 		}
 
 
@@ -1825,20 +1821,6 @@ _TemplateBody.prototype.start = function() {
 	if (master) {
 
 		var celda = document.createElement("node")
-		celda.instance_mutationObserver = false
-
-		var observer = new MutationObserver(function(mutations) {
-		  mutations.forEach(function(mutation) {
-		  	if (celda.instance_mutationObserver) {
-		  		clearTimeout(celda.instance_mutationObserver)
-		  	}
-			celda.instance_mutationObserver = setTimeout(
-				RasterizarDimensiones.bind(celda, false), 36)
-		  });
-		});
-		var config = {subtree: true, childList: true};
-		observer.observe(master, config);
-
 		celda.cambios_estado = false
 		setTimeout(RasterizarDimensiones.bind(celda, true), 0)
 		celda.setTimeout_instance = false
