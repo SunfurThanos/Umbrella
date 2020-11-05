@@ -1798,6 +1798,8 @@ _TemplateBody.prototype.start = function() {
 			resta+=cuartaDimension
 		}
 
+		console.log("change ok.")
+
 
 		master.style.minHeight = ""
 		master.style.height    = ""
