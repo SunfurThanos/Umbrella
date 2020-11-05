@@ -1831,7 +1831,7 @@ _TemplateBody.prototype.start = function() {
 		  		clearTimeout(celda.instance_mutationObserver)
 		  	}
 			celda.instance_mutationObserver = setTimeout(
-				RasterizarDimensiones.bind(celda, false), 77)
+				RasterizarDimensiones.bind(celda, false), 10)
 		  });
 		});
 		var config = {subtree: true, childList: true};
