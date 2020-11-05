@@ -108,7 +108,7 @@ body {
 
             <br>
 
-            <p>Para cambiar la resolución, fondo & texto de la celda donde se muestra el progreso de carga de la imagen, puedes usar las siguientes clases css: <strong>ProgressImage-SizeRead</strong>, <strong>ProgressImage-size</strong>, <strong>ProgressImage-container</strong>, <strong>ProgressImage-container-error</strong>, <strong>text-umbrella-img_progress</strong>, para mayor detalle visualiza el archivo de estilo de Umbrella, <mark>umbrella\style.css</mark>, podre un ejemplo sencillo para ilustrar.</p>
+            <p>Es posible modificar el estilo de la celda de progreso desde css, para mayor información lea la hoja de estilo <strong>umbrella\style.css</strong>, pondré un ejemplo sencillo, por ejemplo para cambiar el tamaño, color de fondo & color de texto puedes usar un código como el siguiente...</p>
 
             <pre><code class="html" id="code2"></code></pre>
 
@@ -195,7 +195,7 @@ addEventListener("UmbrellaFinish",  function (event) {
     hljs.highlightBlock(block);
 
     var block = document.getElementById("code2")
-    block.innerText = '<style type="text/css">\n\n.ProgressImage-size[name="mi-imagen"] {\n  width: 250px;height: 130px;\n}\n\n.ProgressImage-container[name="mi-imagen"] {\n    background: black;\n}\n\n.ProgressImage-container-text[name="mi-imagen"] {\n  color: red;\n}\n\n</style>\n\n<img name="mi-imagen" src="src/diseno-web-responsive-adaptable.jpg">'
+    block.innerText = '<style type="text/css">\n\n.ProgressImage-size[name="mi-imagen"] {\n  width: 250px;height: 130px;\n}\n\n.ProgressImage-container[name="mi-imagen"] {\n    background: black;\n}\n\n.ProgressImage-container-text[name="mi-imagen"] {\n  color: red;\n}\n\n</style>\n\n<img name="mi-imagen" src="src/imagen.jpg">'
     hljs.highlightBlock(block);
 
 }, false);

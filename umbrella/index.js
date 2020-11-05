@@ -62,6 +62,11 @@ for (var index in $lista) {
 //
 //-------------------------------------------------------------------------------
 
+// mostrar mensaje de navegador chafa
+function show_mesage_obsoleteNavigator() {
+	document.location = PATH_UMBRELLA + "mensaje/warning.html"
+}
+
 // ver si un (list=>item*) existe
 var find_object = function(object) {
 	var list = new Array()
@@ -73,6 +78,7 @@ var find_object = function(object) {
 	}
 	return false
 }
+
 
 // comprobando que sea el navegador web Firefox
 function isFirefox() {
@@ -107,8 +113,16 @@ if (firefox.validar) {
 
 // comprobando si es un navegador obsoleto
 if (obsolete_navigator) {
-	document.location = PATH_UMBRELLA + "mensaje/warning.html"
+	show_mesage_obsoleteNavigator()
 }
+
+// soporte en modo detective para navegadores chafas como "IE"
+window.addEventListener("error",  function (event) {
+	if (obsolete_navigator) {
+		return show_mesage_obsoleteNavigator()
+	}
+}, true);
+
 
 //-------------------------------------------------------------------------------
 //
@@ -1626,7 +1640,7 @@ _FlexBox.prototype.start = function() {
 	}
 
 
-	// rectorizar celdas, creando mascaras de extructras multi dimensionales
+	// Cithara generate => rectorizar celdas, creando mascaras de extructras FlexBox
 	var HACK = function (OBJ) {
 		var arbol_web    = OBJ.querySelectorAll('*[hbox]')
 		var box_anterior = false
@@ -1785,17 +1799,23 @@ _TemplateBody.prototype.start = function() {
 		}
 
 
-		var MASTER = document.body.scrollHeight
+		master.style.minHeight = ""
+		master.style.height    = ""
+		var MASTER = document.body.getBoundingClientRect().height
 		var anchura = MASTER - resta
+
+		// console.log("YES")
 
 		if (MASTER==window.innerHeight) {
 			master.style.minHeight = anchura + "px"
 		} else {
-			master.style.minHeight = ""
+			master.style.height = anchura + "px"
 		}
 
-		master.style.height = anchura + "px"
 		this.cambios_estado = true
+		this.height_body_simulation = master.getBoundingClientRect().height
+		this.width_body_simulation  = master.getBoundingClientRect().width
+		this.width_windowsXp        = window.innerWidth
 
 		reboot(this)
 	}
