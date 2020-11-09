@@ -43,21 +43,17 @@ body {
             <a link-main="imagen.html" id="menu_image" hbox>IMAGEN</a>
             <a link-main="simbolos.html" id="menu_simbols" hbox>SIMBOLOS</a>
             <a link-main="layout.html" id="menu_layout" hbox="true"
-               hbox-isVertical="row.hide,button_menu_mobile.show"
-               hbox-isHorizontal="row.show,button_menu_mobile.hide,menu_list_bar.hide">LAYOUT</a>
+               hbox-isVertical="row.hide,body_menu_button.show"
+               hbox-isHorizontal="row.show,body_menu_button.hide,menu_list_bar.hide">LAYOUT</a>
         </div>
 
-        <!-- menu:bar responsive -->
-        <div BoxComposite="center:left" name="button_menu_mobile" class="menu_mobile_button" onclick="mostrar_ocultar_menu(this)">
-             <div class="menu_triger_line"></div>
-             <div class="menu_triger_line"></div>
-             <div class="menu_triger_line"></div>
-        </div>
+        <!-- menú:bar responsive -->
+        <div BoxComposite="center:left" name="body.menu_button"></div>
 
     </div>
 
     <!-- menu_list responsive -->
-    <div class="menu_list_bar" name="menu_list_bar" id="menu_list_bar">
+    <div class="menu_list_bar" name="body.menu_list">
         <br>
         <button style="margin: 0" PasteAttributes="menu_home">INICIO</button>
         <br><br>
@@ -99,6 +95,10 @@ body {
 
             <p><span>Explicación</span>: con el nombre <strong>body.toolbar</strong> le indicas al Framework que esa celda tendrá la propiedad automática de MENU, con <strong>body.content</strong> definimos la propiedad de contenido central con tamaño proporcional automático & con <strong>body.footer</strong> definimos la propiedad de pie de pagina, esta <strong>plantilla</strong> es versátil & genérica, las propiedades <strong>body.footer</strong> & <strong>body.toolbar</strong> son opcionales por ende puedes tener una pagina sin la propiedad menú o sin la propiedad pie de pagina, pero también puedes ignorar las dos propiedades mencionadas.</p>
 
+            <p>Para llamar a las anteriores celdas por su correspondiente nombre desde javascript, la cosa cambia un poco ya que debes remplazar los <span style="font-weight: bold;">.</span> por <span style="font-weight: bold;">_</span> en el nombre de la determinada celda, pondré un ejemplo para ilustrar.</p>
+
+            <pre><code class="javascript" id="code2_x"></code></pre>
+
             <br><br>
 
             <h2 align="left">Zoom automático de contenido para vista mobil</h2>
@@ -108,6 +108,17 @@ body {
             <pre><code class="html" id="code3"></code></pre>
 
             <p><span>Umbrella</span> te soluciona ese problema monótono de forma automática & efectiva, evitando que tengas que escribir la mencionada configuración rutinaria.</p>
+
+            <h2 align="left">Menu mobil</h2>
+
+            <p>Umbrella facilita una plantilla para la generación del botón & menú para dispositivos con patallas pequeñas.</p>
+
+            <pre><code class="html" id="code4"></code></pre>
+
+            <p>También es posible personalizarlo al 100%, por medio de las siguientes clases <strong>css</strong> privadas.</p>
+
+            <pre><code class="html" id="code5"></code></pre>
+
 
         </div>
 
@@ -130,56 +141,6 @@ body {
 
 <script type="text/javascript">
 
-function mostrar_ocultar_menu(self) {
-    var celda = document.getElementById('menu_list_bar')
-    var estado = celda.style.display
-    var lineas = detect_childMENU();
-    var conteo = 0;
-
-    function detect_childMENU() {
-        var lista = self.childNodes;
-        var lineas = new Array;
-
-        for (var pointer in lista) {
-          var item = lista[pointer];
-          if (item.tagName == "DIV") {
-            lineas = lineas.concat([item]);
-          }
-        }
-        return lineas
-    }
-
-    if (estado=="block") {
-        for (var item of lineas) {
-            conteo++;
-            if (conteo==1) {
-              item.style="transform: rotate(0deg) translateY(0px) translateX(0px);";
-            }
-            if (conteo==2) {
-              item.style="transform: rotate(0deg);";
-            }
-            if (conteo==3) {
-              item.style="transform: rotate(0deg) translateY(0px) translateX(0px);";
-            }
-        }
-        celda.style.display="none"
-    } else {
-        for (var item of lineas) {
-            conteo++;
-            if (conteo==1) {
-              item.style="transform: rotate(45deg) translateY(5.2px) translateX(5.2px);";
-            }
-            if (conteo==2) {
-              item.style="transform: rotate(-45deg);";
-            }
-            if (conteo==3) {
-              item.style="transform: rotate(-46.8deg) translateY(-5.2px) translateX(5.2px);";
-            }
-        }
-        celda.style.display="block"
-    }
-}
-
 addEventListener("UmbrellaFinish",  function (event) {
     var block = document.getElementById("code1")
     block.innerText = '<!-- barra de carga al inicio -->\n<div name="body.progress"></div>\n\n<!-- contenedor principal -->\n<div name="body.container">\n    contenido de la pagina xD\n</div>'.replace(/\$NEO\$/g, "/")
@@ -189,8 +150,21 @@ addEventListener("UmbrellaFinish",  function (event) {
     block.innerText = '<style type="text/css">\n\nbody {\n    margin: 0;\n    color: black;\n}\n\n.caja_menu {\n    background: yellow;padding: 1em;\n}\n\n.caja_body {\n    background: #8E83F3;padding: 0.5em;\n}\n\n.caja_footer {\n    background: #FB335B;padding: 1em;\n}\n\n</style>\n\n\n<!-- barra de carga al inicio -->\n<div name="body.progress"></div>\n\n<!-- contenedor principal -->\n<div name="body.container">\n\n    <!-- area de herramientas -->\n    <div class="caja_menu" name="body.toolbar">\n        MENU\n    </div>\n\n    <!-- contenido de pagina -->\n    <div class="caja_body" name="body.content">\n        <p>PAGE CONTENT</p>\n    </div>\n\n    <!-- pie de pagina -->\n    <div class="caja_footer" name="body.footer">\n        FOOTER\n    </div>\n\n</div>'.replace(/\$NEO\$/g, "/")
     hljs.highlightBlock(block);
 
+    var block = document.getElementById("code2_x")
+    block.innerText = 'var menu = document.getElementsByName("body_toolbar")\nconsole.log(menu)\n\nvar contenedor = document.getElementsByName("body_content")\nconsole.log(contenedor)\n\nvar pie = document.getElementsByName("body_footer")\nconsole.log(pie)'.replace(/\$NEO\$/g, "/")
+    hljs.highlightBlock(block);
+
     var block = document.getElementById("code3")
     block.innerText = '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">'
+    hljs.highlightBlock(block);
+
+    var block = document.getElementById("code4")
+    block.innerText = '<style type="text/css">\n\n.lista_menu {\n  margin-left: 0.72em;\n  position: fixed;\n  background: #DFE4EB;\n  border: 1px #737373 dashed;\n  width: 30%;\n  height: 20%;\n}\n\n</style>\n\n\n<!-- boton del menu -->\n<div name="body.menu_button"></div>\n\n<!-- lista del menu -->\n<div name="body.menu_list" class="lista_menu">\n  <h2 BoxComposite="center">ITEMS</h2>\n</div>'
+    hljs.highlightBlock(block);
+
+
+    var block = document.getElementById("code5")
+    block.innerText = '<style type="text/css">\n\n/*clases privadas*/\n.body-menu_button {\n    width: 32px;\n    position: relative;\n    background: transparent;\n    cursor: pointer;\n    margin-left: 0.72em;\n}\n\n.body-menu_button-triger_line {\n    width: 25px;\n    height: 3px;\n    background: #DFE4EB;\n    border: 1px #737373 dashed;\n    margin-bottom: 4px;\n    transition: all .2s ease-in-out;\n}\n\n/*clases publica*/\n.lista_menu {\n  margin-left: 0.72em;\n  position: fixed;\n  background: #DFE4EB;\n  border: 1px #737373 dashed;\n  width: 30%;\n  height: 20%;\n}\n\n</style>\n\n\n<!-- boton del menu -->\n<div name="body.menu_button"></div>\n\n<!-- lista del menu -->\n<div name="body.menu_list" class="lista_menu">\n  <h2 BoxComposite="center">ITEMS</h2>\n</div>'
     hljs.highlightBlock(block);
 
 }, false);

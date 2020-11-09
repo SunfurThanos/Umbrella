@@ -47,20 +47,17 @@ body {
             <a link-main="imagen.html" id="menu_image" hbox>IMAGEN</a>
             <a link-main="simbolos.html" id="menu_simbols" hbox>SIMBOLOS</a>
             <a link-main="layout.html" id="menu_layout" hbox="true"
-               hbox-isVertical="row.hide,button_menu_mobile.show"
-               hbox-isHorizontal="row.show,button_menu_mobile.hide,menu_list_bar.hide">LAYOUT</a>
+               hbox-isVertical="row.hide,body_menu_button.show"
+               hbox-isHorizontal="row.show,body_menu_button.hide">LAYOUT</a>
         </div>
 
         <!-- menú:bar responsive -->
-        <div BoxComposite="center:left" name="button_menu_mobile" class="menu_mobile_button" onclick="mostrar_ocultar_menu(this)">
-             <div class="menu_triger_line"></div>
-             <div class="menu_triger_line"></div>
-             <div class="menu_triger_line"></div>
-        </div>
+        <div BoxComposite="center:left" name="body.menu_button"></div>
+
     </div>
 
     <!-- menu_list responsive -->
-    <div class="menu_list_bar" name="menu_list_bar" id="menu_list_bar">
+    <div class="menu_list_bar" name="body.menu_list">
         <br>
         <button style="margin: 0" PasteAttributes="menu_home">INICIO</button>
         <br><br>
@@ -90,7 +87,8 @@ body {
             <h2 style="width: 270px;padding-left: 0;">Que es Umbrella v5?</h2>
             <img src="src/umbrella.jpg" name="imagen-banner" class="Umbrella-imageResponsive">
             <div style="width: 100%" align="center">
-               <p><b>Umbrella</b> es un FrameWork inspirado en <strong>Adobe Flash Player</strong>, <strong>Qt</strong> & <strong>Gtk</strong> cuya finalidad es otorgar una gran productividad a la hora de desarrollar paginas web, pero ademas brindando una gran experiencia a los usuarios web finales, para de esa manera generar un equilibrio de bienestar genérico, aunque este Framework esta en desarrollo demuestra su enorme potencial a corto plazo en el mundo web: <strong>Umbrella the amazing</strong>.</p>
+               <p><b>Umbrella</b> es un FrameWork inspirado en <strong>Adobe Flash Player</strong>, <strong>Qt</strong> & <strong>Gtk</strong> cuya finalidad es otorgar una gran productividad a la hora de desarrollar paginas web, pero ademas brindando una gran experiencia a los usuarios web finales, para de esa manera generar un equilibrio de bienestar genérico, aunque este Framework esta en desarrollo demuestra su enorme potencial a corto plazo en el mundo web, bienvenido/a al mundo de las web 7.0
+               <button link-tab="https://github.com/SunfurThanos/Umbrella">Descargar</button></p>
             </div>
 
             <br><br>
@@ -98,6 +96,12 @@ body {
             <!-- herramientas en desarrollo -->
             <h2 align="left">Umbrella - herramientas en desarrollo</h2>
             <img src="src/en_desarrollo.jpeg" align="left" class="Umbrella-imageResponsive">
+
+            <br>
+
+            <div name="cajita_loca">
+                <p><span>BoxComposite</span>: mejora notable de esta herramienta, para que pueda usarse en cualquier situación variable.</p>
+            </div>
 
             <br>
 
@@ -132,7 +136,7 @@ body {
             <br>
 
             <div name="cajita_loca">
-                <p><span>Nuevos layouts</span>: las nuevas versiones traerán nuevas celdas graficas FULL & automatizadas tales como: <strong>Frame</strong>, <strong>ListTree</strong>, <strong>ListIcons</strong>, <strong>Combox</strong>, <strong>CheckBox</strong>, <strong>RadioButtons</strong>, <strong>EntryText</strong>, <strong>Expander</strong>, <strong>VPaned</strong>, <strong>HPaned</strong>, <strong>rangewidgets</strong>, <strong>Menus</strong>, <strong>SpinButton</strong>, <strong>Carousels</strong>, <strong>Calendario</strong> & <strong>DockWindow</strong>, <b>¿el tiempo de carga de la pagina aumentara?</b>: el frameWork aumentara de peso, pero eso no representa un problema ya que cada nueva herramienta estará en módulos separados, solo se cargaran si son requeridos por la pagina, es decir el frameWork detectara si realmente es necesario importarlos durante la refactorización.</p>
+                <p><span>Nuevos layouts</span>: las nuevas versiones traerán nuevas celdas graficas FULL & automatizadas tales como: <strong>Frame</strong>, <strong>ListTree</strong>, <strong>ListIcons</strong>, <strong>Combox</strong>, <strong>CheckBox</strong>, <strong>RadioButtons</strong>, <strong>EntryText</strong>, <strong>Expander</strong>, <strong>VPaned</strong>, <strong>HPaned</strong>, <strong>rangewidgets</strong>, <strong>Menus</strong>, <strong>SpinButton</strong>, <strong>Carousels</strong>, <strong>Calendario</strong>, <strong>FileChosser</strong> & <strong>DockWindow</strong>, <b>¿el tiempo de carga de la pagina aumentara?</b>: el frameWork aumentara de peso, pero eso no representa un problema ya que cada nueva herramienta estará en módulos separados, solo se cargaran si son requeridos por la pagina, es decir el frameWork detectara si realmente es necesario importarlos durante la refactorización.</p>
              </div>
 
             <br>
@@ -140,7 +144,7 @@ body {
             <div name="cajita_loca">
                 <p><span>Tooltips</span>: con Umbrella podrás crear <strong>tooltips</strong>, es decir seguirás usando la etiqueta default de HTML llamada <strong>title</strong>, con la diferencia que si modificas desde CSS el objeto <strong>title</strong>, Umbrella lo tomara como una clase css privada del propio FrameWork y otorgara por primera vez una forma !intuitiva & fácil! de modificar el estilo de la mencionada Herramienta...</p>
 
-                <p>Las buenas noticias aun no terminan, la idea es hacer que los <strong>tooltips</strong> se puedan implementar en cualquier web, seamos francos a muchos les molesta los mensajes & otros los odian a muerte, !ESO LLEGARA A SU FIN!, para que el usuario pueda verlos, tendrá que presionar la tecla <strong>ctrl</strong> & sin soltar la tecla posicionar el cursor sobre todos los objetos donde desee ver las leyendas, o bien posicionar el cursor sobre el objeto deseado & presionar la tecla mencionada, al soltar la tecla o mover el cursor fuera del objeto el mensaje se oculta, para dispositivos móviles, las leyendas se podrán ver solo si el usuario, hace el gesto del slider horizontal hacia la izquierda sobre el objeto, al hacer el gesto mencionado pero hacia la derecha o mover el dedo fuera de la leyenda u objeto, !PUFF desaparece el mensaje!, ¿que opinas, excelente o nada que ver, te gusta & quieres contribuir con una idea?, la idea con este Framework es mejorar la tecnología web pero no de forma tiránica o hostil > <strong>cambio democrático</strong> :)</p>
+                <p>Las buenas noticias aun no terminan, la idea es hacer que los <strong>tooltips</strong> se puedan implementar en cualquier web, seamos francos a muchos les molesta los mensajes & otros los odian a muerte, !ESO LLEGARA A SU FIN!, para que el usuario pueda verlos, tendrá que presionar la tecla <strong>ctrl</strong> & sin soltar la tecla posicionar el cursor sobre todos los objetos donde desee ver las leyendas, o bien posicionar el cursor sobre el objeto deseado & presionar la tecla mencionada, al soltar la tecla o mover el cursor fuera del objeto el mensaje se oculta, para dispositivos móviles la cosa cambia ya que en la parte de abajo de las aplicaciones web, habrá una barra de estatus, para mostrar errores de la aplicación & por supuesto los mensajes de las leyendas, !de esta forma se soluciona el problema, que tiene muchos años++ sin resolverse!, ¿que opinas, excelente o nada que ver, te gusta & quieres contribuir con una idea?, la idea con este Framework es mejorar la tecnología web pero no de forma tiránica o hostil => <strong>cambio democrático</strong> :)</p>
             </div>
 
             <br>
@@ -188,10 +192,6 @@ body {
             </div><br>
 
             <div name="cajita_loca">
-                <p><span>Fast</span>: permite de forma automática acelerar & cargar en segundo plano archivos de estilos e imágenes, permitiendo acelerar el tiempo de carga de la pagina, sin sacrificar el sistema de cache, el contenido de los estilos o imágenes no se mostraran hasta que estén completamente cargados.</p>
-            </div><br>
-
-            <div name="cajita_loca">
                 <p><span>CSS Galeria</span>: Múltiples temas CSS con soporte de personalización, este sera un proyecto separado de Umbrella, pero sera en colaborativo con los colaboradores & usuarios de Umbrella</p>
             </div>
 
@@ -199,13 +199,13 @@ body {
 
             <div name="cajita_loca">
 
-                <p><span>T++</span>: lenguaje de programación portable e indexado en <strong>PHP</strong>, <strong>Python</strong> & <strong>JS</strong>, para <strong>backend</strong> & <strong>FrontEnd</strong>, que permite programar de manera muy rápida & profesional, con una sintaxis futurista, corta, intuitiva & relacional, este lenguaje estará integrado en Umbrella & heredara su licencia</p>
+                <p><span>T++</span>: lenguaje de programación portable e indexado en <strong>PHP</strong> & <strong>JS</strong>, para <strong>backend</strong> & <strong>FrontEnd</strong>, que permite programar de manera muy rápida & profesional, con una sintaxis futurista, corta, intuitiva & relacional, este lenguaje estará integrado en Umbrella & heredara su licencia, la primera versión de este lenguaje sera solo para FrontEnd, luego en las posteriores versiones se mezclaran los dos mundos como una sola cosa.</p>
 
                 <p>Hoy en día se separa el backend & FrontEnd como dos cosas distintas cosa que no debe de ser, el HTML solo debe ser para declarar la información geométrica & de estilo, archivos de lógica e scripting en general deben auto conectarse y ejecutarse como una sola cosa, para trabajar con el <strong>DOM</strong> generado.</p>
 
-                <p><span>Ztext 2021 - FREE</span>: plugin para <strong>Sublime Text 3</strong> & <strong>Visual studio code</strong>, para programar en este potente lenguaje emergente de manera profesional & productiva, el plugin tendrá la misma licencia de Umbrella.</p>
+                <p><span>Ztext</span>: plugin para <strong>Sublime Text 3</strong> & <strong>Visual studio code</strong>, para programar en este potente lenguaje emergente, el plugin tendrá la misma licencia de Umbrella.</p>
 
-                <p><span>Ztext 2021 - PRO</span>: versión de pago & código cerrado del plugin anterior que añade al lenguaje T++ un nuevo operador llamado <strong>improvizate</strong> basado en IA, el objetivo es dar soporte a la auto improvisación en situaciones que requiere que el código pueda re-escribirse en tiempo real en una nueva situación donde no exista un paso a paso que el programador pudo predecir, la idea con este plugin no es desplazar a la gente si no mejorar sus habilidades en lo que mejor saben hacer, la tecnología aumentada debe usarse para mejorarnos no para desplazar personas como si fueran un objeto inservible, cosa que algunas personas no les importa para nada esa ideología, ya que se creen superiores e irónicamente justos con el avance de la sociedad.</p>
+                <p><span>Droide</span>: modulo de código cerrado escrito completamente en <strong>t++,</strong>, que brinda la posibilidad de que tu código pueda improvisar re-escribiéndose en tiempo real, esto sera ideal en una nueva situación donde no exista un paso a paso que el programador pudo predecir, la idea con este plugin no es desplazar a la gente si no mejorar sus habilidades en lo que mejor saben hacer, la tecnología aumentada debe usarse para mejorarnos no para desplazar personas como si fueran un objeto inservible, cosa que algunas personas no les importa para nada esa ideología, ya que se creen superiores e irónicamente justos con el avance de la sociedad.</p>
 
             </div>
 
@@ -263,7 +263,7 @@ body {
 
             <p>Puedes enviarme una <strong>remesa</strong> que es segura & confidencial o donarme por <strong>Paypal</strong>, también puedes ayudarme en publicidad, espero que este proyecto sea de su agrado & espero tenerlo/a como un usuario & colaborador.</p>
 
-            <img style="border: none;" NotProgress src="src/donar.png" link-tab="https://www.paypal.me/SunfurThanos">
+            <img style="border: none;" hideProgress src="src/donar.png" link-tab="https://www.paypal.me/SunfurThanos">
 
         </div>
 
@@ -280,57 +280,3 @@ body {
     </div>
 
 </div>
-
-<script type="text/javascript">
-
-function mostrar_ocultar_menu(self) {
-    var celda = document.getElementById('menu_list_bar')
-    var estado = celda.style.display
-    var lineas = detect_childMENU();
-    var conteo = 0;
-
-    function detect_childMENU() {
-        var lista = self.childNodes;
-        var lineas = new Array;
-
-        for (var pointer in lista) {
-          var item = lista[pointer];
-          if (item.tagName == "DIV") {
-            lineas = lineas.concat([item]);
-          }
-        }
-        return lineas
-    }
-
-    if (estado=="block") {
-        for (var item of lineas) {
-            conteo++;
-            if (conteo==1) {
-              item.style="transform: rotate(0deg) translateY(0px) translateX(0px);";
-            }
-            if (conteo==2) {
-              item.style="transform: rotate(0deg);";
-            }
-            if (conteo==3) {
-              item.style="transform: rotate(0deg) translateY(0px) translateX(0px);";
-            }
-        }
-        celda.style.display="none"
-    } else {
-        for (var item of lineas) {
-            conteo++;
-            if (conteo==1) {
-              item.style="transform: rotate(45deg) translateY(5.2px) translateX(5.2px);";
-            }
-            if (conteo==2) {
-              item.style="transform: rotate(-45deg);";
-            }
-            if (conteo==3) {
-              item.style="transform: rotate(-46.8deg) translateY(-5.2px) translateX(5.2px);";
-            }
-        }
-        celda.style.display="block"
-    }
-}
-
-</script>

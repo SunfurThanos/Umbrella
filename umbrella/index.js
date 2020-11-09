@@ -19,7 +19,7 @@
 var umbrella = function() {}
 
 // Umbrella versión => XXX
-umbrella.build_new = new Number(18.2)
+umbrella.build_new = new Number(18.4)
 
 // creando clase de Entities
 var Entities = function() {}
@@ -62,7 +62,7 @@ for (var index in $lista) {
 //
 //-------------------------------------------------------------------------------
 
-// mostrar mensaje de navegador chafa
+// mostrar mensaje de navegadores chafas
 function show_mesage_obsoleteNavigator() {
 	document.location = PATH_UMBRELLA + "mensaje/warning.html"
 }
@@ -116,14 +116,6 @@ if (obsolete_navigator) {
 	show_mesage_obsoleteNavigator()
 }
 
-// soporte en modo detective para navegadores chafas como "IE"
-window.addEventListener("error",  function (event) {
-	if (obsolete_navigator) {
-		return show_mesage_obsoleteNavigator()
-	}
-}, true);
-
-
 //-------------------------------------------------------------------------------
 //
 // Iconos => UI
@@ -152,9 +144,9 @@ umbrella.testTime_conection_backup = umbrella.testTime_conection; // !not-change
 function func_isConectionServer() {
 
     var http = new XMLHttpRequest();
-    http.timeout  = 20 * 1000;
+    http.timeout  = 27 * 1024;
     var randomNum = Math.round(Math.random() * 10000);
-    http.open('HEAD', document.location + "?rand=" + randomNum, true);
+    http.open("HEAD", document.location + "?rand=" + randomNum, true);
 
 	http.onloadend = (event) => {
         if (http.status >= 200 && http.status < 304) {
@@ -202,9 +194,9 @@ umbrella.eventPageRefactory.initEvent("UmbrellaFinish", true, false);
 
 document.addEventListener("readystatechange",  function (event) {
 	if (!umbrella.start_load) {
-		umbrella.start_load = document.querySelector("*[name='body.container']")
+		umbrella.start_load = document.querySelector("*[name=\"body.container\"]")
 		umbrella.circule_progress = document.querySelector(
-			"*[name='body.progress']")
+			"*[name=\"body.progress\"]")
 	}
 }, true);
 
@@ -266,7 +258,6 @@ function UmbrellaKernelStart() {
 	// servicio FINAL: barra de progreso para imagenes
 	if (ShowImage_progress==true) {
 		if (document.location.hostname || TesttinOnNotLocalHost==true) {
-			console.log("Umbrella: carga automatica de imagenes activada")
 			UmbrellaService_ImageProgress.start()
 		}
 	}
@@ -297,7 +288,7 @@ var UmbrellaService_PasteAttrib = new _PasteAttrib();
 
 // filtrando elementos en el arbol web
 _PasteAttrib.prototype.start = function() {
-	var arbol_web = document.querySelectorAll('*[PasteAttributes]')
+	var arbol_web = document.querySelectorAll("*[PasteAttributes]")
 
 	var GetTags = function (object_map) {
 		var lista = new Array()
@@ -398,7 +389,7 @@ var UmbrellaService_ViewImgTab_VerImagen = function(imagen) {
 
 // filtrando elementos en el arbol web
 _ViewImgTab.prototype.start = function() {
-	var arbol_web = document.querySelectorAll('img')
+	var arbol_web = document.querySelectorAll("img")
 
 	for (var object of arbol_web) {
 	  if (typeof object == "object") {
@@ -465,7 +456,7 @@ _ComputeSpace.prototype.start = function(comienzo=false) {
 		}
 	}
 
-	for (var tipo of ["span", "p", "a", "div[type='TEXT']"]) {
+	for (var tipo of ["span", "p", "a", "div[type=\"TEXT\"]"]) {
 		StateTrump(tipo)
 	}
 }
@@ -482,7 +473,7 @@ var UmbrellaService_ComputeAlign = new _ComputeAlign();
 
 // filtrando elementos en el arbol web + agregar mejoras a la etiqueta ALIGN
 _ComputeAlign.prototype.start = function() {
-	var arbol_web = document.querySelectorAll('*[align]')
+	var arbol_web = document.querySelectorAll("*[align]")
 
 	for (var object of arbol_web) {
 	  if (typeof object == "object") {
@@ -563,7 +554,7 @@ _ComputeHref.prototype.start = function() {
 		}
 	}
 
-	var categoria = ['*[link-tab]','*[link-main]']
+	var categoria = ["*[link-tab]","*[link-main]"]
 
 	return CRIPTON7(categoria), 0x2857674D, 0x08FD19A3
 
@@ -582,8 +573,10 @@ var UmbrellaService_ImageProgress = new _ImageProgress();
 // filtrando elementos en el arbol web + agregar mejoras a la etiqueta href
 _ImageProgress.prototype.start = function() {
 
-	var arbol_web = document.querySelectorAll('img')
+	var arbol_web = document.querySelectorAll("img")
 	if (arbol_web.length<1) {return null, 0x2857674D}
+
+	console.log("Umbrella: carga automatica de imagenes activada")
 
 	var imageDecodeExt = function(url) {
 		var struct = url.split(".")
@@ -613,9 +606,12 @@ _ImageProgress.prototype.start = function() {
 	    		continue
 	    	}
 
+	    	object.preload_activate = true
+
 	    	var cajon = document.createElement("div")
 	    	cajon.align = object.align
 	    	cajon.style = object.style
+	    	cajon.style.display = "none"
 
 	    	if (object.name) {
 	    		cajon.setAttribute("name", object.name)
@@ -757,22 +753,25 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 			}
 		}
 
-		http.icons_xD = (http.cajon.offsetHeight/1.7) + 'px'
+		http.icons_xD = (http.cajon.offsetHeight/1.7) + "px"
 
-		http.diccionario["logo_id"].style.fontSize = (http.cajon.offsetHeight/7) + 'px'
+		http.diccionario["logo_id"].style.fontSize = (http.cajon.offsetHeight/7) + "px"
 
 		if (http.cajon.offsetHeight > http.cajon.offsetWidth) {
-			divCanvas.style.fontSize = (http.cajon.offsetWidth/6.5) + 'px'
-			http.size_progress.style.fontSize = (http.cajon.offsetWidth/10) + 'px'
+			divCanvas.style.fontSize = (http.cajon.offsetWidth/6.5) + "px"
+			http.size_progress.style.fontSize = (http.cajon.offsetWidth/10) + "px"
 		} else {
-			divCanvas.style.fontSize = (http.cajon.offsetHeight/6.5) + 'px';
-			http.size_progress.style.fontSize = (http.cajon.offsetHeight/10) + 'px'
+			divCanvas.style.fontSize = (http.cajon.offsetHeight/6.5) + "px";
+			http.size_progress.style.fontSize = (http.cajon.offsetHeight/10) + "px"
 		}
 			setTimeout(REDIMENSIONAR, 200)
 		}
-	http.cajon.style.display = "block"
-	REDIMENSIONAR()
 
+
+	if (http.object.getAttribute("hideProgress")==null) {
+		http.cajon.style.display = "block"
+		REDIMENSIONAR()
+	}
 
 	http.restart_road = function () {
         http.diccionario["size_progress"].style.display = "block"
@@ -790,18 +789,18 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 	var medir_peso = function($bytes) {
 		if ($bytes > 999*999) {
 				var $peso = ($bytes/(1024*1024)).toFixed(3)
-			return $peso.toString().substring(0,($peso.length)-1) + ' MB'
+			return $peso.toString().substring(0,($peso.length)-1) + " MB"
 		} else {
 				var $peso = ($bytes/1024).toFixed(0)
-			return $peso.toString() + ' KB'
+			return $peso.toString() + " KB"
 		}
 	}
 
 
 	if (http.overrideMimeType)
-		http.overrideMimeType('text/plain; charset=x-user-defined');
+		http.overrideMimeType("text/plain; charset=x-user-defined");
 	else
-		http.setRequestHeader('Accept-Charset', 'x-user-defined');
+		http.setRequestHeader("Accept-Charset", "x-user-defined");
 
 	http.funcion_set_logz = function () {
 		if (http.activare_error_mensaje) {
@@ -961,6 +960,7 @@ var Image_renderProgress = function (divCanvas, cajon, object, size_progress,
 
 					clearTimeout(fin_de_carga)
 					setTimeout(fin_de_carga, 0)
+					http.object.preload_activate = false
 					http.next_image()
 
 				}, false);
@@ -1002,7 +1002,7 @@ function _BoxComposite() {};
 var UmbrellaService_BoxComposite = new _BoxComposite();
 
 _BoxComposite.prototype.start = function() {
-	var arbol_web = document.querySelectorAll('*[BoxComposite]')
+	var arbol_web = document.querySelectorAll("*[BoxComposite]")
 
 	for (var object of arbol_web) {
 	  if (typeof object == "object") {
@@ -1085,12 +1085,15 @@ _BoxComposite.prototype.start = function() {
 			var capa2 = document.createElement("div")
 			capa2.style=";display: flex;flex-wrap: wrap;background: transparent;height: calc(100%);-webkit-box-orient: vertical;-webkit-box-direction: normal;"
 
-
 			capa0.hijo = object
 			var Medir_visibilidad = function() {
-				if (this.hijo.style.display!=this.anterior_state) {
-					this.style.display = this.hijo.style.display
-					this.anterior_state = this.style.display
+				if (!this.hijo.preload_activate) {
+					if (this.hijo.style.display!=this.anterior_state) {
+						this.style.display = this.hijo.style.display
+						this.anterior_state = this.style.display
+					}
+				} else {
+					this.style.display = "block"
 				}
 				setTimeout(Medir_visibilidad.bind(this), 87)
 			}; setTimeout(Medir_visibilidad.bind(capa0), 0)
@@ -1120,7 +1123,7 @@ var UmbrellaService_FlexBox = new _FlexBox();
 _FlexBox.prototype.start = function() {
 
 	// refactorizando margen automatizado "hbox-space" -> (left=>right)
-	var arbol_web    = document.querySelectorAll('div[hbox-layer-space]')
+	var arbol_web    = document.querySelectorAll("div[hbox-layer-space]")
 	if (arbol_web.length>0) {
 		for (var object of arbol_web) {
 		  if (typeof object == "object") {
@@ -1129,7 +1132,7 @@ _FlexBox.prototype.start = function() {
 	    		var MAIN = object.parentNode
 	    		var atributo = object.getAttribute("hbox-layer-space")
 
-	    		var _IAG = object.querySelectorAll('*[hbox]')
+	    		var _IAG = object.querySelectorAll("*[hbox]")
 				for (var object_tmp of _IAG) {
 				  if (typeof object_tmp == "object") {
 				    if (!find_object(object_tmp)) {
@@ -1276,7 +1279,7 @@ _FlexBox.prototype.start = function() {
 							if (key=="row") {
 								TruncarResponsive(this, self.master_flex, value, self.master_flex)
 							} else {
-								var arbol_tmp = document.querySelectorAll('*[name="'+key+'"]')
+								var arbol_tmp = document.querySelectorAll("*[name=\""+key+"\"]")
 								if (arbol_tmp.length>0) {
 									for (var object2 of arbol_tmp) {
 									  if (typeof object2 == "object") {
@@ -1331,7 +1334,7 @@ _FlexBox.prototype.start = function() {
 						if (key=="row") {
 							TruncarResponsive(this, self.master_flex, value, self.master_flex)
 						} else {
-							var arbol_tmp = document.querySelectorAll('*[name="'+key+'"]')
+							var arbol_tmp = document.querySelectorAll("*[name=\""+key+"\"]")
 							if (arbol_tmp.length>0) {
 								for (var object2 of arbol_tmp) {
 								  if (typeof object2 == "object") {
@@ -1354,7 +1357,7 @@ _FlexBox.prototype.start = function() {
 						if (key=="row") {
 							TruncarResponsive(this, self.master_flex, value)
 						} else {
-							var arbol_tmp = document.querySelectorAll('*[name="'+key+'"]')
+							var arbol_tmp = document.querySelectorAll("*[name=\""+key+"\"]")
 							if (arbol_tmp.length>0) {
 								for (var object2 of arbol_tmp) {
 								  if (typeof object2 == "object") {
@@ -1377,7 +1380,7 @@ _FlexBox.prototype.start = function() {
 	// creando estructura automatiza de Super-Flexbox
 	var RUIN = function(OBJ) {
 
-		var arbol_web       = OBJ.querySelectorAll('*[hbox]')
+		var arbol_web       = OBJ.querySelectorAll("*[hbox]")
 		var Comboy_anterior = false
 		var anterior_box    = false
 
@@ -1636,13 +1639,15 @@ _FlexBox.prototype.start = function() {
 		  }
 		}
 
-		IA_superFlex()
+		if (arbol_web.length>0) {
+			IA_superFlex()
+		}
 	}
 
 
 	// Cithara generate => rectorizar celdas, creando mascaras de extructras FlexBox
 	var HACK = function (OBJ) {
-		var arbol_web    = OBJ.querySelectorAll('*[hbox]')
+		var arbol_web    = OBJ.querySelectorAll("*[hbox]")
 		var box_anterior = false
 		var morfeo       = false
 		var lista_bot = []
@@ -1659,7 +1664,7 @@ _FlexBox.prototype.start = function() {
 		    	var MAIN = object.parentNode
 
 		    	if (box_anterior) {
-		    		var _IAG = box_anterior.querySelectorAll('*')
+		    		var _IAG = box_anterior.querySelectorAll("*")
 		    		var saltar = false
 					for (var object_tmp of _IAG) {
 					  if (typeof object_tmp == "object") {
@@ -1725,9 +1730,79 @@ var UmbrellaService_TemplateBody = new _TemplateBody();
 
 // filtrando elementos en el arbol web
 _TemplateBody.prototype.start = function() {
-	var arbol_web = document.querySelectorAll('*[name]')
+	var arbol_web = document.querySelectorAll("*[name]")
 	var slaves    = new Array()
 	var master    = false
+	var previo    = false
+
+	var preparar_lista_menu_mobil = function(object, BOX) {
+		object.lista = BOX
+
+		var jugando_a_la_casita_con_mi_vecina_xD = function(troll=false) {
+		    function detect_childMENU() {
+		        var lista = object.childNodes;
+		        var lineas = new Array;
+
+		        for (var pointer in lista) {
+		          var item = lista[pointer];
+		          if (item.tagName == "DIV") {
+		            lineas = lineas.concat([item]);
+		          }
+		        }
+		        return lineas
+		    }
+
+		    var celda = object.lista
+		    var estado = celda.style.display
+		    var lineas = detect_childMENU();
+		    var conteo = 0;
+
+		    if (troll) {
+		    	estado = "block"
+		    }
+
+		    if (estado=="block") {
+		        for (var item of lineas) {
+		            conteo++;
+		            if (conteo==1) {
+		              item.style="transform: rotate(0deg) translateY(0px) translateX(0px);";
+		            }
+		            if (conteo==2) {
+		              item.style="transform: rotate(0deg);";
+		            }
+		            if (conteo==3) {
+		              item.style="transform: rotate(0deg) translateY(0px) translateX(0px);";
+		            }
+		        }
+		        celda.style.display="none"
+		    } else {
+		        for (var item of lineas) {
+		            conteo++;
+		            if (conteo==1) {
+		              item.style="transform: rotate(45deg) translateY(5.2px) translateX(5.2px);";
+		            }
+		            if (conteo==2) {
+		              item.style="transform: rotate(-45deg);";
+		            }
+		            if (conteo==3) {
+		              item.style="transform: rotate(-46.8deg) translateY(-5.2px) translateX(5.2px);";
+		            }
+		        }
+		        celda.style.display="block"
+		    }
+		}
+
+		setInterval(function () {
+			if (object.style.display=="none") {
+				jugando_a_la_casita_con_mi_vecina_xD(true)
+			}
+		}, 77)
+
+		object.addEventListener("click",  function() {
+			jugando_a_la_casita_con_mi_vecina_xD()
+		}, false);
+	}
+
 
 	for (var object of arbol_web) {
 	  if (typeof object == "object") {
@@ -1741,12 +1816,45 @@ _TemplateBody.prototype.start = function() {
 	        	object.setAttribute("umbrella.page_element", true)
 	        }
 
+
+	        if (value=="body.toolbar") {object.setAttribute("name", "body_toolbar")}
+	        if (value=="body.footer") {object.setAttribute("name",  "body_footer")}
+
+
 	        if (value=="body.content") {
+	        	object.setAttribute("name", "body_content")
 	        	object.style = object.style.cssText + ";min-width: 100%;margin-top: 0em;margin-bottom: 0em;padding: 0em;"
 	        	master = object
 	        	object.setAttribute("hbox", "auto+")
 	        	object.setAttribute("umbrella.page_element", true)
 	        }
+
+
+	        if (value=="body.menu_button") {
+	        	object.className = "body-menu_button"
+	        	object.setAttribute("name", "body_menu_button")
+	        	var conteo = 0
+	        	while (true) {
+	        		conteo++
+					var celda  = document.createElement("div")
+					celda.className = "body-menu_button-triger_line "
+					object.appendChild(celda)
+					if (conteo==3) {break}
+	        	}
+	        }
+
+
+	        if (previo) {
+	        	if (previo[1]=="body.menu_button") {
+		        	if (value=="body.menu_list") {
+		        		object.style.display = "none"
+		        		object.setAttribute("name", "body_menu_list")
+		        		preparar_lista_menu_mobil(previo[0], object)
+		        	}
+		        }
+	        }
+
+	        previo = [object, value]
 	      }
 	    }
 	  }
@@ -1801,7 +1909,7 @@ _TemplateBody.prototype.start = function() {
 
 		master.style.minHeight = ""
 		master.style.height    = ""
-		var MASTER = master.scrollHeight
+		var MASTER = document.body.scrollHeight
 		var anchura = MASTER - resta
 
 		if (MASTER==window.innerHeight) {
@@ -1827,7 +1935,6 @@ _TemplateBody.prototype.start = function() {
 		celda.setTimeout_instance = false
 		celda.conteo_timeOut_instance = 0
 		celda.salir_while = false
-
 	}
 
 
@@ -1841,7 +1948,7 @@ _TemplateBody.prototype.start = function() {
 //-------------------------------------------------------------------------------
 
 function UmbrellaService_ZooomViewPort() {
-	var viewport = document.querySelectorAll('meta[name="viewport"]')
+	var viewport = document.querySelectorAll("meta[name=\"viewport\"]")
 	if (viewport.length==0) {
 		var new_viewport = document.createElement("meta")
 		new_viewport.name="viewport"

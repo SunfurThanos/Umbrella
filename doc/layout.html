@@ -77,22 +77,17 @@ body {
             <a link-main="imagen.html" id="menu_image" hbox>IMAGEN</a>
             <a link-main="simbolos.html" hbox id="menu_simbols">SIMBOLOS</a>
             <a class="SELECT" id="menu_layout" hbox="true"
-               hbox-isVertical="row.hide,button_menu_mobile.show"
-               hbox-isHorizontal="row.show,button_menu_mobile.hide,menu_list_bar.hide">LAYOUT</a>
+               hbox-isVertical="row.hide,body_menu_button.show"
+               hbox-isHorizontal="row.show,body_menu_button.hide,menu_list_bar.hide">LAYOUT</a>
         </div>
 
-
-        <!-- menu:bar responsive -->
-        <div BoxComposite="center:left" name="button_menu_mobile" class="menu_mobile_button" onclick="mostrar_ocultar_menu(this)">
-             <div class="menu_triger_line"></div>
-             <div class="menu_triger_line"></div>
-             <div class="menu_triger_line"></div>
-        </div>
+        <!-- menú:bar responsive -->
+        <div BoxComposite="center:left" name="body.menu_button"></div>
 
     </div>
 
     <!-- menu_list responsive -->
-    <div class="menu_list_bar" name="menu_list_bar" id="menu_list_bar">
+    <div class="menu_list_bar" name="body.menu_list">
         <br>
         <button style="margin: 0" PasteAttributes="menu_home">INICIO</button>
         <br><br>
@@ -121,7 +116,7 @@ body {
 
             <h2 align="left">BoxComposite</h2>
 
-            <p>Colocar una celda encima de otra de forma centra u otra posición de composición especifica, suele ser complejo & laborioso no solo codificarlo si no actualizarlo, no te preocupes con este Framework puedes hacerlo de manera sencilla con la etiqueta <span>BoxComposite</span> & asignarle cualquiera de las siguientes posiciones disposibles: <strong>top:left</strong>, <strong>top:center</strong> <strong>top:right</strong>, <strong>center:left</strong>, <strong>center</strong>, <strong>center:right</strong>, <strong>bottom:left</strong>, <strong>bottom:center</strong>, <strong>bottom:right</strong>.</p>
+            <p>Colocar una celda encima de otra de forma centra u otra posición de composición especifica, suele ser complejo & laborioso no solo codificarlo si no actualizarlo, no te preocupes con este Framework puedes hacerlo de manera sencilla con la etiqueta <span>BoxComposite</span> & asignarle cualquiera de las siguientes posiciones disponibles: <strong>top:left</strong>, <strong>top:center</strong> <strong>top:right</strong>, <strong>center:left</strong>, <strong>center</strong>, <strong>center:right</strong>, <strong>bottom:left</strong>, <strong>bottom:center</strong>, <strong>bottom:right</strong>.</p>
 
             <pre><code class="html" id="code1"></code></pre>
 
@@ -137,16 +132,16 @@ body {
 
 
             <div style="width: 300px;height: 200px;background: black;position: relative;" align="center">
-              <img src="src/umbrella.jpg" BoxComposite="center" style="height: 80%">
-              <img src="src/doc.gif" NotProgress BoxComposite="top:right">
-              <img src="src/doc.gif" NotProgress BoxComposite="top:center">
-              <img src="src/doc.gif" NotProgress BoxComposite="top:left">
-              <img src="src/doc.gif" NotProgress BoxComposite="center:left">
-              <img src="src/doc.gif" NotProgress BoxComposite="center">
-              <img src="src/doc.gif" NotProgress BoxComposite="center:right">
-              <img src="src/doc.gif" NotProgress BoxComposite="bottom:right">
-              <img src="src/doc.gif" NotProgress BoxComposite="bottom:center">
-              <img src="src/doc.gif" NotProgress BoxComposite="bottom:left">
+              <img src="src/umbrella.jpg" hideProgress BoxComposite="center" style="height: 80%">
+              <img src="src/doc.gif" hideProgress BoxComposite="top:right">
+              <img src="src/doc.gif" hideProgress BoxComposite="top:center">
+              <img src="src/doc.gif" hideProgress BoxComposite="top:left">
+              <img src="src/doc.gif" hideProgress BoxComposite="center:left">
+              <img src="src/doc.gif" hideProgress BoxComposite="center">
+              <img src="src/doc.gif" hideProgress BoxComposite="center:right">
+              <img src="src/doc.gif" hideProgress BoxComposite="bottom:right">
+              <img src="src/doc.gif" hideProgress BoxComposite="bottom:center">
+              <img src="src/doc.gif" hideProgress BoxComposite="bottom:left">
             </div>
 
             <br><br>
@@ -217,7 +212,7 @@ body {
                 </div>
             </div>
 
-            <img NotProgress src="src/donar.png" link-tab="https://www.paypal.me/SunfurThanos">
+            <img hideProgress src="src/donar.png" link-tab="https://www.paypal.me/SunfurThanos">
 
             <div class="caja" hbox="true"></div>
             <div class="caja" hbox="true"></div>
@@ -313,7 +308,7 @@ body {
 
             <p><b>Explicación</b>: en el ejemplo anterior a manera de resumen, funciona de la siguiente manera: cuando los cubos azules no colisionan entre ellos, pues los cubos & el mensaje de <strong>tamaño normal</strong> se muestran, pero se oculta el mensaje de <strong>tamaño pequeño</strong>, cuando los pobres cubos colisionan se ocultan junto con el primer mensaje, pero se muestra el ultimo mensaje, como vez estas herramientas te permiten que diseñes tu propia lógica a tu gusto, re-dimensiona el tamaño (ancho) de la vista del navegador para que puedas apreciar con mayor detalle el sistema responsive de ejemplo.</p>
 
-            <p><span>¿que eso de "row", "grande", ...?</span>: para ocultar o mostrar todos los ítems de una fila, debes usar <strong>row</strong>, para llamar a una celda cuyo nombre sea <strong>grande</strong>, pues precisamente debes llamarlo por su nombre.</p>
+            <p><span>¿que eso de "row", "grande", ...?</span>: para llamar a todos los ítems de una fila, debes usar <strong>row</strong>, para llamar a una celda cuyo nombre sea <strong>grande</strong>, pues precisamente debes llamarlo por su nombre.</p>
 
             <br>
 
@@ -442,7 +437,7 @@ addEventListener("UmbrellaFinish",  function (event) {
 
 
         var block = document.getElementById("code2")
-        block.innerText = '<div style="width: 300px;height: 200px;background: black;position: relative;" align="center">\n  <img src="src/umbrella.jpg" BoxComposite="center" style="height: 80%">\n  <img src="src/doc.gif" NotProgress BoxComposite="top:right">\n  <img src="src/doc.gif" NotProgress BoxComposite="top:center">\n  <img src="src/doc.gif" NotProgress BoxComposite="top:left">\n  <img src="src/doc.gif" NotProgress BoxComposite="center:left">\n  <img src="src/doc.gif" NotProgress BoxComposite="center">\n  <img src="src/doc.gif" NotProgress BoxComposite="center:right">\n  <img src="src/doc.gif" NotProgress BoxComposite="bottom:right">\n  <img src="src/doc.gif" NotProgress BoxComposite="bottom:center">\n  <img src="src/doc.gif" NotProgress BoxComposite="bottom:left">\n</div>'
+        block.innerText = '<div style="width: 300px;height: 200px;background: black;position: relative;" align="center">\n  <img src="src/umbrella.jpg" hideProgress BoxComposite="center" style="height: 80%">\n  <img src="src/doc.gif" hideProgress BoxComposite="top:right">\n  <img src="src/doc.gif" hideProgress BoxComposite="top:center">\n  <img src="src/doc.gif" hideProgress BoxComposite="top:left">\n  <img src="src/doc.gif" hideProgress BoxComposite="center:left">\n  <img src="src/doc.gif" hideProgress BoxComposite="center">\n  <img src="src/doc.gif" hideProgress BoxComposite="center:right">\n  <img src="src/doc.gif" hideProgress BoxComposite="bottom:right">\n  <img src="src/doc.gif" hideProgress BoxComposite="bottom:center">\n  <img src="src/doc.gif" hideProgress BoxComposite="bottom:left">\n</div>'
         hljs.highlightBlock(block);
 
         var block = document.getElementById("code3")
@@ -470,7 +465,7 @@ addEventListener("UmbrellaFinish",  function (event) {
         hljs.highlightBlock(block);
 
         var block = document.getElementById("code8")
-        block.innerText = '<style type="text/css">\n\n.cajota {\n    width: 40%;height: 100px;background: #DFE4EB;border: 1px #737373 dashed;\n}\n\n.cajita {\n    background: white;padding: 0.4em;\n}\n\n</style>\n\n<div class="cajota" hbox="true">\n    <div BoxComposite="center">\n        <div hbox="auto" class="cajita_xD">hola 1</div>\n        <div hbox="auto" class="cajita_xD">hola 2</div>\n    </div>\n</div>\n\n<div class="cajota" hbox="true">\n    <div BoxComposite="center">\n        <a hbox="auto" class="cajita_xD">hola 3</a>\n        <a hbox="auto" class="cajita_xD">hola 4</a>\n    </div>\n</div>\n\n<img NotProgress src="src/donar.png" link-tab="https://www.paypal.me/SunfurThanos">\n\n<div class="caja" hbox="true"></div>\n<div class="caja" hbox="true"></div>'
+        block.innerText = '<style type="text/css">\n\n.cajota {\n    width: 40%;height: 100px;background: #DFE4EB;border: 1px #737373 dashed;\n}\n\n.cajita {\n    background: white;padding: 0.4em;\n}\n\n</style>\n\n<div class="cajota" hbox="true">\n    <div BoxComposite="center">\n        <div hbox="auto" class="cajita_xD">hola 1</div>\n        <div hbox="auto" class="cajita_xD">hola 2</div>\n    </div>\n</div>\n\n<div class="cajota" hbox="true">\n    <div BoxComposite="center">\n        <a hbox="auto" class="cajita_xD">hola 3</a>\n        <a hbox="auto" class="cajita_xD">hola 4</a>\n    </div>\n</div>\n\n<img hideProgress src="src/donar.png" link-tab="https://www.paypal.me/SunfurThanos">\n\n<div class="caja" hbox="true"></div>\n<div class="caja" hbox="true"></div>'
         hljs.highlightBlock(block);
 
         var block = document.getElementById("code9")

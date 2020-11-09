@@ -1,13 +1,34 @@
 
 /*********************************************************************
 
+CHILD : menu tipo mobil xD-D-D-DDDDD
+
+*********************************************************************/
+
+.body-menu_button {
+    width: 32px;
+    position: relative;
+    background: transparent;
+    cursor: pointer;
+}
+
+.body-menu_button-triger_line {
+    width: 25px;
+    height: 3px;
+    background: #000;
+    margin-bottom: 4px;
+    transition: all .2s ease-in-out;
+}
+
+/*********************************************************************
+
 CHILD : Utilidades CSS
 
 *********************************************************************/
 
 /* imagen responsive, basado en el tamaño del objeto padre */
 .Umbrella-imageResponsive {
-  display: block;height: auto;max-width: 100%;
+  height: auto;max-width: 100%;
 }
 
 /*********************************************************************

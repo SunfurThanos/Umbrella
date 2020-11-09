@@ -1,20 +1,21 @@
 
-.menu_triger_line {
-    width: 25px;
-    height: 3px;
-    background: #000;
-    margin-bottom: 4px;
-    transition: all .24s ease-in-out;
-}
-
-.menu_mobile_button {
+.body-menu_button {
     width: 32px;
     position: relative;
     background: transparent;
-    margin-left: 0.74em;
     cursor: pointer;
+    margin-left: 0.72em;
     display: none;
 }
+
+.body-menu_button-triger_line {
+    width: 25px;
+    height: 3px;
+    background: #282828;
+    margin-bottom: 4px;
+    transition: all .2s ease-in-out;
+}
+
 
 .menu_list_bar {
     margin-top: 50px;

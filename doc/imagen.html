@@ -44,22 +44,18 @@ body {
             <a class="SELECT" hbox id="menu_image">IMAGEN</a>
             <a link-main="simbolos.html" id="menu_simbols" hbox>SIMBOLOS</a>
             <a link-main="layout.html" id="menu_layout" hbox="true"
-               hbox-isVertical="row.hide,button_menu_mobile.show"
-               hbox-isHorizontal="row.show,button_menu_mobile.hide,menu_list_bar.hide">LAYOUT</a>
+               hbox-isVertical="row.hide,body_menu_button.show"
+               hbox-isHorizontal="row.show,body_menu_button.hide,menu_list_bar.hide">LAYOUT</a>
         </div>
 
 
-        <!-- menu:bar responsive -->
-        <div BoxComposite="center:left" name="button_menu_mobile" class="menu_mobile_button" onclick="mostrar_ocultar_menu(this)">
-             <div class="menu_triger_line"></div>
-             <div class="menu_triger_line"></div>
-             <div class="menu_triger_line"></div>
-        </div>
+        <!-- menú:bar responsive -->
+        <div BoxComposite="center:left" name="body.menu_button"></div>
 
     </div>
 
     <!-- menu_list responsive -->
-    <div class="menu_list_bar" name="menu_list_bar" id="menu_list_bar">
+    <div class="menu_list_bar" name="body.menu_list">
         <br>
         <button style="margin: 0" PasteAttributes="menu_home">INICIO</button>
         <br><br>
@@ -90,7 +86,7 @@ body {
 
             <p>Gracias a Umbrella, si a una celda tipo imagen no le activas el evento <span>onclick</span>, al hacer doble clic sobre dicha celda, mostrara la imagen en otra pestaña, permitiendo tapar un poco el hueco que deja <strong>Firefox</strong> frente al navegador <strong>Chrome</strong>.</p>
 
-            <p><b>¿que pasa si no quiero que ese evento se active de forma automática?</b>: en la celda tipo imagen deseada, debes inserta la etiqueta <strong>NotAutoClick</strong>, ya con eso el evento queda desactivado.</p>
+            <p><b>¿que pasa si no quiero que ese evento se active de forma automática?</b>: en la celda tipo imagen deseada, debes insertar la etiqueta <strong>NotAutoClick</strong>, ya con eso el evento queda desactivado.</p>
 
             <h2 align="left">Barra de progreso automática para imágenes</h2>
 
@@ -108,13 +104,15 @@ body {
 
             <br>
 
-            <p>Es posible modificar el estilo de la celda de progreso desde css, para mayor información lea la hoja de estilo <strong>umbrella\style.css</strong>, pondré un ejemplo sencillo, por ejemplo para cambiar el tamaño, color de fondo & color de texto puedes usar un código como el siguiente...</p>
+            <p>Es posible modificar el estilo de la celda de progreso desde css, para mayor información lea la hoja de estilo "<strong>umbrella\style.css</strong>", pondré un ejemplo sencillo, por ejemplo para cambiar el tamaño, color de fondo & color de texto puedes usar lo siguiente...</p>
 
             <pre><code class="html" id="code2"></code></pre>
 
             <br>
 
-            <p>Si no deseas que <b>Umbrella</b>, capture las celdas tipo imagen y muestre un progreso de carga, debes insertar la siguiente etiqueta <span>NotProgress</span> en la celda tipo imagen, que no desees que sea pre-cargada.</p>
+            <p>Si no deseas que <b>Umbrella</b>, pre-cargue una determinada imagen, debes insertar la siguiente etiqueta <span>NotProgress</span> en la celda correspondiente.</p>
+
+            <p><span>¿quiero disfrutar de las ventajas de la pre-carga de imágenes, pero no deseo que se muestre el progreso?</span>: evitar que se muestre la celda de progreso es vital por si la imagen tiene o esta en una celda de dimensiones reducidas, para ello solo bastaría con insertar la etiqueta <strong>hideProgress</strong> en la celda correspondiente, la celda de imagen y progreso no se mostraran durante la carga, una vez que la imagen ya este pre-cargada se mostrara.</p>
 
             <p><span>¿Puedo pre-cargar imágenes de otro dominio?</span>: por ahora el soporte esta totalmente experimental.</p>
 

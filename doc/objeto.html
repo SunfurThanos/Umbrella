@@ -43,22 +43,17 @@ body {
             <a link-main="imagen.html" id="menu_image" hbox>IMAGEN</a>
             <a link-main="simbolos.html" id="menu_simbols" hbox>SIMBOLOS</a>
             <a link-main="layout.html" id="menu_layout" hbox="true"
-               hbox-isVertical="row.hide,button_menu_mobile.show"
-               hbox-isHorizontal="row.show,button_menu_mobile.hide,menu_list_bar.hide">LAYOUT</a>
+               hbox-isVertical="row.hide,body_menu_button.show"
+               hbox-isHorizontal="row.show,body_menu_button.hide,menu_list_bar.hide">LAYOUT</a>
         </div>
 
-
-        <!-- menu:bar responsive -->
-        <div BoxComposite="center:left" name="button_menu_mobile" class="menu_mobile_button" onclick="mostrar_ocultar_menu(this)">
-             <div class="menu_triger_line"></div>
-             <div class="menu_triger_line"></div>
-             <div class="menu_triger_line"></div>
-        </div>
+        <!-- menú:bar responsive -->
+        <div BoxComposite="center:left" name="body.menu_button"></div>
 
     </div>
 
     <!-- menu_list responsive -->
-    <div class="menu_list_bar" name="menu_list_bar" id="menu_list_bar">
+    <div class="menu_list_bar" name="body.menu_list">
         <br>
         <button style="margin: 0" PasteAttributes="menu_home">INICIO</button>
         <br><br>
@@ -135,56 +130,6 @@ body {
 <script src="src/highlight.pack.js"></script>
 
 <script type="text/javascript">
-
-function mostrar_ocultar_menu(self) {
-    var celda = document.getElementById('menu_list_bar')
-    var estado = celda.style.display
-    var lineas = detect_childMENU();
-    var conteo = 0;
-
-    function detect_childMENU() {
-        var lista = self.childNodes;
-        var lineas = new Array;
-
-        for (var pointer in lista) {
-          var item = lista[pointer];
-          if (item.tagName == "DIV") {
-            lineas = lineas.concat([item]);
-          }
-        }
-        return lineas
-    }
-
-    if (estado=="block") {
-        for (var item of lineas) {
-            conteo++;
-            if (conteo==1) {
-              item.style="transform: rotate(0deg) translateY(0px) translateX(0px);";
-            }
-            if (conteo==2) {
-              item.style="transform: rotate(0deg);";
-            }
-            if (conteo==3) {
-              item.style="transform: rotate(0deg) translateY(0px) translateX(0px);";
-            }
-        }
-        celda.style.display="none"
-    } else {
-        for (var item of lineas) {
-            conteo++;
-            if (conteo==1) {
-              item.style="transform: rotate(45deg) translateY(5.2px) translateX(5.2px);";
-            }
-            if (conteo==2) {
-              item.style="transform: rotate(-45deg);";
-            }
-            if (conteo==3) {
-              item.style="transform: rotate(-46.8deg) translateY(-5.2px) translateX(5.2px);";
-            }
-        }
-        celda.style.display="block"
-    }
-}
 
 addEventListener("UmbrellaFinish",  function (event) {
         var block = document.getElementById("code1")

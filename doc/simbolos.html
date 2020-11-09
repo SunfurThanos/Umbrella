@@ -43,21 +43,17 @@ body {
             <a link-main="imagen.html" id="menu_image" hbox>IMAGEN</a>
             <a class="SELECT" hbox id="menu_simbols">SIMBOLOS</a>
             <a link-main="layout.html" id="menu_layout" hbox="true"
-               hbox-isVertical="row.hide,button_menu_mobile.show"
-               hbox-isHorizontal="row.show,button_menu_mobile.hide,menu_list_bar.hide">LAYOUT</a>
+               hbox-isVertical="row.hide,body_menu_button.show"
+               hbox-isHorizontal="row.show,body_menu_button.hide,menu_list_bar.hide">LAYOUT</a>
         </div>
 
-        <!-- menu:bar responsive -->
-        <div BoxComposite="center:left" name="button_menu_mobile" class="menu_mobile_button" onclick="mostrar_ocultar_menu(this)">
-             <div class="menu_triger_line"></div>
-             <div class="menu_triger_line"></div>
-             <div class="menu_triger_line"></div>
-        </div>
+        <!-- menú:bar responsive -->
+        <div BoxComposite="center:left" name="body.menu_button"></div>
 
     </div>
 
     <!-- menu_list responsive -->
-    <div class="menu_list_bar" name="menu_list_bar" id="menu_list_bar">
+    <div class="menu_list_bar" name="body.menu_list">
         <br>
         <button style="margin: 0" PasteAttributes="menu_home">INICIO</button>
         <br><br>
