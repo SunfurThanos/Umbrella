@@ -100,8 +100,9 @@ strong {
   color: rgba(29, 33, 48, 0.94);
   /*color: #343342;*/
   font-weight: 600;
-  letter-spacing: 0.75px;
+  letter-spacing: 0.24px;
 }
+
 
 span {
   font-weight: bold;color: #7970ec;
