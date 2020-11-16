@@ -186,7 +186,7 @@ function UmbrellaKernelStart() {
 		if (modulo.cargado) {
 			return RUN_KERNNEL()
 		}
-		setTimeout(capturando_kernell, 0x00000003)
+		setTimeout(capturando_kernell, 0x00000001)
 	}; capturando_kernell()
 }
 

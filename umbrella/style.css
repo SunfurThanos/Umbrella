@@ -98,8 +98,8 @@ CHILD : PreLoad Page
 
 div[name="body.container"] {
   display: none;
-  -webkit-animation: umbrella_opacityBoDy 0.7s both ease .05s;
-  -moz-animation: umbrella_opacityBoDy 0.7s both ease .05s;
+  -webkit-animation: umbrella_opacityBoDy 0.7s both ease .0s;
+  -moz-animation: umbrella_opacityBoDy 0.7s both ease .0s;
 }
 
 div[name="body.progress"] {
