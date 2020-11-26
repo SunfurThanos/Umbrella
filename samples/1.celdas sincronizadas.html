@@ -1,0 +1,102 @@
+<meta charset="utf-8">
+<link href="src/consola.png" rel="icon" type="image/x-icon">
+<script type="text/javascript" src="../umbrella/index.js"></script>
+<link type="text/css" href="src/estilo.css" rel="stylesheet">
+
+<script type="text/javascript">
+
+window.onbeforeunload = function() {
+  return "There are unsaved changes. Leave now?";
+};
+
+</script>
+
+<title>Umbrella - Celdas sincronicas</title>
+
+<style type="text/css">
+
+	.brillo {
+		border: 1px salmon solid;
+	}
+
+	a[href] {
+		color: #8ab7ce;
+	}
+
+	a[href]:hover {
+		color: salmon;
+	}
+
+</style>
+
+<br><br>
+
+<!-- ejemplo 1 -->
+<div align="center">
+
+	<!-- celda donde se harán las copias de etiquetas sincronizadas -->
+	<img
+		src="src/Milla1.jpg"
+		height="250"
+		id="imagen1"
+		hspace="10"
+		style="-webkit-box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.8);margin-top: 1em;"
+		class="brillo"
+	>
+
+	<!-- celda 1 donde se pegaran las etiquetas sincronizadas -->
+	<img src="src/Milla2.jpg"  PasteAttributes="imagen1">
+
+</div>
+
+</p></p>
+
+<!-- ejemplo 2 -->
+<div align="center">
+	<a href="https://sunfur.herokuapp.com" target="_black" id="texto_main" style="cursor: pointer;display: inline-block;">haz clic</a>
+	<a PasteAttributes="texto_main"><button PasteAttributes="texto_main">haz clic</button></a>
+	<a PasteAttributes="texto_main"><div PasteAttributes="texto_main" style="display: color: salmon;">haz clic</div></a>
+</div>
+
+<br>
+
+<div align="center">
+	<button onclick="NEO0()">urls</button>
+	<button onclick="NEO()">vale</button>
+	<button onclick="NEO3()">cupe</button>
+	<button onclick="NEO4()">dolores</button>
+</div>
+
+<br><br>
+
+<script type="text/javascript">
+
+// UmbrellaService_PasteAttrib.start()
+
+function NEO0() {
+	celda = document.getElementById("texto_main")
+	celda.href = "https://www.ilm.com"
+}
+
+function NEO() {
+	celda = document.getElementById("imagen1")
+	celda.style.height = "100"
+
+}
+
+function NEO3() {
+	celda = document.getElementById("imagen1")
+	celda.className = ""
+	celda.style.border = "2px red solid"
+}
+
+function NEO4() {
+	celda = document.getElementById("imagen1")
+	celda.vspace="4"
+}
+
+
+celda = document.getElementById("texto_main")
+
+
+</script>
