@@ -44,9 +44,9 @@ function func_isConectionServer() {
         	umbrella.eventTestingServer.status_conection = status_actual
 
         	if (status_actual) {
-        		console.log("Umbrella: hay internet :)")
+        		console.log("Umbrella: SI hay conexión al servidor")
         	} else {
-        		console.log("Umbrella: No hay internet :(")
+        		console.log("Umbrella: NO hay conexión al servidor")
         	}
         }
 
@@ -106,7 +106,7 @@ function RUN_KERNNEL() {
 	// testeo infinito para probar conexión a internet
 	if (document.location.hostname) {
 		if (document.location.hostname!="localhost") {
-			console.log("Umbrella: " + document.location.hostname)
+			console.log("Umbrella server: " + document.location.hostname)
 			func_isConectionServer()
 		}
 	}
@@ -310,7 +310,7 @@ _ComputeSpace.prototype.start = function(comienzo=false) {
 		}
 	}
 
-	for (var tipo of ["span", "p", "a", "div[type=\"TEXT\"]"]) {
+	for (var tipo of ["span", "p", "a", "div[type=\"TEXT\"]", "h2"]) {
 		StateTrump(tipo)
 	}
 }

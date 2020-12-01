@@ -91,7 +91,7 @@ body {
 
             <h2 align="left">Barra de progreso automática para imágenes</h2>
 
-            <p>En conexiones lentas e inestables, la mayoría de las veces las imágenes solo se logran cargar por la mitad o totalmente pixeladas, en el peor de los casos nunca llega a cargarse, con <b>Umbrella</b> esto llega a su fin, no tienes que hacer !NADA!, Umbrella hace todo el trabajo por ti, lo cual es fantástico, te muestra en pantalla el progreso de carga de manera profesional, al terminar Umbrella te muestra la imagen en su celda correspondiente, !como si nada hubiera pasado!, este es uno de los campos de Umbrella, !donde más innovaciones traerá en las nuevas versiones!.</p>
+            <p>En conexiones lentas e inestables, la mayoría de las veces las imágenes solo se logran cargar por la mitad o totalmente pixeladas, en el peor de los casos nunca llega a cargarse, con <b>Umbrella</b> esto llega a su fin, no tienes que hacer !NADA!, Umbrella hace todo el trabajo por ti, lo cual es fantástico, te muestra en pantalla el progreso de carga de manera profesional, al terminar Umbrella te muestra la imagen en su celda correspondiente, !como si nada hubiera pasado!.</p>
 
             <p><span>¿que pasa si se va el Internet cuando la imagen no se termino de descargar?</span>: en la misma celda de progreso aparecerá un icono indicando que no posees conexión al servidor para seguir descargando, cuando ya poseas conexión la carga de imágenes se reanuda de forma automática, !sin que hagas NADA, más fácil imposible!, <span>¿como es eso posible?</span>: el FrameWork ejecuta una función cada <strong>20 segundos</strong> para comprobar la conexión al servidor de la pagina, de esta manera se puede comprobar si se puede o no reanudar la pre-carga de imágenes, <b>¿que pasa si la imagen no existe?</b>: aparecerá un icono de archivo no encontrado, pero esta vez si quieres probar suerte con la carga de la imagen debes reiniciar la pagina, ya que hacer ajustes automáticos provocaría un mal rendimiento & de manera innecesaria..</p>
 
@@ -115,7 +115,9 @@ body {
 
             <p><span>¿quiero disfrutar de las ventajas de la pre-carga de imágenes, pero no deseo que se muestre el progreso?</span>: evitar que se muestre la celda de progreso es vital por si la imagen tiene o esta en una celda de dimensiones reducidas, para ello solo bastaría con insertar la etiqueta <strong>hideProgress</strong> en la celda correspondiente, la celda de imagen y progreso no se mostraran durante la carga, una vez que la imagen ya este pre-cargada se mostrara.</p>
 
-            <p><span>¿Puedo pre-cargar imágenes de otro dominio?</span>: por ahora el soporte esta totalmente experimental.</p>
+            <p><span>¿Puedo pre-cargar imágenes de otro dominio?</span>: de forma predeterminada no puedes ya que internamente Umbrella utiliza <strong>Ajax</strong> para pre-cargar las imagenes, para activar soporte a la lectura de imagenes de otro dominio debes <strong>crear/modificar</strong> el archivo <mark>.htaccess</mark></p>
+
+            <pre><code class="html" id="code3"></code></pre>
 
         </div>
 
@@ -138,56 +140,6 @@ body {
 
 <script type="text/javascript">
 
-function mostrar_ocultar_menu(self) {
-    var celda = document.getElementById('menu_list_bar')
-    var estado = celda.style.display
-    var lineas = detect_childMENU();
-    var conteo = 0;
-
-    function detect_childMENU() {
-        var lista = self.childNodes;
-        var lineas = new Array;
-
-        for (var pointer in lista) {
-          var item = lista[pointer];
-          if (item.tagName == "DIV") {
-            lineas = lineas.concat([item]);
-          }
-        }
-        return lineas
-    }
-
-    if (estado=="block") {
-        for (var item of lineas) {
-            conteo++;
-            if (conteo==1) {
-              item.style="transform: rotate(0deg) translateY(0px) translateX(0px);";
-            }
-            if (conteo==2) {
-              item.style="transform: rotate(0deg);";
-            }
-            if (conteo==3) {
-              item.style="transform: rotate(0deg) translateY(0px) translateX(0px);";
-            }
-        }
-        celda.style.display="none"
-    } else {
-        for (var item of lineas) {
-            conteo++;
-            if (conteo==1) {
-              item.style="transform: rotate(45deg) translateY(5.2px) translateX(5.2px);";
-            }
-            if (conteo==2) {
-              item.style="transform: rotate(-45deg);";
-            }
-            if (conteo==3) {
-              item.style="transform: rotate(-46.8deg) translateY(-5.2px) translateX(5.2px);";
-            }
-        }
-        celda.style.display="block"
-    }
-}
-
 addEventListener("UmbrellaFinish",  function (event) {
     var block = document.getElementById("code1")
     block.innerText = '<img src="src/chompiras.gif">\n\n<img src="src/resident-evil-1.gif">'
@@ -195,6 +147,11 @@ addEventListener("UmbrellaFinish",  function (event) {
 
     var block = document.getElementById("code2")
     block.innerText = '<style type="text/css">\n\n.ProgressImage-size[name="mi-imagen"] {\n  width: 250px;height: 130px;\n}\n\n.ProgressImage-container[name="mi-imagen"] {\n    background: black;\n}\n\n.ProgressImage-container-text[name="mi-imagen"] {\n  color: red;\n}\n\n</style>\n\n<img name="mi-imagen" src="src/imagen.jpg">'
+    hljs.highlightBlock(block);
+
+
+    var block = document.getElementById("code3")
+    block.innerText = '<ifmodule mod_expires.c>\n<Filesmatch ".(jpg|jpeg|png|gif|svg|ico)$">\nHeader set Access-Control-Allow-Origin "*"\n</FilesMatch>\n</IfModule>'
     hljs.highlightBlock(block);
 
 }, false);
