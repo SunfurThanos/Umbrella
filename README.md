@@ -18,4 +18,4 @@ Increible frameWork futuristas que brinda una gran experiencia & productividad a
 
 ---
 
-**Sunfur Thanos** Si aprendes a estar abierto para adaptarte ¡serás invencible!
+**ALF** Si aprendes a estar abierto para adaptarte ¡serás invencible!
